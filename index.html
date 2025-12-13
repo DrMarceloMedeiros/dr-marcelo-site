@@ -130,7 +130,7 @@
             color: white;
         }
         
-        /* Foto placeholder */
+        /* Foto placeholder com BIO POPUP */
         .photo-placeholder {
             width: 650px;
             height: 500px;
@@ -145,9 +145,63 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             position: relative;
             overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .photo-placeholder:hover {
+            border-color: var(--teal-primary);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(13, 148, 136, 0.15);
         }
         
-        /* Cards de serviços com POPUP */
+        /* Popup da Biografia */
+        .bio-popup {
+            display: none;
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 110%;
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            z-index: 20;
+            border: 3px solid var(--teal-primary);
+            text-align: left;
+        }
+        .photo-placeholder:hover .bio-popup {
+            display: block;
+            animation: fadeInUp 0.4s ease-out;
+        }
+        
+        .bio-popup h4 {
+            color: var(--dark-teal);
+            font-weight: 800;
+            margin-bottom: 15px;
+            border-bottom: 3px solid #f0f9ff;
+            padding-bottom: 10px;
+        }
+        
+        .bio-popup p {
+            color: #4b5563;
+            margin-bottom: 12px;
+            line-height: 1.5;
+        }
+        
+        .bio-badge {
+            background: linear-gradient(135deg, var(--teal-primary), var(--dark-teal));
+            color: white;
+            padding: 6px 12px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-right: 8px;
+            margin-bottom: 8px;
+        }
+        
+        /* Cards de serviços */
         .service-card {
             border: 2px solid #e5e7eb;
             border-radius: 20px;
@@ -167,22 +221,40 @@
             background: linear-gradient(135deg, #f0f9ff, #ffffff);
         }
         
-        /* Popup de informações científicas */
+        /* Popup de informações científicas - AJUSTADO */
         .service-popup {
             display: none;
             position: absolute;
-            top: 100%;
-            left: 0;
-            right: 0;
             background: white;
             border-radius: 15px;
             padding: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
             z-index: 10;
-            margin-top: 10px;
             text-align: left;
             border: 2px solid var(--teal-primary);
+            width: 350px;
         }
+        
+        /* Popup para LINHA DE CIMA (abre para BAIXO) */
+        .service-card:nth-child(1) .service-popup,
+        .service-card:nth-child(2) .service-popup,
+        .service-card:nth-child(3) .service-popup {
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            margin-top: 10px;
+        }
+        
+        /* Popup para LINHA DE BAIXO (abre para CIMA) */
+        .service-card:nth-child(4) .service-popup,
+        .service-card:nth-child(5) .service-popup,
+        .service-card:nth-child(6) .service-popup {
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            margin-bottom: 10px;
+        }
+        
         .service-card:hover .service-popup {
             display: block;
             animation: fadeInUp 0.3s ease-out;
@@ -191,20 +263,32 @@
         .service-popup h5 {
             color: var(--dark-teal);
             font-weight: 700;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
             border-bottom: 2px solid #f0f9ff;
-            padding-bottom: 5px;
+            padding-bottom: 8px;
+            font-size: 1.1rem;
         }
         
         .service-popup ul {
             padding-left: 20px;
-            margin-bottom: 0;
+            margin-bottom: 15px;
         }
         
         .service-popup li {
-            margin-bottom: 5px;
+            margin-bottom: 8px;
             color: #4b5563;
             font-size: 0.9rem;
+            line-height: 1.4;
+        }
+        
+        .treatment-info {
+            background: #f0f9ff;
+            padding: 10px;
+            border-radius: 8px;
+            margin-top: 10px;
+            font-size: 0.85rem;
+            color: var(--dark-teal);
+            border-left: 4px solid var(--teal-primary);
         }
         
         .price-tag {
@@ -236,10 +320,10 @@
             color: white;
         }
         
-        /* Animação do popup */
+        /* Animação */
         @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+            from { opacity: 0; transform: translate(-50%, 10px); }
+            to { opacity: 1; transform: translate(-50%, 0); }
         }
         
         /* Badge de credencial */
@@ -264,7 +348,7 @@
             .hero-title { font-size: 2.8rem; }
             .hero-subtitle { font-size: 1.5rem; }
             .photo-placeholder { width: 450px; height: 350px; }
-            .service-popup {
+            .bio-popup, .service-popup {
                 position: fixed;
                 top: 50%;
                 left: 50%;
@@ -329,19 +413,53 @@
             
             <div class="row align-items-center mt-5">
                 <div class="col-lg-6">
-                    <!-- Espaço para SUA FOTO -->
+                    <!-- Espaço para SUA FOTO com BIO POPUP -->
                     <div class="photo-placeholder">
                         <div class="text-center">
                             <i class="fas fa-user-md fa-4x mb-3 text-gray-500"></i><br>
                             <span class="fw-bold fs-5">SUA FOTO AQUI<br><small class="fw-normal">(Formato paisagem)</small></span>
                         </div>
+                        
+                        <!-- Popup da Biografia -->
+                        <div class="bio-popup">
+                            <h4>Dr. Marcelo Medeiros - Trajetória Profissional</h4>
+                            
+                            <p>🎓 <strong>Formação Médica:</strong> Graduado pela Universidade UNINGÁ (2016-2021), com excelência acadêmica e premiações por desempenho.</p>
+                            
+                            <p>🏆 <strong>Pós-graduação:</strong> Especialização em Psiquiatria pelo renomado Hospital Israelita Albert Einstein de São Paulo, referência nacional em saúde mental.</p>
+                            
+                            <p>⚕️ <strong>Experiência Hospitalar:</strong> Atuação em serviços de <strong>Urgência e Emergência Psiquiátrica</strong>, atendendo casos agudos e crises em ambiente hospitalar.</p>
+                            
+                            <p>🏥 <strong>CAPS e Saúde Pública:</strong> Desde 2023 atuando em Centros de Atenção Psicossocial, proporcionando cuidado contínuo a pacientes com transtornos mentais graves.</p>
+                            
+                            <p>💼 <strong>Clínica Particular:</strong> Experiência consolidada em consultório particular, ofereciendo tratamento individualizado para diversos transtornos psiquiátricos.</p>
+                            
+                            <p>🧠 <strong>Especializações:</strong> Vasta experiência no diagnóstico e tratamento de <strong>ansiedade, depressão, TDAH adulto, transtorno bipolar, TOC e transtornos de personalidade</strong>.</p>
+                            
+                            <p>🚨 <strong>Toxicologia Psiquiátrica:</strong> Expertise em <strong>abuso e dependência de substâncias</strong>, incluindo álcool, drogas ilícitas e medicamentos controlados.</p>
+                            
+                            <p>📚 <strong>Atualização Contínua:</strong> Participação regular em congressos nacionais e internacionais, mantendo-se atualizado com as evidências científicas mais recentes.</p>
+                            
+                            <p>🤝 <strong>Abordagem Humanizada:</strong> Combina expertise técnica com acolhimento empático, respeitando a singularidade de cada paciente.</p>
+                            
+                            <p>🔬 <strong>Metodologia Baseada em Evidências:</strong> Utiliza protocolos validados cientificamente, garantindo tratamentos eficazes e seguros.</p>
+                            
+                            <div class="mt-3">
+                                <span class="bio-badge">Psiquiatria</span>
+                                <span class="bio-badge">Saúde Mental</span>
+                                <span class="bio-badge">Toxicologia</span>
+                                <span class="bio-badge">CAPS</span>
+                                <span class="bio-badge">Emergência</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
+                
                 <div class="col-lg-6">
                     <h2 class="h2 fw-900 text-teal-700 mb-4">Consulta Online</h2>
                     <div class="price-tag">R$ 99,90</div>
                     <p class="text-gray-600 mb-4 fs-5">
-                        <i class="fas fa-video text-teal-600 me-2"></i> Videochamada de 30 minutos<br>
+                        <i class="fas fa-video text-teal-600 me-2"></i> Videochamada<br>
                         <i class="fas fa-stethoscope text-teal-600 me-2"></i> Diagnóstico e tratamento especializado
                     </p>
                     <a href="https://wa.me/554491339060?text=Olá,%20Dr.%20Marcelo,%20gostaria%20de%20agendar%20uma%20consulta%20online%20de%2030%20minutos%20(R$%2099,90)" 
@@ -356,14 +474,14 @@
         </div>
     </section>
 
-    <!-- Serviços Especializados com POPUPS -->
+    <!-- Serviços Especializados com POPUPS AJUSTADOS -->
     <section class="py-5">
         <div class="container">
             <h2 class="text-center display-5 fw-900 mb-5 text-gray-800">
                 Especialidades Psiquiátricas
             </h2>
             <div class="row g-4">
-                <!-- Ansiedade -->
+                <!-- Ansiedade (popup para BAIXO) -->
                 <div class="col-md-4">
                     <div class="service-card">
                         <i class="fas fa-brain fa-3x text-teal-600 mb-3"></i>
@@ -379,12 +497,14 @@
                                 <li><strong>TOC:</strong> Pensamentos obsessivos e compulsões</li>
                                 <li><strong>TAS:</strong> Medo de avaliação social</li>
                             </ul>
-                            <p class="small text-muted mb-0">Tratamento: Terapia + Medicação (ISRS, BDZ)</p>
+                            <div class="treatment-info">
+                                <strong>Tratamento:</strong> Terapia Cognitivo-Comportamental + Medicação (ISRS, BDZ)
+                            </div>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Depressão -->
+                <!-- Depressão (popup para BAIXO) -->
                 <div class="col-md-4">
                     <div class="service-card">
                         <i class="fas fa-cloud-sun fa-3x text-teal-600 mb-3"></i>
@@ -400,12 +520,14 @@
                                 <li><strong>Pós-parto:</strong> Após gestação</li>
                                 <li><strong>Melancólica:</strong> Com sintomas psicóticos</li>
                             </ul>
-                            <p class="small text-muted mb-0">Tratamento: Antidepressivos + Psicoterapia</p>
+                            <div class="treatment-info">
+                                <strong>Tratamento:</strong> Antidepressivos (ISRS, IRSN) + Psicoterapia
+                            </div>
                         </div>
                     </div>
                 </div>
                 
-                <!-- TDAH -->
+                <!-- TDAH (popup para BAIXO) -->
                 <div class="col-md-4">
                     <div class="service-card">
                         <i class="fas fa-bolt fa-3x text-teal-600 mb-3"></i>
@@ -421,12 +543,14 @@
                                 <li><strong>Comorbidades:</strong> Ansiedade, depressão, vícios</li>
                                 <li><strong>Diagnóstico:</strong> ASRS-18, entrevista clínica</li>
                             </ul>
-                            <p class="small text-muted mb-0">Tratamento: Estimulantes + Terapia</p>
+                            <div class="treatment-info">
+                                <strong>Tratamento:</strong> Estimulantes (Metilfenidato) + Terapia
+                            </div>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Transtornos de Personalidade -->
+                <!-- Transtornos de Personalidade (popup para CIMA) -->
                 <div class="col-md-4">
                     <div class="service-card">
                         <i class="fas fa-user-tag fa-3x text-teal-600 mb-3"></i>
@@ -442,12 +566,14 @@
                                 <li><strong>Esquiva:</strong> Inibição social, sensibilidade</li>
                                 <li><strong>Obsessivo-Compulsivo:</strong> Perfeccionismo</li>
                             </ul>
-                            <p class="small text-muted mb-0">Tratamento: DBT, Terapia focada</p>
+                            <div class="treatment-info">
+                                <strong>Tratamento:</strong> DBT, Terapia focada na transferência
+                            </div>
                         </div>
                     </div>
                 </div>
                 
-                <!-- TAB -->
+                <!-- TAB (popup para CIMA) -->
                 <div class="col-md-4">
                     <div class="service-card">
                         <i class="fas fa-balance-scale fa-3x text-teal-600 mb-3"></i>
@@ -463,12 +589,14 @@
                                 <li><strong>Mista:</strong> Sintomas simultâneos</li>
                                 <li><strong>Rápido-Ciclador:</strong> 4+ episódios/ano</li>
                             </ul>
-                            <p class="small text-muted mb-0">Tratamento: Estabilizadores de humor</p>
+                            <div class="treatment-info">
+                                <strong>Tratamento:</strong> Estabilizadores de humor (Lítio, Valproato)
+                            </div>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Fobias -->
+                <!-- Fobias (popup para CIMA) -->
                 <div class="col-md-4">
                     <div class="service-card">
                         <i class="fas fa-fear fa-3x text-teal-600 mb-3"></i>
@@ -484,7 +612,9 @@
                                 <li><strong>Ansiedade de Separação:</strong> Adultos</li>
                                 <li><strong>Mutismo Seletivo:</strong> Recusa em falar</li>
                             </ul>
-                            <p class="small text-muted mb-0">Tratamento: Exposição + CBT</p>
+                            <div class="treatment-info">
+                                <strong>Tratamento:</strong> Exposição gradual + Terapia Cognitivo-Comportamental
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -492,7 +622,7 @@
         </div>
     </section>
 
-    <!-- Pagamento -->
+    <!-- Agendamento -->
     <section class="py-5 bg-light">
         <div class="container text-center">
             <h2 class="display-6 fw-900 mb-4 text-gray-800">Agendamento Direto via WhatsApp</h2>
@@ -544,18 +674,18 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     
     <script>
-        // Fechar popups ao clicar fora (mobile)
+        // Controle dos popups
         document.addEventListener('DOMContentLoaded', function() {
             // Fecha popups ao tocar fora (mobile)
             document.addEventListener('click', function(e) {
-                if (!e.target.closest('.service-card')) {
-                    document.querySelectorAll('.service-popup').forEach(popup => {
+                if (!e.target.closest('.service-card') && !e.target.closest('.photo-placeholder')) {
+                    document.querySelectorAll('.service-popup, .bio-popup').forEach(popup => {
                         popup.style.display = 'none';
                     });
                 }
             });
             
-            // Melhor experiência mobile para popups
+            // Mobile: controle por clique
             if (window.innerWidth <= 992) {
                 document.querySelectorAll('.service-card').forEach(card => {
                     card.addEventListener('click', function(e) {
@@ -571,6 +701,21 @@
                         // Abre/fecha este
                         popup.style.display = isVisible ? 'none' : 'block';
                     });
+                });
+                
+                // Bio popup mobile
+                document.querySelector('.photo-placeholder').addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const popup = this.querySelector('.bio-popup');
+                    const isVisible = popup.style.display === 'block';
+                    
+                    // Fecha todos os outros
+                    document.querySelectorAll('.service-popup, .bio-popup').forEach(p => {
+                        p.style.display = 'none';
+                    });
+                    
+                    // Abre/fecha bio
+                    popup.style.display = isVisible ? 'none' : 'block';
                 });
             }
         });
