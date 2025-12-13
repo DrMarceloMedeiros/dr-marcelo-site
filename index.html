@@ -130,16 +130,17 @@
             color: white;
         }
         
-        /* Container da foto e bio */
+        /* Container da foto e bio - POSICIONAMENTO RELATIVO */
         .photo-bio-container {
             position: relative;
-            width: 650px;
-            margin: 30px auto;
+            width: 100%;
+            min-height: 500px;
         }
         
         /* Foto placeholder */
         .photo-placeholder {
-            width: 650px;
+            width: 100%;
+            max-width: 500px;
             height: 500px;
             background: linear-gradient(135deg, #e5e7eb, #d1d5db);
             border-radius: 20px;
@@ -153,7 +154,8 @@
             overflow: hidden;
             cursor: pointer;
             transition: all 0.3s;
-            z-index: 1;
+            z-index: 5;
+            margin: 0 auto;
         }
         .photo-placeholder:hover {
             border-color: var(--teal-primary);
@@ -161,23 +163,24 @@
             box-shadow: 0 15px 35px rgba(13, 148, 136, 0.15);
         }
         
-        /* Popup da Biografia à DIREITA */
+        /* Popup da Biografia à DIREITA - POSICIONAMENTO FIXO NA TELA */
         .bio-popup {
             display: none;
             position: absolute;
             top: 0;
-            left: 680px; /* Ao lado direito da foto */
+            left: 520px; /* Ao lado direito da foto */
             width: 500px;
             height: 500px;
             background: white;
             border-radius: 20px;
             padding: 25px;
             box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-            z-index: 20;
+            z-index: 50;
             border: 3px solid var(--teal-primary);
             overflow-y: auto;
         }
-        .photo-placeholder:hover .bio-popup {
+        .photo-placeholder:hover + .bio-popup,
+        .bio-popup:hover {
             display: block;
             animation: slideInRight 0.4s ease-out;
         }
@@ -209,7 +212,7 @@
             margin-bottom: 8px;
         }
         
-        /* Cards de serviços */
+        /* Cards de serviços - POSICIONAMENTO AJUSTADO */
         .service-card {
             border: 2px solid #e5e7eb;
             border-radius: 20px;
@@ -221,6 +224,7 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
             position: relative;
             cursor: pointer;
+            margin-bottom: 30px; /* Espaço extra para popup */
         }
         .service-card:hover {
             transform: translateY(-10px);
@@ -229,7 +233,7 @@
             background: linear-gradient(135deg, #f0f9ff, #ffffff);
         }
         
-        /* Popup de informações científicas - TODOS PARA CIMA */
+        /* Popup de informações científicas - TODOS ACIMA DA LINHA */
         .service-popup {
             display: none;
             position: absolute;
@@ -237,14 +241,20 @@
             border-radius: 15px;
             padding: 20px;
             box-shadow: 0 15px 35px rgba(0,0,0,0.2);
-            z-index: 100;
+            z-index: 2000; /* MUITO ALTO - acima de tudo */
             text-align: left;
             border: 2px solid var(--teal-primary);
             width: 350px;
-            bottom: 100%; /* Todos abrem para CIMA */
+            bottom: calc(100% + 20px); /* Acima do card com margem */
             left: 50%;
             transform: translateX(-50%);
-            margin-bottom: 10px;
+        }
+        
+        /* Garantir que popups da primeira linha fiquem acima da foto */
+        .service-card:nth-child(1) .service-popup,
+        .service-card:nth-child(2) .service-popup,
+        .service-card:nth-child(3) .service-popup {
+            z-index: 2001; /* Ainda mais alto */
         }
         
         .service-card:hover .service-popup {
@@ -336,15 +346,24 @@
         }
         
         /* Responsivo */
-        @media (max-width: 1200px) {
-            .photo-bio-container { width: 550px; }
-            .photo-placeholder { width: 550px; height: 420px; }
-            .bio-popup { left: 580px; width: 450px; height: 420px; }
+        @media (min-width: 1200px) {
+            /* Em telas grandes, a bio fica ao lado da foto */
+            .photo-bio-container {
+                min-height: 500px;
+            }
+            .bio-popup {
+                display: none;
+                position: absolute;
+                left: 520px;
+                width: 500px;
+            }
         }
         
-        @media (max-width: 1100px) {
-            .photo-bio-container { width: 100%; }
-            .photo-placeholder { width: 100%; max-width: 500px; height: 380px; }
+        @media (max-width: 1199px) {
+            /* Em telas médias, a bio fica como overlay */
+            .photo-bio-container {
+                min-height: 400px;
+            }
             .bio-popup {
                 position: fixed;
                 top: 50%;
@@ -354,6 +373,11 @@
                 max-width: 500px;
                 height: auto;
                 max-height: 80vh;
+                z-index: 2000;
+            }
+            .photo-placeholder {
+                max-width: 400px;
+                height: 400px;
             }
         }
         
@@ -361,7 +385,10 @@
             .hero { padding: 70px 0; }
             .hero-title { font-size: 2.8rem; }
             .hero-subtitle { font-size: 1.5rem; }
-            .photo-placeholder { height: 350px; }
+            .photo-placeholder { 
+                height: 350px;
+                max-width: 350px;
+            }
             .service-popup {
                 position: fixed;
                 top: 50%;
@@ -369,7 +396,7 @@
                 transform: translate(-50%, -50%);
                 width: 90%;
                 max-width: 400px;
-                z-index: 1000;
+                z-index: 2000;
             }
         }
         
@@ -378,13 +405,23 @@
             .hero-title { font-size: 2.2rem; }
             .hero-subtitle { font-size: 1.2rem; }
             .whatsapp-button { padding: 15px 35px; font-size: 1.2rem; }
-            .photo-placeholder { height: 270px; }
+            .photo-placeholder { 
+                height: 270px;
+                max-width: 300px;
+            }
             .whatsapp-float { width: 70px; height: 70px; font-size: 35px; }
             .header-agendar-btn { padding: 10px 25px; font-size: 0.95rem; }
+            .bio-popup {
+                width: 95%;
+                max-height: 70vh;
+            }
         }
         
         @media (max-width: 480px) {
-            .photo-placeholder { height: 230px; }
+            .photo-placeholder { 
+                height: 230px;
+                max-width: 280px;
+            }
         }
     </style>
 </head>
@@ -429,38 +466,39 @@
                 <div class="col-lg-6">
                     <!-- Container da foto com bio -->
                     <div class="photo-bio-container">
+                        <!-- Foto placeholder -->
                         <div class="photo-placeholder">
                             <div class="text-center">
                                 <i class="fas fa-user-md fa-4x mb-3 text-gray-500"></i><br>
                                 <span class="fw-bold fs-5">SUA FOTO AQUI<br><small class="fw-normal">(Formato paisagem)</small></span>
                             </div>
+                        </div>
+                        
+                        <!-- Popup da Biografia à DIREITA -->
+                        <div class="bio-popup">
+                            <h4>Dr. Marcelo Medeiros - Formação e Atuação</h4>
                             
-                            <!-- Popup da Biografia à DIREITA -->
-                            <div class="bio-popup">
-                                <h4>Dr. Marcelo Medeiros - Formação e Atuação</h4>
-                                
-                                <p><strong>Graduação Médica:</strong> Universidade UNINGÁ (2016-2021). Formação generalista com ênfase em psiquiatria e neurologia.</p>
-                                
-                                <p><strong>Pós-graduação:</strong> Especialização em Psiquiatria pelo Hospital Israelita Albert Einstein (SP). Treinamento em psiquiatria biológica e psicofarmacologia avançada.</p>
-                                
-                                <p><strong>Urgência e Emergência:</strong> Experiência em serviços de emergência psiquiátrica, atendendo crises agudas, tentativas de suicídio e quadros psicóticos agudos.</p>
-                                
-                                <p><strong>CAPS:</strong> Atuação em Centro de Atenção Psicossocial desde 2023, atendendo transtornos mentais graves (esquizofrenia, bipolaridade, depressão resistente).</p>
-                                
-                                <p><strong>Clínica Particular:</strong> Experiência em consultório com abordagem em transtornos de humor, ansiedade, TDAH adulto e transtornos de personalidade.</p>
-                                
-                                <p><strong>Toxicologia:</strong> Expertise em dependência química - álcool, cocaína, crack, benzodiazepínicos e poliusuários. Abordagem com terapia de manutenção e redução de danos.</p>
-                                
-                                <p><strong>Psicofarmacologia:</strong> Prescrição baseada em evidências com ISRS, IRSN, antipsicóticos atípicos, estabilizadores de humor e psicotrópicos de última geração.</p>
-                                
-                                <div class="mt-3">
-                                    <span class="bio-badge">Psiquiatria Biológica</span>
-                                    <span class="bio-badge">Emergência Psiquiátrica</span>
-                                    <span class="bio-badge">Toxicologia</span>
-                                    <span class="bio-badge">CAPS III</span>
-                                    <span class="bio-badge">Psicofarmacologia</span>
-                                    <span class="bio-badge">Transtornos Graves</span>
-                                </div>
+                            <p><strong>Graduação Médica:</strong> Universidade UNINGÁ (2016-2021). Formação generalista com ênfase em psiquiatria e neurologia.</p>
+                            
+                            <p><strong>Pós-graduação:</strong> Especialização em Psiquiatria pelo Hospital Israelita Albert Einstein (SP). Treinamento em psiquiatria biológica e psicofarmacologia avançada.</p>
+                            
+                            <p><strong>Urgência e Emergência:</strong> Experiência em serviços de emergência psiquiátrica, atendendo crises agudas, tentativas de suicídio e quadros psicóticos agudos.</p>
+                            
+                            <p><strong>CAPS:</strong> Atuação em Centro de Atenção Psicossocial desde 2023, atendendo transtornos mentais graves (esquizofrenia, bipolaridade, depressão resistente).</p>
+                            
+                            <p><strong>Clínica Particular:</strong> Experiência em consultório com abordagem em transtornos de humor, ansiedade, TDAH adulto e transtornos de personalidade.</p>
+                            
+                            <p><strong>Toxicologia:</strong> Expertise em dependência química - álcool, cocaína, crack, benzodiazepínicos e poliusuários. Abordagem com terapia de manutenção e redução de danos.</p>
+                            
+                            <p><strong>Psicofarmacologia:</strong> Prescrição baseada em evidências com ISRS, IRSN, antipsicóticos atípicos, estabilizadores de humor e psicotrópicos de última geração.</p>
+                            
+                            <div class="mt-3">
+                                <span class="bio-badge">Psiquiatria Biológica</span>
+                                <span class="bio-badge">Emergência Psiquiátrica</span>
+                                <span class="bio-badge">Toxicologia</span>
+                                <span class="bio-badge">CAPS III</span>
+                                <span class="bio-badge">Psicofarmacologia</span>
+                                <span class="bio-badge">Transtornos Graves</span>
                             </div>
                         </div>
                     </div>
@@ -485,14 +523,14 @@
         </div>
     </section>
 
-    <!-- Serviços Especializados com TODOS POPUPS PARA CIMA -->
-    <section class="py-5">
+    <!-- Serviços Especializados com TODOS POPUPS ACIMA -->
+    <section class="py-5" style="position: relative; z-index: 10;">
         <div class="container">
             <h2 class="text-center display-5 fw-900 mb-5 text-gray-800">
                 Especialidades Psiquiátricas
             </h2>
-            <div class="row g-4">
-                <!-- Ansiedade (popup para CIMA) -->
+            <div class="row g-4" style="position: relative;">
+                <!-- Ansiedade (popup ACIMA) -->
                 <div class="col-md-4">
                     <div class="service-card">
                         <i class="fas fa-brain fa-3x text-teal-600 mb-3"></i>
@@ -515,7 +553,7 @@
                     </div>
                 </div>
                 
-                <!-- Depressão (popup para CIMA) -->
+                <!-- Depressão (popup ACIMA) -->
                 <div class="col-md-4">
                     <div class="service-card">
                         <i class="fas fa-cloud-sun fa-3x text-teal-600 mb-3"></i>
@@ -538,7 +576,7 @@
                     </div>
                 </div>
                 
-                <!-- TDAH (popup para CIMA) -->
+                <!-- TDAH (popup ACIMA) -->
                 <div class="col-md-4">
                     <div class="service-card">
                         <i class="fas fa-bolt fa-3x text-teal-600 mb-3"></i>
@@ -561,7 +599,7 @@
                     </div>
                 </div>
                 
-                <!-- Transtornos de Personalidade (popup para CIMA) -->
+                <!-- Transtornos de Personalidade (popup ACIMA) -->
                 <div class="col-md-4">
                     <div class="service-card">
                         <i class="fas fa-user-tag fa-3x text-teal-600 mb-3"></i>
@@ -584,7 +622,7 @@
                     </div>
                 </div>
                 
-                <!-- TAB (popup para CIMA) -->
+                <!-- TAB (popup ACIMA) -->
                 <div class="col-md-4">
                     <div class="service-card">
                         <i class="fas fa-balance-scale fa-3x text-teal-600 mb-3"></i>
@@ -607,7 +645,7 @@
                     </div>
                 </div>
                 
-                <!-- Fobias (popup para CIMA) -->
+                <!-- Fobias (popup ACIMA) -->
                 <div class="col-md-4">
                     <div class="service-card">
                         <i class="fas fa-fear fa-3x text-teal-600 mb-3"></i>
@@ -689,15 +727,23 @@
         document.addEventListener('DOMContentLoaded', function() {
             // Fecha popups ao tocar fora
             document.addEventListener('click', function(e) {
-                if (!e.target.closest('.service-card') && !e.target.closest('.photo-placeholder')) {
+                if (!e.target.closest('.service-card') && !e.target.closest('.photo-placeholder') && !e.target.closest('.bio-popup')) {
                     document.querySelectorAll('.service-popup, .bio-popup').forEach(popup => {
                         popup.style.display = 'none';
                     });
                 }
             });
             
+            // Fecha bio ao clicar fora (exceto na foto)
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('.photo-placeholder') && !e.target.closest('.bio-popup')) {
+                    document.querySelector('.bio-popup').style.display = 'none';
+                }
+            });
+            
             // Mobile: controle por clique
             if (window.innerWidth <= 992) {
+                // Serviços - clique
                 document.querySelectorAll('.service-card').forEach(card => {
                     card.addEventListener('click', function(e) {
                         e.stopPropagation();
@@ -714,14 +760,14 @@
                     });
                 });
                 
-                // Bio popup mobile
+                // Bio - clique
                 document.querySelector('.photo-placeholder').addEventListener('click', function(e) {
                     e.stopPropagation();
-                    const popup = this.querySelector('.bio-popup');
+                    const popup = document.querySelector('.bio-popup');
                     const isVisible = popup.style.display === 'block';
                     
                     // Fecha todos os outros
-                    document.querySelectorAll('.service-popup, .bio-popup').forEach(p => {
+                    document.querySelectorAll('.service-popup').forEach(p => {
                         p.style.display = 'none';
                     });
                     
