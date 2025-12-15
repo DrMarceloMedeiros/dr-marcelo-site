@@ -1,781 +1,123 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dr. Marcelo Medeiros - Psiquiatria Online</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --whatsapp-green: #25d366;
-            --teal-primary: #0d9488;
-            --dark-teal: #0f766e;
-        }
+<script>
+    // Controle avançado dos popups
+    document.addEventListener('DOMContentLoaded', function() {
+        const isMobile = window.innerWidth <= 992;
         
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
-            font-family: 'Inter', sans-serif; 
-            line-height: 1.6; 
-            color: #333;
-            position: relative;
-            overflow-x: hidden;
-        }
-        
-        /* Logo de fundo transparente */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url('https://i.ibb.co/Stc2YkC/logo-marcelo-medeiros.png');
-            background-repeat: no-repeat;
-            background-position: center;
-            background-size: 600px;
-            opacity: 0.12;
-            z-index: -1;
-            pointer-events: none;
-        }
-        
-        /* WhatsApp Flutuante GRANDE */
-        .whatsapp-float {
-            position: fixed;
-            width: 90px;
-            height: 90px;
-            bottom: 30px;
-            right: 30px;
-            background-color: var(--whatsapp-green);
-            color: #FFF;
-            border-radius: 50px;
-            text-align: center;
-            font-size: 45px;
-            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            transition: all 0.3s;
-        }
-        .whatsapp-float:hover { 
-            background-color: #128C7E;
-            transform: scale(1.1);
-            box-shadow: 0 6px 25px rgba(37, 211, 102, 0.6);
-        }
-        
-        /* Cabeçalho FIXO */
-        header {
-            background: rgba(255, 255, 255, 0.98);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-            position: sticky;
-            top: 0;
-            z-index: 999;
-            backdrop-filter: blur(10px);
-        }
-        
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
-            padding: 100px 0;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        /* Título 50% maior */
-        .hero-title {
-            font-size: 3.5rem;
-            font-weight: 900;
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, var(--dark-teal), #0891b2);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.05);
-        }
-        
-        /* Subtítulo 50% maior */
-        .hero-subtitle {
-            font-size: 1.8rem;
-            font-weight: 500;
-            color: #4b5563;
-            margin-bottom: 3rem;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        /* Botão verde WhatsApp */
-        .whatsapp-button {
-            background: linear-gradient(135deg, var(--whatsapp-green), #128C7E);
-            color: white;
-            padding: 18px 50px;
-            border-radius: 50px;
-            font-weight: 800;
-            font-size: 1.4rem;
-            border: none;
-            transition: all 0.3s;
-            text-decoration: none;
-            display: inline-block;
-            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
-            letter-spacing: 0.5px;
-            cursor: pointer;
-        }
-        .whatsapp-button:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 25px rgba(37, 211, 102, 0.6);
-            color: white;
-        }
-        
-        /* Container da foto e bio - POSICIONAMENTO RELATIVO */
-        .photo-bio-container {
-            position: relative;
-            width: 100%;
-            min-height: 500px;
-        }
-        
-        /* Foto placeholder */
-        .photo-placeholder {
-            width: 100%;
-            max-width: 500px;
-            height: 500px;
-            background: linear-gradient(135deg, #e5e7eb, #d1d5db);
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #6b7280;
-            border: 4px dashed #9ca3af;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            position: relative;
-            overflow: hidden;
-            cursor: pointer;
-            transition: all 0.3s;
-            z-index: 5;
-            margin: 0 auto;
-        }
-        .photo-placeholder:hover {
-            border-color: var(--teal-primary);
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(13, 148, 136, 0.15);
-        }
-        
-        /* Popup da Biografia à DIREITA - POSICIONAMENTO FIXO NA TELA */
-        .bio-popup {
-            display: none;
-            position: absolute;
-            top: 0;
-            left: 520px; /* Ao lado direito da foto */
-            width: 500px;
-            height: 500px;
-            background: white;
-            border-radius: 20px;
-            padding: 25px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-            z-index: 50;
-            border: 3px solid var(--teal-primary);
-            overflow-y: auto;
-        }
-        .photo-placeholder:hover + .bio-popup,
-        .bio-popup:hover {
-            display: block;
-            animation: slideInRight 0.4s ease-out;
-        }
-        
-        .bio-popup h4 {
-            color: var(--dark-teal);
-            font-weight: 800;
-            margin-bottom: 15px;
-            border-bottom: 3px solid #f0f9ff;
-            padding-bottom: 10px;
-        }
-        
-        .bio-popup p {
-            color: #4b5563;
-            margin-bottom: 12px;
-            line-height: 1.5;
-            font-size: 0.95rem;
-        }
-        
-        .bio-badge {
-            background: linear-gradient(135deg, var(--teal-primary), var(--dark-teal));
-            color: white;
-            padding: 6px 12px;
-            border-radius: 15px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            display: inline-block;
-            margin-right: 8px;
-            margin-bottom: 8px;
-        }
-        
-        /* Cards de serviços - POSICIONAMENTO AJUSTADO */
-        .service-card {
-            border: 2px solid #e5e7eb;
-            border-radius: 20px;
-            padding: 35px 25px;
-            text-align: center;
-            transition: all 0.4s;
-            height: 100%;
-            background: white;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            position: relative;
-            cursor: pointer;
-            margin-bottom: 30px; /* Espaço extra para popup */
-        }
-        .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 35px rgba(13, 148, 136, 0.15);
-            border-color: var(--teal-primary);
-            background: linear-gradient(135deg, #f0f9ff, #ffffff);
-        }
-        
-        /* Popup de informações científicas - TODOS ACIMA DA LINHA */
-        .service-popup {
-            display: none;
-            position: absolute;
-            background: white;
-            border-radius: 15px;
-            padding: 20px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
-            z-index: 2000; /* MUITO ALTO - acima de tudo */
-            text-align: left;
-            border: 2px solid var(--teal-primary);
-            width: 350px;
-            bottom: calc(100% + 20px); /* Acima do card com margem */
-            left: 50%;
-            transform: translateX(-50%);
-        }
-        
-        /* Garantir que popups da primeira linha fiquem acima da foto */
-        .service-card:nth-child(1) .service-popup,
-        .service-card:nth-child(2) .service-popup,
-        .service-card:nth-child(3) .service-popup {
-            z-index: 2001; /* Ainda mais alto */
-        }
-        
-        .service-card:hover .service-popup {
-            display: block;
-            animation: fadeInUp 0.3s ease-out;
-        }
-        
-        .service-popup h5 {
-            color: var(--dark-teal);
-            font-weight: 700;
-            margin-bottom: 12px;
-            border-bottom: 2px solid #f0f9ff;
-            padding-bottom: 8px;
-            font-size: 1.1rem;
-        }
-        
-        .service-popup ul {
-            padding-left: 20px;
-            margin-bottom: 15px;
-        }
-        
-        .service-popup li {
-            margin-bottom: 8px;
-            color: #4b5563;
-            font-size: 0.9rem;
-            line-height: 1.4;
-        }
-        
-        .treatment-info {
-            background: #f0f9ff;
-            padding: 10px;
-            border-radius: 8px;
-            margin-top: 10px;
-            font-size: 0.85rem;
-            color: var(--dark-teal);
-            border-left: 4px solid var(--teal-primary);
-        }
-        
-        .price-tag {
-            font-size: 3.2rem;
-            font-weight: 900;
-            color: var(--dark-teal);
-            margin: 20px 0;
-            text-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        
-        /* Botão agendar no header */
-        .header-agendar-btn {
-            background: linear-gradient(135deg, var(--whatsapp-green), #128C7E);
-            color: white;
-            padding: 12px 35px;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 1.1rem;
-            border: none;
-            transition: all 0.3s;
-            text-decoration: none;
-            display: inline-block;
-            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
-            cursor: pointer;
-        }
-        .header-agendar-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.5);
-            color: white;
-        }
-        
-        /* Animações */
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translate(-50%, 10px); }
-            to { opacity: 1; transform: translate(-50%, 0); }
-        }
-        
-        @keyframes slideInRight {
-            from { opacity: 0; transform: translateX(20px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-        
-        /* Badge de credencial */
-        .credential-badge {
-            background: linear-gradient(135deg, var(--teal-primary), var(--dark-teal));
-            color: white;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            display: inline-block;
-            margin-top: 5px;
-        }
-        
-        /* Responsivo */
-        @media (min-width: 1200px) {
-            /* Em telas grandes, a bio fica ao lado da foto */
-            .photo-bio-container {
-                min-height: 500px;
-            }
-            .bio-popup {
-                display: none;
-                position: absolute;
-                left: 520px;
-                width: 500px;
-            }
-        }
-        
-        @media (max-width: 1199px) {
-            /* Em telas médias, a bio fica como overlay */
-            .photo-bio-container {
-                min-height: 400px;
-            }
-            .bio-popup {
-                position: fixed;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                width: 90%;
-                max-width: 500px;
-                height: auto;
-                max-height: 80vh;
-                z-index: 2000;
-            }
-            .photo-placeholder {
-                max-width: 400px;
-                height: 400px;
-            }
-        }
-        
-        @media (max-width: 992px) {
-            .hero { padding: 70px 0; }
-            .hero-title { font-size: 2.8rem; }
-            .hero-subtitle { font-size: 1.5rem; }
-            .photo-placeholder { 
-                height: 350px;
-                max-width: 350px;
-            }
-            .service-popup {
-                position: fixed;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                width: 90%;
-                max-width: 400px;
-                z-index: 2000;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .hero { padding: 50px 0; }
-            .hero-title { font-size: 2.2rem; }
-            .hero-subtitle { font-size: 1.2rem; }
-            .whatsapp-button { padding: 15px 35px; font-size: 1.2rem; }
-            .photo-placeholder { 
-                height: 270px;
-                max-width: 300px;
-            }
-            .whatsapp-float { width: 70px; height: 70px; font-size: 35px; }
-            .header-agendar-btn { padding: 10px 25px; font-size: 0.95rem; }
-            .bio-popup {
-                width: 95%;
-                max-height: 70vh;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .photo-placeholder { 
-                height: 230px;
-                max-width: 280px;
-            }
-        }
-    </style>
-</head>
-<body>
-    <!-- WhatsApp Flutuante GRANDE -->
-    <a href="https://wa.me/554491339060?text=Olá,%20Dr.%20Marcelo,%20gostaria%20de%20agendar%20uma%20consulta%20online%20de%2030%20minutos%20(R$%2099,90)" 
-       class="whatsapp-float" target="_blank" title="Agende pelo WhatsApp">
-       <i class="fab fa-whatsapp"></i>
-    </a>
-
-    <!-- Cabeçalho FIXO -->
-    <header>
-        <div class="container py-3">
-            <div class="d-flex justify-content-between align-items-center">
-                <div>
-                    <h1 class="h4 mb-1 fw-900 text-teal-800" style="font-size: 1.4rem;">
-                        Dr. Marcelo Medeiros
-                    </h1>
-                    <div class="d-flex flex-wrap align-items-center gap-2">
-                        <p class="text-muted small mb-0 fw-600">Psiquiatria Online | CRM 47960</p>
-                        <span class="text-teal-600">•</span>
-                        <p class="text-muted small mb-0 fw-500">
-                            Pós-graduação em Psiquiatria pelo Hospital Albert Einstein
-                        </p>
-                    </div>
-                </div>
-                <a href="https://wa.me/554491339060?text=Olá,%20Dr.%20Marcelo,%20gostaria%20de%20agendar%20uma%20consulta%20online%20de%2030%20minutos%20(R$%2099,90)" 
-                   class="header-agendar-btn" target="_blank">
-                    <i class="fab fa-whatsapp me-2"></i> Agendar via WhatsApp
-                </a>
-            </div>
-        </div>
-    </header>
-
-    <!-- Seção Principal -->
-    <section class="hero">
-        <div class="container">
-            <h1 class="hero-title">Cuidado Integral para sua Saúde Mental</h1>
-            <p class="hero-subtitle">Atendimento psiquiátrico online com ética, sigilo e expertise profissional</p>
+        // Criar overlay para mobile
+        if (isMobile) {
+            const overlay = document.createElement('div');
+            overlay.className = 'popup-overlay';
+            document.body.appendChild(overlay);
             
-            <div class="row align-items-center mt-5">
-                <div class="col-lg-6">
-                    <!-- Container da foto com bio -->
-                    <div class="photo-bio-container">
-                        <!-- Foto placeholder -->
-                        <div class="photo-placeholder">
-                            <div class="text-center">
-                                <i class="fas fa-user-md fa-4x mb-3 text-gray-500"></i><br>
-                                <span class="fw-bold fs-5">SUA FOTO AQUI<br><small class="fw-normal">(Formato paisagem)</small></span>
-                            </div>
-                        </div>
-                        
-                        <!-- Popup da Biografia à DIREITA -->
-                        <div class="bio-popup">
-                            <h4>Dr. Marcelo Medeiros - Formação e Atuação</h4>
-                            
-                            <p><strong>Graduação Médica:</strong> Universidade UNINGÁ (2016-2021). Formação generalista com ênfase em psiquiatria e neurologia.</p>
-                            
-                            <p><strong>Pós-graduação:</strong> Especialização em Psiquiatria pelo Hospital Israelita Albert Einstein (SP). Treinamento em psiquiatria biológica e psicofarmacologia avançada.</p>
-                            
-                            <p><strong>Urgência e Emergência:</strong> Experiência em serviços de emergência psiquiátrica, atendendo crises agudas, tentativas de suicídio e quadros psicóticos agudos.</p>
-                            
-                            <p><strong>CAPS:</strong> Atuação em Centro de Atenção Psicossocial desde 2023, atendendo transtornos mentais graves (esquizofrenia, bipolaridade, depressão resistente).</p>
-                            
-                            <p><strong>Clínica Particular:</strong> Experiência em consultório com abordagem em transtornos de humor, ansiedade, TDAH adulto e transtornos de personalidade.</p>
-                            
-                            <p><strong>Toxicologia:</strong> Expertise em dependência química - álcool, cocaína, crack, benzodiazepínicos e poliusuários. Abordagem com terapia de manutenção e redução de danos.</p>
-                            
-                            <p><strong>Psicofarmacologia:</strong> Prescrição baseada em evidências com ISRS, IRSN, antipsicóticos atípicos, estabilizadores de humor e psicotrópicos de última geração.</p>
-                            
-                            <div class="mt-3">
-                                <span class="bio-badge">Psiquiatria Biológica</span>
-                                <span class="bio-badge">Emergência Psiquiátrica</span>
-                                <span class="bio-badge">Toxicologia</span>
-                                <span class="bio-badge">CAPS III</span>
-                                <span class="bio-badge">Psicofarmacologia</span>
-                                <span class="bio-badge">Transtornos Graves</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="col-lg-6">
-                    <h2 class="h2 fw-900 text-teal-700 mb-4">Consulta Online</h2>
-                    <div class="price-tag">R$ 99,90</div>
-                    <p class="text-gray-600 mb-4 fs-5">
-                        <i class="fas fa-video text-teal-600 me-2"></i> Videochamada<br>
-                        <i class="fas fa-stethoscope text-teal-600 me-2"></i> Diagnóstico e tratamento especializado
-                    </p>
-                    <a href="https://wa.me/554491339060?text=Olá,%20Dr.%20Marcelo,%20gostaria%20de%20agendar%20uma%20consulta%20online%20de%2030%20minutos%20(R$%2099,90)" 
-                       class="whatsapp-button" target="_blank">
-                        <i class="fab fa-whatsapp me-2"></i> Agendar via WhatsApp
-                    </a>
-                    <p class="small text-muted mt-3">
-                        <i class="fas fa-shield-alt text-teal-600 me-1"></i> Pagamento 100% seguro via PIX/Cartão
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Serviços Especializados com TODOS POPUPS ACIMA -->
-    <section class="py-5" style="position: relative; z-index: 10;">
-        <div class="container">
-            <h2 class="text-center display-5 fw-900 mb-5 text-gray-800">
-                Especialidades Psiquiátricas
-            </h2>
-            <div class="row g-4" style="position: relative;">
-                <!-- Ansiedade (popup ACIMA) -->
-                <div class="col-md-4">
-                    <div class="service-card">
-                        <i class="fas fa-brain fa-3x text-teal-600 mb-3"></i>
-                        <h3 class="h4 fw-800">Ansiedade</h3>
-                        <p class="text-muted">TAG, pânico, fobias e transtorno de ansiedade</p>
-                        
-                        <div class="service-popup">
-                            <h5>Transtornos de Ansiedade</h5>
-                            <ul>
-                                <li><strong>TAG:</strong> Preocupação excessiva e persistente</li>
-                                <li><strong>Síndrome do Pânico:</strong> Crises de ansiedade aguda</li>
-                                <li><strong>Fobias Específicas:</strong> Medo intenso de objetos/situações</li>
-                                <li><strong>TOC:</strong> Pensamentos obsessivos e compulsões</li>
-                                <li><strong>TAS:</strong> Medo de avaliação social</li>
-                            </ul>
-                            <div class="treatment-info">
-                                <strong>Tratamento:</strong> Terapia Cognitivo-Comportamental + Medicação (ISRS, BDZ)
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Depressão (popup ACIMA) -->
-                <div class="col-md-4">
-                    <div class="service-card">
-                        <i class="fas fa-cloud-sun fa-3x text-teal-600 mb-3"></i>
-                        <h3 class="h4 fw-800">Depressão</h3>
-                        <p class="text-muted">Transtornos depressivos e acompanhamento</p>
-                        
-                        <div class="service-popup">
-                            <h5>Transtornos Depressivos</h5>
-                            <ul>
-                                <li><strong>Depressão Maior:</strong> Episódios de 2+ semanas</li>
-                                <li><strong>Distimia:</strong> Depressão crônica leve</li>
-                                <li><strong>Sazonal (SAD):</strong> Relacionada às estações</li>
-                                <li><strong>Pós-parto:</strong> Após gestação</li>
-                                <li><strong>Melancólica:</strong> Com sintomas psicóticos</li>
-                            </ul>
-                            <div class="treatment-info">
-                                <strong>Tratamento:</strong> Antidepressivos (ISRS, IRSN) + Psicoterapia
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- TDAH (popup ACIMA) -->
-                <div class="col-md-4">
-                    <div class="service-card">
-                        <i class="fas fa-bolt fa-3x text-teal-600 mb-3"></i>
-                        <h3 class="h4 fw-800">TDAH Adulto</h3>
-                        <p class="text-muted">Diagnóstico e tratamento para déficit de atenção</p>
-                        
-                        <div class="service-popup">
-                            <h5>TDAH em Adultos</h5>
-                            <ul>
-                                <li><strong>Tipo Desatento:</strong> Dificuldade de concentração</li>
-                                <li><strong>Tipo Hiperativo:</strong> Impulsividade, inquietação</li>
-                                <li><strong>Tipo Combinado:</strong> Ambos os sintomas</li>
-                                <li><strong>Comorbidades:</strong> Ansiedade, depressão, vícios</li>
-                                <li><strong>Diagnóstico:</strong> ASRS-18, entrevista clínica</li>
-                            </ul>
-                            <div class="treatment-info">
-                                <strong>Tratamento:</strong> Estimulantes (Metilfenidato) + Terapia
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Transtornos de Personalidade (popup ACIMA) -->
-                <div class="col-md-4">
-                    <div class="service-card">
-                        <i class="fas fa-user-tag fa-3x text-teal-600 mb-3"></i>
-                        <h3 class="h4 fw-800">Transtornos de Personalidade</h3>
-                        <p class="text-muted">Borderline, antissocial, esquiva e outros</p>
-                        
-                        <div class="service-popup">
-                            <h5>Cluster A, B, C</h5>
-                            <ul>
-                                <li><strong>Borderline:</strong> Instabilidade emocional</li>
-                                <li><strong>Antissocial:</strong> Desrespeito às normas</li>
-                                <li><strong>Narcisista:</strong> Grandiosidade, falta de empatia</li>
-                                <li><strong>Esquiva:</strong> Inibição social, sensibilidade</li>
-                                <li><strong>Obsessivo-Compulsivo:</strong> Perfeccionismo</li>
-                            </ul>
-                            <div class="treatment-info">
-                                <strong>Tratamento:</strong> DBT, Terapia focada na transferência
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- TAB (popup ACIMA) -->
-                <div class="col-md-4">
-                    <div class="service-card">
-                        <i class="fas fa-balance-scale fa-3x text-teal-600 mb-3"></i>
-                        <h3 class="h4 fw-800">Transtorno Afetivo Bipolar</h3>
-                        <p class="text-muted">TAB tipo I, II e ciclotimia</p>
-                        
-                        <div class="service-popup">
-                            <h5>Transtorno Bipolar</h5>
-                            <ul>
-                                <li><strong>Tipo I:</strong> Mania completa + depressão</li>
-                                <li><strong>Tipo II:</strong> Hipomania + depressão</li>
-                                <li><strong>Ciclotimia:</strong> Oscilações crônicas leves</li>
-                                <li><strong>Mista:</strong> Sintomas simultâneos</li>
-                                <li><strong>Rápido-Ciclador:</strong> 4+ episódios/ano</li>
-                            </ul>
-                            <div class="treatment-info">
-                                <strong>Tratamento:</strong> Estabilizadores de humor (Lítio, Valproato)
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Fobias (popup ACIMA) -->
-                <div class="col-md-4">
-                    <div class="service-card">
-                        <i class="fas fa-fear fa-3x text-teal-600 mb-3"></i>
-                        <h3 class="h4 fw-800">Fobias Específicas</h3>
-                        <p class="text-muted">Agorafobia, fobia social e fobias específicas</p>
-                        
-                        <div class="service-popup">
-                            <h5>Fobias e Medos Patológicos</h5>
-                            <ul>
-                                <li><strong>Agorafobia:</strong> Medo de espaços abertos</li>
-                                <li><strong>Fobia Social:</strong> Medo de situações sociais</li>
-                                <li><strong>Específicas:</strong> Animais, altura, sangue</li>
-                                <li><strong>Ansiedade de Separação:</strong> Adultos</li>
-                                <li><strong>Mutismo Seletivo:</strong> Recusa em falar</li>
-                            </ul>
-                            <div class="treatment-info">
-                                <strong>Tratamento:</strong> Exposição gradual + Terapia Cognitivo-Comportamental
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Agendamento -->
-    <section class="py-5 bg-light">
-        <div class="container text-center">
-            <h2 class="display-6 fw-900 mb-4 text-gray-800">Agendamento Direto via WhatsApp</h2>
-            <p class="text-muted fs-5 mb-4">Envie uma mensagem e agende sua consulta com segurança</p>
-            <a href="https://wa.me/554491339060?text=Olá,%20Dr.%20Marcelo,%20gostaria%20de%20agendar%20uma%20consulta%20online%20de%2030%20minutos%20(R$%2099,90)" 
-               class="whatsapp-button" target="_blank">
-               <i class="fab fa-whatsapp me-2"></i>Agendar Consulta - R$ 99,90
-            </a>
-            <p class="small text-muted mt-3">
-                <i class="fas fa-check-circle text-teal-600 me-1"></i> Você recebe confirmação imediata
-            </p>
-        </div>
-    </section>
-
-    <!-- Rodapé -->
-    <footer class="bg-dark text-white py-5">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-8">
-                    <h3 class="h4 fw-900 mb-3">Dr. Marcelo Medeiros</h3>
-                    <p class="mb-2">
-                        <span class="credential-badge">CRM 47960</span>
-                        <span class="credential-badge ms-2">Pós-graduação Albert Einstein</span>
-                    </p>
-                    <p class="small text-white-50 mb-0">
-                        Atendimento online conforme resoluções do CFM e Código de Ética Médica
-                    </p>
-                </div>
-                <div class="col-lg-4 text-lg-end mt-4 mt-lg-0">
-                    <a href="mailto:marcelomedeirossaudeefitness@gmail.com" 
-                       class="text-white d-block mb-2 fw-600">
-                        <i class="fas fa-envelope me-2"></i> E-mail profissional
-                    </a>
-                    <a href="https://wa.me/554491339060" 
-                       class="text-white d-block fw-600">
-                        <i class="fab fa-whatsapp me-2"></i> WhatsApp para dúvidas
-                    </a>
-                </div>
-            </div>
-            <hr class="my-4 opacity-25">
-            <p class="text-center small text-white-50 mb-0">
-                <i class="fas fa-exclamation-triangle me-1"></i> 
-                Para emergências, procure um pronto-socorro ou ligue 188 (CVV)
-            </p>
-        </div>
-    </footer>
-
-    <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    
-    <script>
-        // Controle dos popups
-        document.addEventListener('DOMContentLoaded', function() {
-            // Fecha popups ao tocar fora
+            // Fecha popups ao clicar no overlay
+            overlay.addEventListener('click', function() {
+                closeAllPopups();
+            });
+        }
+        
+        // Função para fechar todos os popups
+        function closeAllPopups() {
+            document.querySelectorAll('.service-popup, .bio-popup').forEach(popup => {
+                popup.style.display = 'none';
+                popup.classList.remove('active');
+            });
+            if (isMobile) {
+                document.querySelector('.popup-overlay').style.display = 'none';
+            }
+        }
+        
+        // Controle para DESKTOP (hover)
+        if (!isMobile) {
+            // Fecha popups ao clicar fora (desktop)
             document.addEventListener('click', function(e) {
-                if (!e.target.closest('.service-card') && !e.target.closest('.photo-placeholder') && !e.target.closest('.bio-popup')) {
-                    document.querySelectorAll('.service-popup, .bio-popup').forEach(popup => {
-                        popup.style.display = 'none';
-                    });
+                if (!e.target.closest('.service-card') && 
+                    !e.target.closest('.photo-placeholder') && 
+                    !e.target.closest('.bio-popup') &&
+                    !e.target.closest('.service-popup')) {
+                    closeAllPopups();
                 }
             });
             
             // Fecha bio ao clicar fora (exceto na foto)
             document.addEventListener('click', function(e) {
-                if (!e.target.closest('.photo-placeholder') && !e.target.closest('.bio-popup')) {
+                if (!e.target.closest('.photo-placeholder') && 
+                    !e.target.closest('.bio-popup')) {
                     document.querySelector('.bio-popup').style.display = 'none';
                 }
             });
-            
-            // Mobile: controle por clique
-            if (window.innerWidth <= 992) {
-                // Serviços - clique
-                document.querySelectorAll('.service-card').forEach(card => {
-                    card.addEventListener('click', function(e) {
-                        e.stopPropagation();
-                        const popup = this.querySelector('.service-popup');
-                        const isVisible = popup.style.display === 'block';
-                        
-                        // Fecha todos os outros
-                        document.querySelectorAll('.service-popup').forEach(p => {
-                            p.style.display = 'none';
-                        });
-                        
-                        // Abre/fecha este
-                        popup.style.display = isVisible ? 'none' : 'block';
-                    });
-                });
-                
-                // Bio - clique
-                document.querySelector('.photo-placeholder').addEventListener('click', function(e) {
+        }
+        // Controle para MOBILE (clique/touch)
+        else {
+            // Serviços - clique/touch
+            document.querySelectorAll('.service-card').forEach(card => {
+                card.addEventListener('click', function(e) {
                     e.stopPropagation();
-                    const popup = document.querySelector('.bio-popup');
-                    const isVisible = popup.style.display === 'block';
+                    const popup = this.querySelector('.service-popup');
+                    const wasActive = popup.classList.contains('active');
                     
                     // Fecha todos os outros
-                    document.querySelectorAll('.service-popup').forEach(p => {
-                        p.style.display = 'none';
-                    });
+                    closeAllPopups();
                     
-                    // Abre/fecha bio
-                    popup.style.display = isVisible ? 'none' : 'block';
+                    // Abre/fecha este
+                    if (!wasActive) {
+                        popup.style.display = 'block';
+                        popup.classList.add('active');
+                        document.querySelector('.popup-overlay').style.display = 'block';
+                    }
                 });
-            }
-        });
-    </script>
-</body>
-</html>
+            });
+            
+            // Bio - clique/touch
+            document.querySelector('.photo-placeholder').addEventListener('click', function(e) {
+                e.stopPropagation();
+                const popup = document.querySelector('.bio-popup');
+                const wasActive = popup.classList.contains('active');
+                
+                // Fecha todos os outros
+                closeAllPopups();
+                
+                // Abre/fecha bio
+                if (!wasActive) {
+                    popup.style.display = 'block';
+                    popup.classList.add('active');
+                    document.querySelector('.popup-overlay').style.display = 'block';
+                }
+            });
+            
+            // Botão de fechar nos popups (opcional)
+            document.querySelectorAll('.service-popup, .bio-popup').forEach(popup => {
+                const closeBtn = document.createElement('button');
+                closeBtn.innerHTML = '×';
+                closeBtn.style.cssText = `
+                    position: absolute;
+                    top: 10px;
+                    right: 10px;
+                    background: #ef4444;
+                    color: white;
+                    border: none;
+                    border-radius: 50%;
+                    width: 30px;
+                    height: 30px;
+                    font-size: 20px;
+                    cursor: pointer;
+                    z-index: 10000;
+                `;
+                closeBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    closeAllPopups();
+                });
+                popup.appendChild(closeBtn);
+            });
+            
+            // Fecha com ESC
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    closeAllPopups();
+                }
+            });
+        }
+        
+        // Log para debug
+        console.log('Site do Dr. Marcelo carregado. Mobile:', isMobile);
+    });
+</script>
