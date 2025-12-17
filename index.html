@@ -12,9 +12,6 @@
             --whatsapp-green: #25d366;
             --teal-primary: #0d9488;
             --dark-teal: #0f766e;
-            --peace-blue: #2c7da0;
-            --light-blue: #e3f2fd;
-            --gold-yellow: #ffd700;
         }
         
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -26,7 +23,7 @@
             overflow-x: hidden;
         }
         
-        /* Fundo com símbolo da medicina (caduceu) */
+        /* Logo de fundo transparente */
         body::before {
             content: '';
             position: fixed;
@@ -34,10 +31,11 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 10 L50 90 M30 30 L70 30 M30 70 L70 70' stroke='%230d9488' stroke-width='1' stroke-opacity='0.08' fill='none'/%3E%3Cpath d='M50 30 L45 40 L55 40 Z' stroke='%230d9488' stroke-width='1' stroke-opacity='0.08' fill='none'/%3E%3C/svg%3E");
-            background-repeat: repeat;
-            background-size: 200px;
-            opacity: 0.15;
+            background-image: url('https://i.ibb.co/Stc2YkC/logo-marcelo-medeiros.png');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 600px;
+            opacity: 0.12;
             z-index: -1;
             pointer-events: none;
         }
@@ -68,27 +66,19 @@
             box-shadow: 0 6px 25px rgba(37, 211, 102, 0.6);
         }
         
-        /* Cabeçalho FIXO com nova cor azul da paz */
+        /* Cabeçalho FIXO */
         header {
-            background: rgba(44, 125, 160, 0.95); /* Azul da paz */
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
             position: sticky;
             top: 0;
             z-index: 999;
             backdrop-filter: blur(10px);
         }
         
-        /* Container principal com 30% mais largo para web */
-        @media (min-width: 1200px) {
-            .container-wide {
-                max-width: 85%; /* 30% mais largo que o padrão */
-                margin: 0 auto;
-            }
-        }
-        
         /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
             padding: 100px 0;
             text-align: center;
             position: relative;
@@ -101,23 +91,21 @@
             font-weight: 900;
             line-height: 1.1;
             margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, #1a237e, #2c7da0);
+            background: linear-gradient(135deg, var(--dark-teal), #0891b2);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             text-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
         
-        /* NOVA COPYWRITING mais convincente */
+        /* Subtítulo 50% maior */
         .hero-subtitle {
             font-size: 1.8rem;
-            font-weight: 700;
-            color: #1a237e;
+            font-weight: 500;
+            color: #4b5563;
             margin-bottom: 3rem;
             max-width: 800px;
             margin-left: auto;
             margin-right: auto;
-            line-height: 1.4;
-            text-shadow: 0 1px 3px rgba(255,255,255,0.8);
         }
         
         /* Botão verde WhatsApp */
@@ -142,17 +130,17 @@
             color: white;
         }
         
-        /* Container da foto e bio - AJUSTADO */
+        /* Container da foto e bio - POSICIONAMENTO RELATIVO */
         .photo-bio-container {
             position: relative;
             width: 100%;
             min-height: 500px;
         }
         
-        /* Foto placeholder - AGORA 33% MAIS LARGA E MAIS PERTO DA DIREITA */
+        /* Foto placeholder */
         .photo-placeholder {
             width: 100%;
-            max-width: 665px; /* Aumentado 33% (de 500px para 665px) */
+            max-width: 500px;
             height: 500px;
             background: linear-gradient(135deg, #e5e7eb, #d1d5db);
             border-radius: 20px;
@@ -167,8 +155,7 @@
             cursor: pointer;
             transition: all 0.3s;
             z-index: 5;
-            margin: 0 auto 0 0; /* Colado à esquerda para ficar perto do preço */
-            float: left; /* Para ficar ao lado do conteúdo */
+            margin: 0 auto;
         }
         .photo-placeholder:hover {
             border-color: var(--teal-primary);
@@ -176,12 +163,12 @@
             box-shadow: 0 15px 35px rgba(13, 148, 136, 0.15);
         }
         
-        /* Ajuste para a bio ficar ao lado da foto maior */
+        /* Popup da Biografia à DIREITA - POSICIONAMENTO FIXO NA TELA */
         .bio-popup {
             display: none;
             position: absolute;
             top: 0;
-            left: 685px; /* Ajustado para ficar ao lado da foto maior */
+            left: 520px; /* Ao lado direito da foto */
             width: 500px;
             height: 500px;
             background: white;
@@ -225,7 +212,7 @@
             margin-bottom: 8px;
         }
         
-        /* Cards de serviços - CORRIGIDO PARA MOBILE */
+        /* Cards de serviços - POSICIONAMENTO AJUSTADO */
         .service-card {
             border: 2px solid #e5e7eb;
             border-radius: 20px;
@@ -237,7 +224,7 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
             position: relative;
             cursor: pointer;
-            margin-bottom: 30px;
+            margin-bottom: 30px; /* Espaço extra para popup */
         }
         .service-card:hover {
             transform: translateY(-10px);
@@ -246,7 +233,7 @@
             background: linear-gradient(135deg, #f0f9ff, #ffffff);
         }
         
-        /* Popup de informações - CORRIGIDO PARA MOBILE */
+        /* Popup de informações científicas - TODOS ACIMA DA LINHA */
         .service-popup {
             display: none;
             position: absolute;
@@ -254,13 +241,20 @@
             border-radius: 15px;
             padding: 20px;
             box-shadow: 0 15px 35px rgba(0,0,0,0.2);
-            z-index: 2000;
+            z-index: 2000; /* MUITO ALTO - acima de tudo */
             text-align: left;
             border: 2px solid var(--teal-primary);
             width: 350px;
-            bottom: calc(100% + 20px);
+            bottom: calc(100% + 20px); /* Acima do card com margem */
             left: 50%;
             transform: translateX(-50%);
+        }
+        
+        /* Garantir que popups da primeira linha fiquem acima da foto */
+        .service-card:nth-child(1) .service-popup,
+        .service-card:nth-child(2) .service-popup,
+        .service-card:nth-child(3) .service-popup {
+            z-index: 2001; /* Ainda mais alto */
         }
         
         .service-card:hover .service-popup {
@@ -299,26 +293,12 @@
             border-left: 4px solid var(--teal-primary);
         }
         
-        /* Preço AUMENTADO com destaque em amarelo */
         .price-tag {
-            font-size: 4rem; /* Aumentado */
+            font-size: 3.2rem;
             font-weight: 900;
             color: var(--dark-teal);
-            margin: 20px 0 10px 0;
+            margin: 20px 0;
             text-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        
-        .price-promotion {
-            background-color: #fff9c4; /* Amarelo claro */
-            color: #000; /* Preto */
-            padding: 8px 15px;
-            border-radius: 10px;
-            font-weight: 700;
-            font-size: 1.1rem;
-            margin: 15px auto;
-            display: inline-block;
-            border-left: 4px solid var(--gold-yellow);
-            max-width: 400px;
         }
         
         /* Botão agendar no header */
@@ -340,39 +320,6 @@
             transform: translateY(-3px);
             box-shadow: 0 8px 20px rgba(37, 211, 102, 0.5);
             color: white;
-        }
-        
-        /* Caixa de texto informativa sobre psiquiatria */
-        .history-box {
-            background: linear-gradient(135deg, #f5f5f5, #ffffff);
-            border-radius: 15px;
-            padding: 30px;
-            margin: 40px auto;
-            max-width: 900px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            border-left: 5px solid var(--peace-blue);
-            font-size: 1.1rem;
-            line-height: 1.7;
-            color: #333;
-        }
-        
-        .history-box h3 {
-            color: var(--peace-blue);
-            font-weight: 800;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-        
-        /* Destaque para resolução do CFM */
-        .cfm-highlight {
-            background-color: #e8f5e9;
-            padding: 15px;
-            border-radius: 10px;
-            border-left: 4px solid #4caf50;
-            font-weight: 700;
-            color: #1b5e20;
-            margin: 20px 0;
-            font-size: 1.1rem;
         }
         
         /* Animações */
@@ -398,81 +345,69 @@
             margin-top: 5px;
         }
         
-        /* ========== CORREÇÃO MOBILE - POPUPS ========== */
-        @media (max-width: 992px) {
-            /* REMOVER efeitos hover que causam conflito */
-            .service-card:hover {
-                transform: none !important;
-                z-index: 1 !important;
+        /* Responsivo */
+        @media (min-width: 1200px) {
+            /* Em telas grandes, a bio fica ao lado da foto */
+            .photo-bio-container {
+                min-height: 500px;
             }
-            
-            /* POPUP como MODAL FIXO no mobile */
-            .service-popup {
-                position: fixed !important;
-                top: 50% !important;
-                left: 50% !important;
-                transform: translate(-50%, -50%) !important;
-                width: 90% !important;
-                max-width: 400px !important;
-                max-height: 80vh !important;
-                overflow-y: auto !important;
-                z-index: 9999 !important;
-                margin: 0 !important;
-                bottom: auto !important;
-            }
-            
-            /* Garantir que cards não sobreponham */
-            .service-card {
-                margin-bottom: 25px !important;
-                position: relative !important;
-                z-index: 1 !important;
-            }
-            
-            /* Bio popup também como modal */
             .bio-popup {
-                position: fixed !important;
-                top: 50% !important;
-                left: 50% !important;
-                transform: translate(-50%, -50%) !important;
-                width: 90% !important;
-                max-width: 500px !important;
-                max-height: 80vh !important;
-                overflow-y: auto !important;
-                z-index: 9999 !important;
+                display: none;
+                position: absolute;
+                left: 520px;
+                width: 500px;
             }
-            
-            /* Ajustes de fonte para mobile */
-            .hero-title {
-                font-size: 2.2rem !important;
+        }
+        
+        @media (max-width: 1199px) {
+            /* Em telas médias, a bio fica como overlay */
+            .photo-bio-container {
+                min-height: 400px;
             }
-            
-            .hero-subtitle {
-                font-size: 1.2rem !important;
+            .bio-popup {
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 90%;
+                max-width: 500px;
+                height: auto;
+                max-height: 80vh;
+                z-index: 2000;
             }
-            
-            .price-tag {
-                font-size: 3rem !important;
-            }
-            
-            /* Foto menor no mobile */
             .photo-placeholder {
-                max-width: 100% !important;
-                height: 300px !important;
-                margin: 0 auto 30px auto !important;
-                float: none !important;
+                max-width: 400px;
+                height: 400px;
             }
-            
-            .bio-popup {
-                left: 50% !important;
+        }
+        
+        @media (max-width: 992px) {
+            .hero { padding: 70px 0; }
+            .hero-title { font-size: 2.8rem; }
+            .hero-subtitle { font-size: 1.5rem; }
+            .photo-placeholder { 
+                height: 350px;
+                max-width: 350px;
+            }
+            .service-popup {
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 90%;
+                max-width: 400px;
+                z-index: 2000;
             }
         }
         
         @media (max-width: 768px) {
             .hero { padding: 50px 0; }
+            .hero-title { font-size: 2.2rem; }
+            .hero-subtitle { font-size: 1.2rem; }
             .whatsapp-button { padding: 15px 35px; font-size: 1.2rem; }
             .photo-placeholder { 
-                height: 270px !important;
-                max-width: 100% !important;
+                height: 270px;
+                max-width: 300px;
             }
             .whatsapp-float { width: 70px; height: 70px; font-size: 35px; }
             .header-agendar-btn { padding: 10px 25px; font-size: 0.95rem; }
@@ -484,79 +419,8 @@
         
         @media (max-width: 480px) {
             .photo-placeholder { 
-                height: 230px !important;
-                max-width: 100% !important;
-            }
-            .price-tag {
-                font-size: 2.5rem !important;
-            }
-        }
-        
-        /* Estilo para header com fontes maiores e logo */
-        .header-brand {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        
-        .header-logo {
-            width: 50px;
-            height: 50px;
-            background: white;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            color: var(--peace-blue);
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-        }
-        
-        .header-text h1 {
-            font-size: 1.6rem !important; /* Aumentado */
-            font-weight: 900;
-            color: white;
-            margin-bottom: 5px;
-            line-height: 1.2;
-        }
-        
-        .header-text p {
-            color: rgba(255, 255, 255, 0.95);
-            font-size: 1rem !important; /* Aumentado */
-            font-weight: 500;
-            margin-bottom: 0;
-            line-height: 1.3;
-        }
-        
-        .header-text .credential {
-            color: rgba(255, 255, 255, 0.85);
-            font-size: 0.95rem;
-            font-weight: 400;
-        }
-        
-        /* Layout ajustado para foto mais larga */
-        @media (min-width: 992px) {
-            .hero-content-wrapper {
-                display: flex;
-                align-items: flex-start;
-                justify-content: space-between;
-                gap: 40px;
-            }
-            
-            .photo-column {
-                flex: 0 0 58%; /* 33% mais larga que antes */
-                max-width: 58%;
-            }
-            
-            .info-column {
-                flex: 0 0 42%;
-                max-width: 42%;
-            }
-            
-            .photo-placeholder {
-                width: 100%;
-                max-width: 100%;
-                margin-right: 0;
+                height: 230px;
+                max-width: 280px;
             }
         }
     </style>
@@ -568,18 +432,20 @@
        <i class="fab fa-whatsapp"></i>
     </a>
 
-    <!-- Cabeçalho FIXO com fontes maiores e logo -->
+    <!-- Cabeçalho FIXO -->
     <header>
-        <div class="container-wide py-3">
+        <div class="container py-3">
             <div class="d-flex justify-content-between align-items-center">
-                <div class="header-brand">
-                    <div class="header-logo">
-                        <i class="fas fa-brain"></i> <!-- Logo do WhatsApp substituído por cérebro -->
-                    </div>
-                    <div class="header-text">
-                        <h1>Dr. Marcelo Medeiros</h1>
-                        <p>Psiquiatria Online | CRM 47960</p>
-                        <p class="credential">Pós-graduação em Psiquiatria pelo Hospital Albert Einstein</p>
+                <div>
+                    <h1 class="h4 mb-1 fw-900 text-teal-800" style="font-size: 1.4rem;">
+                        Dr. Marcelo Medeiros
+                    </h1>
+                    <div class="d-flex flex-wrap align-items-center gap-2">
+                        <p class="text-muted small mb-0 fw-600">Psiquiatria Online | CRM 47960</p>
+                        <span class="text-teal-600">•</span>
+                        <p class="text-muted small mb-0 fw-500">
+                            Pós-graduação em Psiquiatria pelo Hospital Albert Einstein
+                        </p>
                     </div>
                 </div>
                 <a href="https://wa.me/554491339060?text=Olá,%20Dr.%20Marcelo,%20gostaria%20de%20agendar%20uma%20consulta%20online%20de%2030%20minutos%20(R$%2099,90)" 
@@ -592,19 +458,19 @@
 
     <!-- Seção Principal -->
     <section class="hero">
-        <div class="container-wide">
-            <h1 class="hero-title">Sua Saúde Mental em Boas Mãos</h1>
-            <p class="hero-subtitle">Descubra o alívio que você merece com tratamento psiquiátrico especializado, confidencial e baseado nas mais recentes evidências científicas. Recupere seu bem-estar sem sair de casa.</p>
+        <div class="container">
+            <h1 class="hero-title">Cuidado Integral para sua Saúde Mental</h1>
+            <p class="hero-subtitle">Atendimento psiquiátrico online com ética, sigilo e expertise profissional</p>
             
-            <div class="hero-content-wrapper">
-                <div class="photo-column">
+            <div class="row align-items-center mt-5">
+                <div class="col-lg-6">
                     <!-- Container da foto com bio -->
                     <div class="photo-bio-container">
-                        <!-- Foto placeholder - AGORA 33% MAIS LARGA -->
+                        <!-- Foto placeholder -->
                         <div class="photo-placeholder">
                             <div class="text-center">
                                 <i class="fas fa-user-md fa-4x mb-3 text-gray-500"></i><br>
-                                <span class="fw-bold fs-5">SUA FOTO AQUI<br><small class="fw-normal">(Formato paisagem - 33% mais larga)</small></span>
+                                <span class="fw-bold fs-5">SUA FOTO AQUI<br><small class="fw-normal">(Formato paisagem)</small></span>
                             </div>
                         </div>
                         
@@ -638,16 +504,9 @@
                     </div>
                 </div>
                 
-                <div class="info-column">
+                <div class="col-lg-6">
                     <h2 class="h2 fw-900 text-teal-700 mb-4">Consulta Online</h2>
                     <div class="price-tag">R$ 99,90</div>
-                    
-                    <!-- NOVO: Destaque de fidelização -->
-                    <div class="price-promotion">
-                        <i class="fas fa-star me-2 text-warning"></i>
-                        <strong>Programa de Fidelidade:</strong> A partir da 2ª consulta, valor especial de R$ 79,90
-                    </div>
-                    
                     <p class="text-gray-600 mb-4 fs-5">
                         <i class="fas fa-video text-teal-600 me-2"></i> Videochamada<br>
                         <i class="fas fa-stethoscope text-teal-600 me-2"></i> Diagnóstico e tratamento especializado
@@ -666,7 +525,7 @@
 
     <!-- Serviços Especializados com TODOS POPUPS ACIMA -->
     <section class="py-5" style="position: relative; z-index: 10;">
-        <div class="container-wide">
+        <div class="container">
             <h2 class="text-center display-5 fw-900 mb-5 text-gray-800">
                 Especialidades Psiquiátricas
             </h2>
@@ -803,4 +662,121 @@
                                 <li><strong>Mutismo Seletivo:</strong> Recusa em falar</li>
                             </ul>
                             <div class="treatment-info">
-                                <strong>Tratamento:</strong> Exposição gradual
+                                <strong>Tratamento:</strong> Exposição gradual + Terapia Cognitivo-Comportamental
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Agendamento -->
+    <section class="py-5 bg-light">
+        <div class="container text-center">
+            <h2 class="display-6 fw-900 mb-4 text-gray-800">Agendamento Direto via WhatsApp</h2>
+            <p class="text-muted fs-5 mb-4">Envie uma mensagem e agende sua consulta com segurança</p>
+            <a href="https://wa.me/554491339060?text=Olá,%20Dr.%20Marcelo,%20gostaria%20de%20agendar%20uma%20consulta%20online%20de%2030%20minutos%20(R$%2099,90)" 
+               class="whatsapp-button" target="_blank">
+               <i class="fab fa-whatsapp me-2"></i>Agendar Consulta - R$ 99,90
+            </a>
+            <p class="small text-muted mt-3">
+                <i class="fas fa-check-circle text-teal-600 me-1"></i> Você recebe confirmação imediata
+            </p>
+        </div>
+    </section>
+
+    <!-- Rodapé -->
+    <footer class="bg-dark text-white py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <h3 class="h4 fw-900 mb-3">Dr. Marcelo Medeiros</h3>
+                    <p class="mb-2">
+                        <span class="credential-badge">CRM 47960</span>
+                        <span class="credential-badge ms-2">Pós-graduação Albert Einstein</span>
+                    </p>
+                    <p class="small text-white-50 mb-0">
+                        Atendimento online conforme resoluções do CFM e Código de Ética Médica
+                    </p>
+                </div>
+                <div class="col-lg-4 text-lg-end mt-4 mt-lg-0">
+                    <a href="mailto:marcelomedeirossaudeefitness@gmail.com" 
+                       class="text-white d-block mb-2 fw-600">
+                        <i class="fas fa-envelope me-2"></i> E-mail profissional
+                    </a>
+                    <a href="https://wa.me/554491339060" 
+                       class="text-white d-block fw-600">
+                        <i class="fab fa-whatsapp me-2"></i> WhatsApp para dúvidas
+                    </a>
+                </div>
+            </div>
+            <hr class="my-4 opacity-25">
+            <p class="text-center small text-white-50 mb-0">
+                <i class="fas fa-exclamation-triangle me-1"></i> 
+                Para emergências, procure um pronto-socorro ou ligue 188 (CVV)
+            </p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Controle dos popups
+        document.addEventListener('DOMContentLoaded', function() {
+            // Fecha popups ao tocar fora
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('.service-card') && !e.target.closest('.photo-placeholder') && !e.target.closest('.bio-popup')) {
+                    document.querySelectorAll('.service-popup, .bio-popup').forEach(popup => {
+                        popup.style.display = 'none';
+                    });
+                }
+            });
+            
+            // Fecha bio ao clicar fora (exceto na foto)
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('.photo-placeholder') && !e.target.closest('.bio-popup')) {
+                    document.querySelector('.bio-popup').style.display = 'none';
+                }
+            });
+            
+            // Mobile: controle por clique
+            if (window.innerWidth <= 992) {
+                // Serviços - clique
+                document.querySelectorAll('.service-card').forEach(card => {
+                    card.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        const popup = this.querySelector('.service-popup');
+                        const isVisible = popup.style.display === 'block';
+                        
+                        // Fecha todos os outros
+                        document.querySelectorAll('.service-popup').forEach(p => {
+                            p.style.display = 'none';
+                        });
+                        
+                        // Abre/fecha este
+                        popup.style.display = isVisible ? 'none' : 'block';
+                    });
+                });
+                
+                // Bio - clique
+                document.querySelector('.photo-placeholder').addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const popup = document.querySelector('.bio-popup');
+                    const isVisible = popup.style.display === 'block';
+                    
+                    // Fecha todos os outros
+                    document.querySelectorAll('.service-popup').forEach(p => {
+                        p.style.display = 'none';
+                    });
+                    
+                    // Abre/fecha bio
+                    popup.style.display = isVisible ? 'none' : 'block';
+                });
+            }
+        });
+    </script>
+</body>
+</html>
+
