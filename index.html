@@ -142,17 +142,17 @@
             color: white;
         }
         
-        /* Container da foto e bio */
+        /* Container da foto e bio - AJUSTADO */
         .photo-bio-container {
             position: relative;
             width: 100%;
             min-height: 500px;
         }
         
-        /* Foto placeholder */
+        /* Foto placeholder - AGORA 33% MAIS LARGA E MAIS PERTO DA DIREITA */
         .photo-placeholder {
             width: 100%;
-            max-width: 500px;
+            max-width: 665px; /* Aumentado 33% (de 500px para 665px) */
             height: 500px;
             background: linear-gradient(135deg, #e5e7eb, #d1d5db);
             border-radius: 20px;
@@ -167,7 +167,8 @@
             cursor: pointer;
             transition: all 0.3s;
             z-index: 5;
-            margin: 0 auto;
+            margin: 0 auto 0 0; /* Colado à esquerda para ficar perto do preço */
+            float: left; /* Para ficar ao lado do conteúdo */
         }
         .photo-placeholder:hover {
             border-color: var(--teal-primary);
@@ -175,12 +176,12 @@
             box-shadow: 0 15px 35px rgba(13, 148, 136, 0.15);
         }
         
-        /* Popup da Biografia */
+        /* Ajuste para a bio ficar ao lado da foto maior */
         .bio-popup {
             display: none;
             position: absolute;
             top: 0;
-            left: 520px;
+            left: 685px; /* Ajustado para ficar ao lado da foto maior */
             width: 500px;
             height: 500px;
             background: white;
@@ -452,14 +453,26 @@
             .price-tag {
                 font-size: 3rem !important;
             }
+            
+            /* Foto menor no mobile */
+            .photo-placeholder {
+                max-width: 100% !important;
+                height: 300px !important;
+                margin: 0 auto 30px auto !important;
+                float: none !important;
+            }
+            
+            .bio-popup {
+                left: 50% !important;
+            }
         }
         
         @media (max-width: 768px) {
             .hero { padding: 50px 0; }
             .whatsapp-button { padding: 15px 35px; font-size: 1.2rem; }
             .photo-placeholder { 
-                height: 270px;
-                max-width: 300px;
+                height: 270px !important;
+                max-width: 100% !important;
             }
             .whatsapp-float { width: 70px; height: 70px; font-size: 35px; }
             .header-agendar-btn { padding: 10px 25px; font-size: 0.95rem; }
@@ -471,8 +484,8 @@
         
         @media (max-width: 480px) {
             .photo-placeholder { 
-                height: 230px;
-                max-width: 280px;
+                height: 230px !important;
+                max-width: 100% !important;
             }
             .price-tag {
                 font-size: 2.5rem !important;
@@ -520,6 +533,32 @@
             font-size: 0.95rem;
             font-weight: 400;
         }
+        
+        /* Layout ajustado para foto mais larga */
+        @media (min-width: 992px) {
+            .hero-content-wrapper {
+                display: flex;
+                align-items: flex-start;
+                justify-content: space-between;
+                gap: 40px;
+            }
+            
+            .photo-column {
+                flex: 0 0 58%; /* 33% mais larga que antes */
+                max-width: 58%;
+            }
+            
+            .info-column {
+                flex: 0 0 42%;
+                max-width: 42%;
+            }
+            
+            .photo-placeholder {
+                width: 100%;
+                max-width: 100%;
+                margin-right: 0;
+            }
+        }
     </style>
 </head>
 <body>
@@ -557,15 +596,15 @@
             <h1 class="hero-title">Sua Saúde Mental em Boas Mãos</h1>
             <p class="hero-subtitle">Descubra o alívio que você merece com tratamento psiquiátrico especializado, confidencial e baseado nas mais recentes evidências científicas. Recupere seu bem-estar sem sair de casa.</p>
             
-            <div class="row align-items-center mt-5">
-                <div class="col-lg-6">
+            <div class="hero-content-wrapper">
+                <div class="photo-column">
                     <!-- Container da foto com bio -->
                     <div class="photo-bio-container">
-                        <!-- Foto placeholder -->
+                        <!-- Foto placeholder - AGORA 33% MAIS LARGA -->
                         <div class="photo-placeholder">
                             <div class="text-center">
                                 <i class="fas fa-user-md fa-4x mb-3 text-gray-500"></i><br>
-                                <span class="fw-bold fs-5">SUA FOTO AQUI<br><small class="fw-normal">(Formato paisagem)</small></span>
+                                <span class="fw-bold fs-5">SUA FOTO AQUI<br><small class="fw-normal">(Formato paisagem - 33% mais larga)</small></span>
                             </div>
                         </div>
                         
@@ -599,7 +638,7 @@
                     </div>
                 </div>
                 
-                <div class="col-lg-6">
+                <div class="info-column">
                     <h2 class="h2 fw-900 text-teal-700 mb-4">Consulta Online</h2>
                     <div class="price-tag">R$ 99,90</div>
                     
@@ -764,154 +803,4 @@
                                 <li><strong>Mutismo Seletivo:</strong> Recusa em falar</li>
                             </ul>
                             <div class="treatment-info">
-                                <strong>Tratamento:</strong> Exposição gradual + Terapia Cognitivo-Comportamental
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Destaque para resolução do CFM -->
-    <section class="py-4">
-        <div class="container-wide">
-            <div class="cfm-highlight text-center">
-                <i class="fas fa-shield-alt me-2"></i>
-                ATENDIMENTO ONLINE CONFORME RESOLUÇÕES DO CFM E CÓDIGO DE ÉTICA MÉDICA
-            </div>
-        </div>
-    </section>
-
-    <!-- Agendamento -->
-    <section class="py-5 bg-light">
-        <div class="container-wide text-center">
-            <h2 class="display-6 fw-900 mb-4 text-gray-800">Agendamento Direto via WhatsApp</h2>
-            <p class="text-muted fs-5 mb-4">Envie uma mensagem e agende sua consulta com segurança</p>
-            <a href="https://wa.me/554491339060?text=Olá,%20Dr.%20Marcelo,%20gostaria%20de%20agendar%20uma%20consulta%20online%20de%2030%20minutos%20(R$%2099,90)" 
-               class="whatsapp-button" target="_blank">
-               <i class="fab fa-whatsapp me-2"></i>Agendar Consulta - R$ 99,90
-            </a>
-            <p class="small text-muted mt-3">
-                <i class="fas fa-check-circle text-teal-600 me-1"></i> Você recebe confirmação imediata
-            </p>
-            
-            <!-- NOVA: Caixa informativa sobre história da psiquiatria -->
-            <div class="history-box">
-                <h3><i class="fas fa-history me-2"></i> A Evolução do Cuidado com a Saúde Mental</h3>
-                <p>A psiquiatria percorreu um caminho extraordinário - das concepções antigas sobre doenças mentais aos tratamentos baseados em neurociência que dispomos hoje. No passado, condições como depressão e ansiedade eram frequentemente incompreendidas. Hoje, sabemos que são condições médicas reais, com bases biológicas claras, tão tratáveis quanto qualquer outra doença.</p>
-                <p>A revolução digital trouxe o maior avanço: a democratização do acesso. Agora, tratamentos especializados com medicamentos de última geração e terapias baseadas em evidência estão disponíveis por videochamada, preservando a mesma qualidade e sigilo do consultório físico. Esta é a psiquiatria do século XXI: precisa, acessível e profundamente humana.</p>
-                <p class="mb-0"><strong>Seu bem-estar mental não pode esperar.</strong> A ciência evoluiu para oferecer soluções eficazes. O próximo passo é seu.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Rodapé -->
-    <footer class="bg-dark text-white py-5">
-        <div class="container-wide">
-            <div class="row align-items-center">
-                <div class="col-lg-8">
-                    <h3 class="h4 fw-900 mb-3">Dr. Marcelo Medeiros</h3>
-                    <p class="mb-2">
-                        <span class="credential-badge">CRM 47960</span>
-                        <span class="credential-badge ms-2">Pós-graduação Albert Einstein</span>
-                    </p>
-                    <p class="small text-white-50 mb-0">
-                        Atendimento online conforme resoluções do CFM e Código de Ética Médica
-                    </p>
-                </div>
-                <div class="col-lg-4 text-lg-end mt-4 mt-lg-0">
-                    <a href="mailto:marcelomedeirossaudeefitness@gmail.com" 
-                       class="text-white d-block mb-2 fw-600">
-                        <i class="fas fa-envelope me-2"></i> E-mail profissional
-                    </a>
-                    <a href="https://wa.me/554491339060" 
-                       class="text-white d-block fw-600">
-                        <i class="fab fa-whatsapp me-2"></i> WhatsApp para dúvidas
-                    </a>
-                </div>
-            </div>
-            <hr class="my-4 opacity-25">
-            <p class="text-center small text-white-50 mb-0">
-                <i class="fas fa-exclamation-triangle me-1"></i> 
-                Para emergências, procure um pronto-socorro ou ligue 188 (CVV)
-            </p>
-        </div>
-    </footer>
-
-    <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    
-    <script>
-        // Controle avançado dos popups
-        document.addEventListener('DOMContentLoaded', function() {
-            const isMobile = window.innerWidth <= 992;
-            
-            // Função para fechar todos os popups
-            function closeAllPopups() {
-                document.querySelectorAll('.service-popup, .bio-popup').forEach(popup => {
-                    popup.style.display = 'none';
-                });
-            }
-            
-            // Controle para DESKTOP (hover)
-            if (!isMobile) {
-                // Fecha popups ao clicar fora (desktop)
-                document.addEventListener('click', function(e) {
-                    if (!e.target.closest('.service-card') && 
-                        !e.target.closest('.photo-placeholder') && 
-                        !e.target.closest('.bio-popup') &&
-                        !e.target.closest('.service-popup')) {
-                        closeAllPopups();
-                    }
-                });
-                
-                // Fecha bio ao clicar fora (exceto na foto)
-                document.addEventListener('click', function(e) {
-                    if (!e.target.closest('.photo-placeholder') && 
-                        !e.target.closest('.bio-popup')) {
-                        document.querySelector('.bio-popup').style.display = 'none';
-                    }
-                });
-            }
-            // Controle para MOBILE (clique/touch)
-            else {
-                // Serviços - clique/touch
-                document.querySelectorAll('.service-card').forEach(card => {
-                    card.addEventListener('click', function(e) {
-                        e.stopPropagation();
-                        const popup = this.querySelector('.service-popup');
-                        const wasVisible = popup.style.display === 'block';
-                        
-                        // Fecha todos os outros
-                        closeAllPopups();
-                        
-                        // Abre/fecha este
-                        popup.style.display = wasVisible ? 'none' : 'block';
-                    });
-                });
-                
-                // Bio - clique/touch
-                document.querySelector('.photo-placeholder').addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    const popup = document.querySelector('.bio-popup');
-                    const wasVisible = popup.style.display === 'block';
-                    
-                    // Fecha todos os outros
-                    closeAllPopups();
-                    
-                    // Abre/fecha bio
-                    popup.style.display = wasVisible ? 'none' : 'block';
-                });
-                
-                // Fecha com ESC
-                document.addEventListener('keydown', function(e) {
-                    if (e.key === 'Escape') {
-                        closeAllPopups();
-                    }
-                });
-            }
-        });
-    </script>
-</body>
-</html>
+                                <strong>Tratamento:</strong> Exposição gradual
