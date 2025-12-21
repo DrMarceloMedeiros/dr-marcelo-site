@@ -135,18 +135,15 @@
             min-height: 500px;
         }
         
-        /* Foto placeholder */
+        /* Foto placeholder - MODIFICADO */
         .photo-placeholder {
             width: 100%;
             max-width: 500px;
             height: 500px;
-            background: linear-gradient(135deg, #e5e7eb, #d1d5db);
             border-radius: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #6b7280;
-            border: 4px dashed #9ca3af;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             position: relative;
             overflow: hidden;
@@ -154,11 +151,19 @@
             transition: all 0.3s;
             z-index: 5;
             margin: 0 auto;
+            background: #f8fafc;
+            border: 4px solid var(--teal-primary);
         }
         .photo-placeholder:hover {
-            border-color: var(--teal-primary);
             transform: translateY(-5px);
             box-shadow: 0 15px 35px rgba(13, 148, 136, 0.15);
+        }
+        
+        .doctor-photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 16px;
         }
         
         /* Popup da Biografia */
@@ -471,12 +476,12 @@
                 <div class="col-lg-6">
                     <!-- Container da foto com bio -->
                     <div class="photo-bio-container">
-                        <!-- Foto placeholder -->
+                        <!-- SUA FOTO ADICIONADA AQUI -->
                         <div class="photo-placeholder">
-                            <div class="text-center">
-                                <i class="fas fa-user-md fa-4x mb-3 text-gray-500"></i><br>
-                                <span class="fw-bold fs-5">SUA FOTO AQUI<br><small class="fw-normal">(Formato paisagem)</small></span>
-                            </div>
+                            <img src="https://drive.google.com/uc?export=download&id=1OGSJhOLA31TbhZ11WJMWv4qxZ39yQu9F" 
+                                 alt="Dr. Marcelo Medeiros - Psiquiatra"
+                                 class="doctor-photo"
+                                 onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80';">
                         </div>
                         
                         <!-- Popup da Biografia -->
