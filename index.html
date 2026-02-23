@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dr. Marcelo Medeiros - Psiquiatria Online</title>
+    <title>Dr. Marcelo Medeiros - Psiquiatria Moderna</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -16,19 +16,24 @@
             --dark-navy: #06344b;
             --orange-light: #f39c12;
             --orange-dark: #e67e22;
+            --btn-blue: #1e3c72;
+            --btn-blue-hover: #2a4a7a;
+            --light-bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text-primary: #1e293b;
+            --text-secondary: #475569;
         }
         
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { 
             font-family: 'Inter', sans-serif; 
             line-height: 1.6; 
-            color: #333;
-            position: relative;
+            color: var(--text-primary);
+            background-color: #ffffff;
             overflow-x: hidden;
-            background-color: var(--navy-blue);
         }
         
-        /* Fundo azul-marinho escuro em TOM EXATO */
+        /* Fundo decorativo sutil */
         body::before {
             content: '';
             position: fixed;
@@ -40,35 +45,24 @@
             background-repeat: no-repeat;
             background-position: center;
             background-size: 600px;
-            opacity: 0.08;
+            opacity: 0.03;
             z-index: -1;
             pointer-events: none;
         }
         
-        body::after {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: var(--navy-blue);
-            z-index: -2;
-        }
-        
-        /* WhatsApp Flutuante GRANDE */
+        /* WhatsApp Flutuante */
         .whatsapp-float {
             position: fixed;
-            width: 90px;
-            height: 90px;
+            width: 70px;
+            height: 70px;
             bottom: 30px;
             right: 30px;
             background-color: var(--whatsapp-green);
             color: #FFF;
             border-radius: 50px;
             text-align: center;
-            font-size: 45px;
-            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+            font-size: 35px;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.3);
             z-index: 1000;
             display: flex;
             align-items: center;
@@ -79,1013 +73,470 @@
         .whatsapp-float:hover { 
             background-color: #128C7E;
             transform: scale(1.1);
-            box-shadow: 0 6px 25px rgba(37, 211, 102, 0.6);
         }
         
-        /* Cabeçalho FIXO */
+        /* Cabeçalho */
         header {
-            background: rgba(255, 255, 255, 0.98);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            background: white;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
             position: sticky;
             top: 0;
             z-index: 999;
-            backdrop-filter: blur(10px);
         }
         
-        /* Hero Section com fundo mais claro para contraste */
+        /* Hero Section - REFORMULADA */
         .hero {
-            background: linear-gradient(135deg, #f8fcff 0%, #e6f3fa 100%);
-            padding: 100px 0 80px;
-            text-align: center;
+            background: linear-gradient(135deg, #f1f5f9 0%, #ffffff 100%);
+            padding: 60px 0 40px;
             position: relative;
-            overflow: hidden;
         }
         
         .hero-title {
-            font-size: 3.5rem;
-            font-weight: 900;
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, var(--dark-teal), #0891b2);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            font-size: 3.2rem;
+            font-weight: 800;
+            line-height: 1.2;
+            color: var(--btn-blue);
+            margin-bottom: 1rem;
         }
         
         .hero-subtitle {
-            font-size: 1.8rem;
-            font-weight: 500;
-            color: #4b5563;
-            margin-bottom: 0.5rem;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            font-weight: 400;
         }
         
-        /* DESTAQUE PARA ATENDIMENTO IMEDIATO - SEM SINAL "=" E LARANJA MAIS CLARO */
+        /* Badge de urgência (MANTIDO) */
         .urgent-badge {
             background: linear-gradient(135deg, var(--orange-light), var(--orange-dark));
             color: white;
-            padding: 18px 30px;
-            border-radius: 60px;
-            font-weight: 900;
-            font-size: 1.8rem;
-            letter-spacing: 1.5px;
-            display: inline-block;
-            margin: 15px auto 25px;
-            box-shadow: 0 10px 25px rgba(243, 156, 18, 0.3);
-            text-transform: uppercase;
-            border: 3px solid white;
-            width: fit-content;
-        }
-        
-        /* Botão verde WhatsApp */
-        .whatsapp-button {
-            background: linear-gradient(135deg, var(--whatsapp-green), #128C7E);
-            color: white;
-            padding: 18px 50px;
-            border-radius: 50px;
-            font-weight: 800;
-            font-size: 1.4rem;
-            border: none;
-            transition: all 0.3s;
-            text-decoration: none;
-            display: inline-block;
-            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
-            letter-spacing: 0.5px;
-            cursor: pointer;
-        }
-        .whatsapp-button:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 25px rgba(37, 211, 102, 0.6);
-            color: white;
-        }
-        
-        /* Botão para o App */
-        .app-button {
-            background: linear-gradient(135deg, var(--teal-primary), var(--dark-teal));
-            color: white;
-            padding: 14px 35px;
+            padding: 12px 25px;
             border-radius: 50px;
             font-weight: 700;
-            font-size: 1.1rem;
-            border: none;
-            transition: all 0.3s;
-            text-decoration: none;
+            font-size: 1.2rem;
             display: inline-block;
-            box-shadow: 0 5px 15px rgba(13, 148, 136, 0.3);
-            margin-top: 15px;
-        }
-        .app-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(13, 148, 136, 0.5);
-            color: white;
+            margin: 10px 0 20px;
+            box-shadow: 0 5px 15px rgba(243, 156, 18, 0.2);
+            border: 2px solid white;
         }
         
-        /* Container da foto e bio - FOTO DESLOCADA PARA CIMA */
-        .photo-bio-container {
-            position: relative;
+        /* Container da foto - MAIOR (50%) */
+        .photo-container {
             width: 100%;
-            min-height: 500px;
-            margin-top: -30px !important; /* Desloca a foto 30px para cima (≈1cm) */
-        }
-        
-        /* Foto placeholder */
-        .photo-placeholder {
-            width: 100%;
-            max-width: 500px;
-            height: 500px;
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            position: relative;
-            overflow: hidden;
-            cursor: pointer;
-            transition: all 0.3s;
-            z-index: 5;
+            max-width: 550px;
             margin: 0 auto;
-            background: #f8fafc;
-            border: 4px solid var(--teal-primary);
-        }
-        .photo-placeholder:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(13, 148, 136, 0.15);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 30px rgba(0,0,0,0.1);
+            border: 5px solid white;
         }
         
         .doctor-photo {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 16px;
-            transition: transform 0.3s ease;
+            height: auto;
+            display: block;
+            transition: transform 0.3s;
         }
         .doctor-photo:hover {
             transform: scale(1.02);
         }
         
-        /* Popup da Biografia */
-        .bio-popup {
-            display: none;
-            position: absolute;
-            top: 0;
-            left: 520px;
-            width: 500px;
-            height: 500px;
-            background: white;
-            border-radius: 20px;
-            padding: 25px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-            z-index: 50;
-            border: 3px solid var(--teal-primary);
-            overflow-y: auto;
+        /* Botões duplos */
+        .btn-dual {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin: 30px 0;
         }
-        .photo-placeholder:hover + .bio-popup,
-        .bio-popup:hover {
-            display: block;
-            animation: slideInRight 0.4s ease-out;
-        }
-        
-        .bio-popup h4 {
-            color: var(--dark-teal);
-            font-weight: 800;
-            margin-bottom: 15px;
-            border-bottom: 3px solid #f0f9ff;
-            padding-bottom: 10px;
-        }
-        
-        .bio-popup p {
-            color: #4b5563;
-            margin-bottom: 12px;
-            line-height: 1.5;
-            font-size: 0.95rem;
-        }
-        
-        .bio-badge {
-            background: linear-gradient(135deg, var(--teal-primary), var(--dark-teal));
+        .btn-agendar {
+            background: linear-gradient(135deg, var(--btn-blue), #2a4a7a);
             color: white;
-            padding: 6px 12px;
-            border-radius: 15px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            display: inline-block;
-            margin-right: 8px;
-            margin-bottom: 8px;
-        }
-        
-        /* Cards de serviços */
-        .service-card {
-            border: 2px solid #e5e7eb;
-            border-radius: 20px;
-            padding: 35px 25px;
-            text-align: center;
-            transition: all 0.4s;
-            height: 100%;
-            background: white;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            position: relative;
-            cursor: pointer;
-            margin-bottom: 30px;
-        }
-        .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 35px rgba(13, 148, 136, 0.15);
-            border-color: var(--teal-primary);
-            background: linear-gradient(135deg, #f0f9ff, #ffffff);
-        }
-        
-        /* Popup de informações científicas */
-        .service-popup {
-            display: none;
-            position: absolute;
-            background: white;
-            border-radius: 15px;
-            padding: 20px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
-            z-index: 2000;
-            text-align: left;
-            border: 2px solid var(--teal-primary);
-            width: 350px;
-            bottom: calc(100% + 20px);
-            left: 50%;
-            transform: translateX(-50%);
-        }
-        
-        .service-card:hover .service-popup {
-            display: block;
-            animation: fadeInUp 0.3s ease-out;
-        }
-        
-        .service-popup h5 {
-            color: var(--dark-teal);
-            font-weight: 700;
-            margin-bottom: 12px;
-            border-bottom: 2px solid #f0f9ff;
-            padding-bottom: 8px;
-            font-size: 1.1rem;
-        }
-        
-        .service-popup ul {
-            padding-left: 20px;
-            margin-bottom: 15px;
-        }
-        
-        .service-popup li {
-            margin-bottom: 8px;
-            color: #4b5563;
-            font-size: 0.9rem;
-            line-height: 1.4;
-        }
-        
-        .treatment-info {
-            background: #f0f9ff;
-            padding: 10px;
-            border-radius: 8px;
-            margin-top: 10px;
-            font-size: 0.85rem;
-            color: var(--dark-teal);
-            border-left: 4px solid var(--teal-primary);
-        }
-        
-        .price-tag {
-            font-size: 3.2rem;
-            font-weight: 900;
-            color: var(--dark-teal);
-            margin: 20px 0;
-            text-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        
-        .price-note {
-            font-size: 1rem;
-            color: #6b7280;
-            margin-top: -10px;
-            margin-bottom: 20px;
-            font-weight: 500;
-        }
-        
-        /* Botão agendar no header */
-        .header-agendar-btn {
-            background: linear-gradient(135deg, var(--whatsapp-green), #128C7E);
-            color: white;
-            padding: 12px 35px;
+            padding: 16px 35px;
             border-radius: 50px;
             font-weight: 700;
-            font-size: 1.1rem;
+            font-size: 1.3rem;
             border: none;
             transition: all 0.3s;
             text-decoration: none;
-            display: inline-block;
-            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
-            cursor: pointer;
-        }
-        .header-agendar-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.5);
-            color: white;
-        }
-        
-        /* Instruções para instalar o app */
-        .install-instructions {
-            background: #f0f9ff;
-            border-radius: 15px;
-            padding: 20px;
-            margin-top: 25px;
-            border-left: 4px solid var(--teal-primary);
-        }
-        
-        .install-steps {
-            margin-top: 15px;
-        }
-        
-        .step-item {
-            display: flex;
+            display: inline-flex;
             align-items: center;
-            margin-bottom: 12px;
-            padding: 10px;
-            background: white;
-            border-radius: 10px;
-            border: 1px solid #e5e7eb;
-        }
-        
-        .step-number {
-            background: var(--teal-primary);
-            color: white;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
+            gap: 10px;
+            box-shadow: 0 5px 15px rgba(30, 60, 114, 0.3);
+            flex: 1;
             justify-content: center;
-            font-weight: 700;
-            margin-right: 15px;
-            flex-shrink: 0;
         }
-        
-        /* Animações */
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translate(-50%, 10px); }
-            to { opacity: 1; transform: translate(-50%, 0); }
-        }
-        
-        @keyframes slideInRight {
-            from { opacity: 0; transform: translateX(20px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-        
-        /* Badge de credencial */
-        .credential-badge {
-            background: linear-gradient(135deg, var(--teal-primary), var(--dark-teal));
+        .btn-agendar:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(30, 60, 114, 0.4);
             color: white;
-            padding: 5px 15px;
+        }
+        .btn-whatsapp {
+            background: linear-gradient(135deg, var(--whatsapp-green), #128C7E);
+            color: white;
+            padding: 16px 35px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.3rem;
+            border: none;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+            flex: 1;
+            justify-content: center;
+        }
+        .btn-whatsapp:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4);
+            color: white;
+        }
+        
+        /* Cards de indicação */
+        .indication-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 15px;
+            margin: 30px 0;
+        }
+        .indication-item {
+            background: var(--card-bg);
+            padding: 20px 15px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+            border: 1px solid #e9eef2;
+            transition: all 0.3s;
+        }
+        .indication-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(13, 148, 136, 0.1);
+            border-color: var(--teal-primary);
+        }
+        .indication-item i {
+            font-size: 2.2rem;
+            color: var(--teal-primary);
+            margin-bottom: 10px;
+        }
+        .indication-item h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 0;
+        }
+        
+        /* Cards de autoridade */
+        .authority-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        .authority-card {
+            background: white;
+            padding: 25px 20px;
             border-radius: 20px;
-            font-size: 0.85rem;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+            border: 1px solid #e9eef2;
+        }
+        .authority-card i {
+            font-size: 2.5rem;
+            color: var(--teal-primary);
+            margin-bottom: 15px;
+        }
+        .authority-card h5 {
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+        .authority-card p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 0;
+        }
+        
+        /* FAQ */
+        .faq-item {
+            background: white;
+            border-radius: 15px;
+            margin-bottom: 15px;
+            border: 1px solid #e9eef2;
+            overflow: hidden;
+        }
+        .faq-question {
+            padding: 18px 25px;
+            background: white;
             font-weight: 600;
-            display: inline-block;
-            margin-top: 5px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .faq-question i {
+            transition: transform 0.3s;
+            color: var(--teal-primary);
+        }
+        .faq-answer {
+            padding: 0 25px 18px 25px;
+            color: var(--text-secondary);
+            display: none;
+        }
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+        
+        /* Seções */
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--btn-blue);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+        }
+        .light-section {
+            background-color: var(--light-bg);
+            padding: 70px 0;
+        }
+        .white-section {
+            background: white;
+            padding: 70px 0;
         }
         
         /* Responsivo */
-        @media (min-width: 1200px) {
-            .photo-bio-container {
-                min-height: 500px;
-                margin-top: -30px !important;
-            }
-            .bio-popup {
-                display: none;
-                position: absolute;
-                left: 520px;
-                width: 500px;
-            }
-        }
-        
-        @media (max-width: 1199px) {
-            .photo-bio-container {
-                min-height: 400px;
-                margin-top: -20px !important;
-            }
-            .bio-popup {
-                position: fixed;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                width: 90%;
-                max-width: 500px;
-                height: auto;
-                max-height: 80vh;
-                z-index: 2000;
-            }
-            .photo-placeholder {
-                max-width: 400px;
-                height: 400px;
-            }
-            .urgent-badge {
-                font-size: 1.4rem;
-                padding: 15px 25px;
-            }
-        }
-        
-        @media (max-width: 992px) {
-            .hero { padding: 70px 0 60px; }
-            .hero-title { font-size: 2.8rem; }
-            .hero-subtitle { font-size: 1.5rem; }
-            .photo-placeholder { 
-                height: 350px;
-                max-width: 350px;
-            }
-            .photo-bio-container {
-                margin-top: 0 !important;
-            }
-            .service-popup {
-                position: fixed;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                width: 90%;
-                max-width: 400px;
-                z-index: 2000;
-            }
-            .urgent-badge {
-                font-size: 1.2rem;
-                padding: 12px 20px;
-            }
-        }
-        
         @media (max-width: 768px) {
-            .hero { padding: 50px 0 40px; }
-            .hero-title { font-size: 2.2rem; }
-            .hero-subtitle { font-size: 1.2rem; }
-            .whatsapp-button { padding: 15px 35px; font-size: 1.2rem; }
-            .photo-placeholder { 
-                height: 270px;
-                max-width: 300px;
-            }
-            .photo-bio-container {
-                margin-top: 0 !important;
-            }
-            .whatsapp-float { width: 70px; height: 70px; font-size: 35px; }
-            .header-agendar-btn { padding: 10px 25px; font-size: 0.95rem; }
-            .bio-popup {
-                width: 95%;
-                max-height: 70vh;
-            }
-            .urgent-badge {
-                font-size: 1rem;
-                padding: 10px 18px;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .photo-placeholder { 
-                height: 230px;
-                max-width: 280px;
-            }
-            .urgent-badge {
-                font-size: 0.9rem;
-                padding: 8px 15px;
-            }
-        }
-        
-        /* História da Psiquiatria */
-        .history-section {
-            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
-            padding: 80px 0;
-        }
-        
-        .history-text {
-            font-size: 1.1rem;
-            line-height: 1.7;
-            color: #4b5563;
-        }
-        
-        .history-text p {
-            margin-bottom: 20px;
-        }
-        
-        /* Seções com fundo escuro */
-        .bg-navy {
-            background-color: var(--navy-blue);
-            color: white;
-        }
-        
-        .bg-navy-light {
-            background-color: #0e5a7a;
-            color: white;
-        }
-        
-        .text-white-90 {
-            color: rgba(255, 255, 255, 0.9);
-        }
-        
-        footer {
-            background-color: var(--dark-navy) !important;
+            .hero-title { font-size: 2.5rem; }
+            .btn-dual { flex-direction: column; }
+            .btn-agendar, .btn-whatsapp { width: 100%; }
+            .photo-container { max-width: 100%; }
+            .urgent-badge { font-size: 1rem; }
         }
     </style>
 </head>
 <body>
-    <!-- WhatsApp Flutuante GRANDE -->
-    <a href="https://wa.me/554491339060?text=Olá,%20Dr.%20Marcelo,%20gostaria%20de%20agendar%20uma%20consulta%20online%20de%2030%20minutos%20(R$%2099,90)" 
-       class="whatsapp-float" target="_blank" title="Agende pelo WhatsApp">
-       <i class="fab fa-whatsapp"></i>
+    <!-- WhatsApp Flutuante -->
+    <a href="https://wa.me/554491339060?text=Olá,%20Dr.%20Marcelo,%20gostaria%20de%20agendar%20uma%20consulta" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
     </a>
 
-    <!-- Cabeçalho FIXO - COM EXPERIÊNCIA EM CAPS E CLÍNICAS PARTICULARES -->
+    <!-- Cabeçalho -->
     <header>
         <div class="container py-3">
             <div class="d-flex justify-content-between align-items-center">
                 <div>
-                    <h1 class="h4 mb-1 fw-900" style="font-size: 1.4rem; color: var(--dark-teal);">
-                        Dr. Marcelo Medeiros
-                    </h1>
-                    <div class="d-flex flex-wrap align-items-center gap-2">
-                        <p class="text-muted small mb-0 fw-600">Psiquiatria Online | CRM 47960</p>
-                        <span class="text-teal-600">•</span>
-                        <p class="text-muted small mb-0 fw-500">
-                            Pós-graduação em Psiquiatria pelo Hospital Albert Einstein
-                        </p>
-                        <span class="text-teal-600">•</span>
-                        <p class="text-muted small mb-0 fw-600" style="color: var(--teal-primary);">
-                            <i class="fas fa-check-circle"></i> Experiência em CAPS e Clínicas Particulares
-                        </p>
-                    </div>
+                    <h1 class="h5 mb-0 fw-800" style="color: var(--btn-blue);">Dr. Marcelo Medeiros</h1>
+                    <p class="small text-muted mb-0">CRM-PR 47960 | Psiquiatria</p>
                 </div>
-                <a href="https://wa.me/554491339060?text=Olá,%20Dr.%20Marcelo,%20gostaria%20de%20agendar%20uma%20consulta%20online%20de%2030%20minutos%20(R$%2099,90)" 
-                   class="header-agendar-btn" target="_blank">
-                    <i class="fab fa-whatsapp me-2"></i> Agendar via WhatsApp
-                </a>
+                <div class="d-flex gap-2">
+                    <span class="badge bg-light text-dark p-2"><i class="fas fa-check-circle text-teal-600"></i> Atendimento 24h</span>
+                </div>
             </div>
         </div>
     </header>
 
-    <!-- Seção Principal -->
+    <!-- HERO SECTION - REFORMULADA -->
     <section class="hero">
         <div class="container">
-            <h1 class="hero-title">Cuidado Integral para sua Saúde Mental</h1>
-            
-            <!-- NOVO: Atendimento Imediato - SEM SINAL "=" E LARANJA MAIS CLARO -->
-            <div class="urgent-badge">
-                ⚡ Atendimento imediato → consulta em até 24h úteis ⚡
-            </div>
-            
-            <p class="hero-subtitle">Atendimento psiquiátrico online com ética, sigilo e expertise profissional</p>
-            
-            <div class="row align-items-center mt-5">
-                <div class="col-lg-6">
-                    <!-- Container da foto com bio - DESLOCADA PARA CIMA -->
-                    <div class="photo-bio-container">
-                        <!-- SUA FOTO EM ALTA QUALIDADE -->
-                        <div class="photo-placeholder">
-                            <img src="https://i.ibb.co/CsTtFZ52/FOTO-AAAAA.png" 
-                                 alt="Dr. Marcelo Medeiros - Psiquiatra CRM 47960"
-                                 class="doctor-photo"
-                                 onerror="this.onerror=null; this.src='https://i.ibb.co/CsTtFZ52/FOTO-AAAAA.png';">
-                        </div>
-                        
-                        <!-- Popup da Biografia -->
-                        <div class="bio-popup">
-                            <h4>Dr. Marcelo Medeiros - Formação e Atuação</h4>
-                            
-                            <p><strong>Graduação Médica:</strong> Universidade UNINGÁ (2016-2021). Formação generalista com ênfase em psiquiatria e neurologia.</p>
-                            
-                            <p><strong>Pós-graduação:</strong> Especialização em Psiquiatria pelo Hospital Israelita Albert Einstein (SP). Treinamento em psiquiatria biológica e psicofarmacologia avançada.</p>
-                            
-                            <p><strong>Urgência e Emergência:</strong> Experiência em serviços de emergência psiquiátrica, atendendo crises agudas, tentativas de suicídio e quadros psicóticos agudos.</p>
-                            
-                            <p><strong>CAPS:</strong> Atuação em Centro de Atenção Psicossocial desde 2023, atendendo transtornos mentais graves (esquizofrenia, bipolaridade, depressão resistente).</p>
-                            
-                            <p><strong>Clínica Particular:</strong> Experiência em consultório com abordagem em transtornos de humor, ansiedade, TDAH adulto e transtornos de personalidade.</p>
-                            
-                            <p><strong>Toxicologia:</strong> Expertise em dependência química - álcool, cocaína, crack, benzodiazepínicos e poliusuários. Abordagem com terapia de manutenção e redução de danos.</p>
-                            
-                            <p><strong>Psicofarmacologia:</strong> Prescrição baseada em evidências com ISRS, IRSN, antipsicóticos atípicos, estabilizadores de humor e psicotrópicos de última geração.</p>
-                            
-                            <div class="mt-3">
-                                <span class="bio-badge">Psiquiatria Biológica</span>
-                                <span class="bio-badge">Emergência Psiquiátrica</span>
-                                <span class="bio-badge">Toxicologia</span>
-                                <span class="bio-badge">CAPS III</span>
-                                <span class="bio-badge">Psicofarmacologia</span>
-                                <span class="bio-badge">Transtornos Graves</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="col-lg-6">
-                    <h2 class="h2 fw-900 mb-4" style="color: var(--dark-teal);">Consulta Online</h2>
-                    <!-- ALTERADO: "a partir de" → "VALOR DE" -->
-                    <div class="price-tag">VALOR DE R$ 99,90</div>
-                    <p class="price-note">*Consulta de 30 minutos via videochamada</p>
-                    <p class="text-gray-600 mb-4 fs-5">
-                        <i class="fas fa-video text-teal-600 me-2"></i> Videochamada<br>
-                        <i class="fas fa-stethoscope text-teal-600 me-2"></i> Diagnóstico e tratamento especializado<br>
-                        <i class="fas fa-file-medical text-teal-600 me-2"></i> Receituário digital<br>
-                        <i class="fas fa-shield-alt text-teal-600 me-2"></i> Sigilo total (LGPD)
-                    </p>
-                    
-                    <a href="https://wa.me/554491339060?text=Olá,%20Dr.%20Marcelo,%20gostaria%20de%20agendar%20uma%20consulta%20online%20de%2030%20minutos%20(R$%2099,90)" 
-                       class="whatsapp-button" target="_blank">
-                        <i class="fab fa-whatsapp me-2"></i> Agendar via WhatsApp
-                    </a>
-                    
-                    <br>
-                    
-                    <a href="https://marcelomluisc.github.io/minha-receita-psiquiatrica.apk/" 
-                       class="app-button" target="_blank">
-                        <i class="fas fa-mobile-alt me-2"></i> Acessar App de Anamnese
-                    </a>
-                    
-                    <!-- Instruções para instalar o app -->
-                    <div class="install-instructions mt-4">
-                        <p class="mb-2"><strong><i class="fas fa-info-circle me-2 text-teal-600"></i>Como instalar o app na área de trabalho:</strong></p>
-                        <div class="install-steps">
-                            <div class="step-item">
-                                <div class="step-number">1</div>
-                                <div>Clique em "Acessar App de Anamnese" acima</div>
-                            </div>
-                            <div class="step-item">
-                                <div class="step-number">2</div>
-                                <div>No navegador, toque nos 3 pontos (Android) ou no ícone de compartilhar (iPhone)</div>
-                            </div>
-                            <div class="step-item">
-                                <div class="step-number">3</div>
-                                <div>Selecione "Adicionar à tela inicial" ou "Adicionar à tela de início"</div>
-                            </div>
-                            <div class="step-item">
-                                <div class="step-number">4</div>
-                                <div>O ícone do app aparecerá na sua área de trabalho como um aplicativo normal!</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Serviços Especializados -->
-    <section class="py-5" style="position: relative; z-index: 10; background-color: white;">
-        <div class="container">
-            <h2 class="text-center display-5 fw-900 mb-5 text-gray-800">
-                Especialidades Psiquiátricas
-            </h2>
-            <div class="row g-4" style="position: relative;">
-                <!-- Ansiedade -->
-                <div class="col-md-4">
-                    <div class="service-card">
-                        <i class="fas fa-brain fa-3x text-teal-600 mb-3"></i>
-                        <h3 class="h4 fw-800">Ansiedade</h3>
-                        <p class="text-muted">TAG, pânico, fobias e transtorno de ansiedade</p>
-                        
-                        <div class="service-popup">
-                            <h5>Transtornos de Ansiedade</h5>
-                            <ul>
-                                <li><strong>TAG:</strong> Preocupação excessiva e persistente</li>
-                                <li><strong>Síndrome do Pânico:</strong> Crises de ansiedade aguda</li>
-                                <li><strong>Fobias Específicas:</strong> Medo intenso de objetos/situações</li>
-                                <li><strong>TOC:</strong> Pensamentos obsessivos e compulsões</li>
-                                <li><strong>TAS:</strong> Medo de avaliação social</li>
-                            </ul>
-                            <div class="treatment-info">
-                                <strong>Tratamento:</strong> Terapia Cognitivo-Comportamental + Medicação (ISRS, BDZ)
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Depressão -->
-                <div class="col-md-4">
-                    <div class="service-card">
-                        <i class="fas fa-cloud-sun fa-3x text-teal-600 mb-3"></i>
-                        <h3 class="h4 fw-800">Depressão</h3>
-                        <p class="text-muted">Transtornos depressivos e acompanhamento</p>
-                        
-                        <div class="service-popup">
-                            <h5>Transtornos Depressivos</h5>
-                            <ul>
-                                <li><strong>Depressão Maior:</strong> Episódios de 2+ semanas</li>
-                                <li><strong>Distimia:</strong> Depressão crônica leve</li>
-                                <li><strong>Sazonal (SAD):</strong> Relacionada às estações</li>
-                                <li><strong>Pós-parto:</strong> Após gestação</li>
-                                <li><strong>Melancólica:</strong> Com sintomas psicóticos</li>
-                            </ul>
-                            <div class="treatment-info">
-                                <strong>Tratamento:</strong> Antidepressivos (ISRS, IRSN) + Psicoterapia
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- TDAH -->
-                <div class="col-md-4">
-                    <div class="service-card">
-                        <i class="fas fa-bolt fa-3x text-teal-600 mb-3"></i>
-                        <h3 class="h4 fw-800">TDAH Adulto</h3>
-                        <p class="text-muted">Diagnóstico e tratamento para déficit de atenção</p>
-                        
-                        <div class="service-popup">
-                            <h5>TDAH em Adultos</h5>
-                            <ul>
-                                <li><strong>Tipo Desatento:</strong> Dificuldade de concentração</li>
-                                <li><strong>Tipo Hiperativo:</strong> Impulsividade, inquietação</li>
-                                <li><strong>Tipo Combinado:</strong> Ambos os sintomas</li>
-                                <li><strong>Comorbidades:</strong> Ansiedade, depressão, vícios</li>
-                                <li><strong>Diagnóstico:</strong> ASRS-18, entrevista clínica</li>
-                            </ul>
-                            <div class="treatment-info">
-                                <strong>Tratamento:</strong> Estimulantes (Metilfenidato) + Terapia
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Transtornos de Personalidade -->
-                <div class="col-md-4">
-                    <div class="service-card">
-                        <i class="fas fa-user-tag fa-3x text-teal-600 mb-3"></i>
-                        <h3 class="h4 fw-800">Transtornos de Personalidade</h3>
-                        <p class="text-muted">Borderline, antissocial, esquiva e outros</p>
-                        
-                        <div class="service-popup">
-                            <h5>Cluster A, B, C</h5>
-                            <ul>
-                                <li><strong>Borderline:</strong> Instabilidade emocional</li>
-                                <li><strong>Antissocial:</strong> Desrespeito às normas</li>
-                                <li><strong>Narcisista:</strong> Grandiosidade, falta de empatia</li>
-                                <li><strong>Esquiva:</strong> Inibição social, sensibilidade</li>
-                                <li><strong>Obsessivo-Compulsivo:</strong> Perfeccionismo</li>
-                            </ul>
-                            <div class="treatment-info">
-                                <strong>Tratamento:</strong> DBT, Terapia focada na transferência
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- TAB -->
-                <div class="col-md-4">
-                    <div class="service-card">
-                        <i class="fas fa-balance-scale fa-3x text-teal-600 mb-3"></i>
-                        <h3 class="h4 fw-800">Transtorno Afetivo Bipolar</h3>
-                        <p class="text-muted">TAB tipo I, II e ciclotimia</p>
-                        
-                        <div class="service-popup">
-                            <h5>Transtorno Bipolar</h5>
-                            <ul>
-                                <li><strong>Tipo I:</strong> Mania completa + depressão</li>
-                                <li><strong>Tipo II:</strong> Hipomania + depressão</li>
-                                <li><strong>Ciclotimia:</strong> Oscilações crônicas leves</li>
-                                <li><strong>Mista:</strong> Sintomas simultâneos</li>
-                                <li><strong>Rápido-Ciclador:</strong> 4+ episódios/ano</li>
-                            </ul>
-                            <div class="treatment-info">
-                                <strong>Tratamento:</strong> Estabilizadores de humor (Lítio, Valproato)
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Fobias -->
-                <div class="col-md-4">
-                    <div class="service-card">
-                        <i class="fas fa-fear fa-3x text-teal-600 mb-3"></i>
-                        <h3 class="h4 fw-800">Fobias Específicas</h3>
-                        <p class="text-muted">Agorafobia, fobia social e fobias específicas</p>
-                        
-                        <div class="service-popup">
-                            <h5>Fobias e Medos Patológicos</h5>
-                            <ul>
-                                <li><strong>Agorafobia:</strong> Medo de espaços abertos</li>
-                                <li><strong>Fobia Social:</strong> Medo de situações sociais</li>
-                                <li><strong>Específicas:</strong> Animais, altura, sangue</li>
-                                <li><strong>Ansiedade de Separação:</strong> Adultos</li>
-                                <li><strong>Mutismo Seletivo:</strong> Recusa em falar</li>
-                            </ul>
-                            <div class="treatment-info">
-                                <strong>Tratamento:</strong> Exposição gradual + Terapia Cognitivo-Comportamental
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Seção do App -->
-            <div class="row mt-5">
-                <div class="col-lg-10 mx-auto text-center">
-                    <div class="bg-light p-5 rounded-4 border border-teal-200">
-                        <i class="fas fa-mobile-alt fa-4x text-teal-600 mb-4"></i>
-                        <h3 class="h2 fw-900 mb-3 text-gray-800">Aplicativo de Anamnese Psiquiátrica</h3>
-                        <p class="fs-5 text-gray-600 mb-4">
-                            Agilize seu atendimento! Use nosso app para preencher a anamnese antes da consulta.<br>
-                            <strong>Funciona como um aplicativo nativo</strong> - adicione à tela inicial do seu celular.
-                        </p>
-                        <a href="https://marcelomluisc.github.io/minha-receita-psiquiatrica.apk/" 
-                           class="app-button" target="_blank" style="padding: 16px 45px; font-size: 1.2rem;">
-                            <i class="fas fa-external-link-alt me-2"></i> Abrir App de Anamnese
-                        </a>
-                        <div class="mt-4 text-start">
-                            <p class="text-muted mb-1"><i class="fas fa-check-circle text-teal-600 me-2"></i>Formulário completo de avaliação psiquiátrica</p>
-                            <p class="text-muted mb-1"><i class="fas fa-check-circle text-teal-600 me-2"></i>Dados enviados diretamente para o WhatsApp</p>
-                            <p class="text-muted mb-1"><i class="fas fa-check-circle text-teal-600 me-2"></i>Funciona offline após primeiro acesso</p>
-                            <p class="text-muted"><i class="fas fa-check-circle text-teal-600 me-2"></i>100% seguro e sigiloso</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Seção da Especialização -->
-    <section class="py-5 bg-light">
-        <div class="container">
             <div class="row align-items-center">
-                <div class="col-lg-8">
-                    <h2 class="display-6 fw-900 mb-4 text-gray-800">Especialização e Autorização</h2>
-                    <p class="fs-5 text-gray-600 mb-4">
-                        Médico psiquiatra com <strong>CRM 47960</strong>, especializado em saúde mental adulta. 
-                        Pós-graduado pelo renomado <strong>Hospital Albert Einstein</strong>, com abordagem 
-                        humanizada e baseada em evidências científicas.
-                    </p>
-                    <p class="text-gray-600 mb-4">
-                        Atua no diagnóstico e tratamento de transtornos mentais com ética, respeito à 
-                        individualidade e compromisso com o bem-estar integral dos pacientes.
-                    </p>
-                    <div class="d-flex flex-wrap gap-3">
-                        <span class="credential-badge">CRM 47960</span>
-                        <span class="credential-badge">Pós-graduação Albert Einstein</span>
-                        <span class="credential-badge">Atendimento Online Autorizado</span>
-                        <span class="credential-badge">Ética Médica CFM</span>
-                        <span class="credential-badge" style="background: linear-gradient(135deg, var(--orange-light), var(--orange-dark));">Experiência em CAPS</span>
-                        <span class="credential-badge" style="background: linear-gradient(135deg, var(--orange-light), var(--orange-dark));">Clínica Particular</span>
+                <div class="col-lg-6 order-lg-2 mb-5 mb-lg-0">
+                    <!-- FOTO MAIOR (50%) -->
+                    <div class="photo-container">
+                        <img src="https://i.ibb.co/CsTtFZ52/FOTO-AAAAA.png" alt="Dr. Marcelo Medeiros" class="doctor-photo">
                     </div>
                 </div>
-                <div class="col-lg-4 mt-5 mt-lg-0 text-center">
-                    <div class="bg-white p-4 rounded-3 shadow">
-                        <i class="fas fa-award fa-4x text-teal-600 mb-3"></i>
-                        <h3 class="h4 fw-800 mb-3">Certificação</h3>
-                        <p class="text-muted mb-0">
-                            Credenciado para atendimento online conforme resolução CFM nº 2.314/2022
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- História da Psiquiatria -->
-    <section class="history-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-10 mx-auto">
-                    <h2 class="display-6 fw-900 mb-4 text-center text-gray-800">A Evolução da Psiquiatria</h2>
+                <div class="col-lg-6 order-lg-1">
+                    <!-- NOVO TÍTULO -->
+                    <h1 class="hero-title">Psiquiatria moderna, ética e personalizada.</h1>
                     
-                    <div class="history-text">
-                        <p>A psiquiatria é uma das especialidades médicas que mais evoluiu nas últimas décadas. De abordagens primitivas e estigmatizantes, passamos para uma ciência baseada em evidências, neurociência e humanização do cuidado.</p>
-                        
-                        <p>Na antiguidade, os transtornos mentais eram frequentemente atribuídos a causas sobrenaturais. Com Hipócrates (460-370 a.C.) surgiram as primeiras tentativas de compreensão biológica, classificando as doenças mentais em melancolia, mania e frenite.</p>
-                        
-                        <p>O século XIX marcou a psiquiatria como especialidade médica independente, com Philippe Pinel na França defendendo o tratamento moral e humano. No século XX, a descoberta dos primeiros psicofármacos revolucionou o tratamento: clorpromazina (1950) para psicoses, lítio (1949) para bipolaridade, e os primeiros antidepressivos (1957).</p>
-                        
-                        <p>A década de 1980 trouxe a "revolução dos ISRS" (Inibidores Seletivos da Recaptação de Serotonina), com medicamentos mais seguros e eficazes. A partir dos anos 2000, a neurociência avançou com técnicas de imagem cerebral, permitindo compreender as bases biológicas dos transtornos mentais.</p>
-                        
-                        <p>Hoje, a psiquiatria moderna integra:</p>
-                        
-                        <ul>
-                            <li><strong>Psicofarmacologia de precisão:</strong> Medicações específicas para subtipos de transtornos</li>
-                            <li><strong>Neuroimagem:</strong> Ressonância magnética funcional, PET scan</li>
-                            <li><strong>Genética psiquiátrica:</strong> Identificação de marcadores de predisposição</li>
-                            <li><strong>Psicoterapias baseadas em evidências:</strong> TCC, DBT, EMDR</li>
-                            <li><strong>Estimulação cerebral:</strong> TMS, ECT moderna</li>
-                            <li><strong>Telepsiquiatria:</strong> Atendimento remoto com eficácia comprovada</li>
-                        </ul>
-                        
-                        <p>A telepsiquiatria, autorizada pelo CFM desde 2002 e regulamentada pela Resolução 2.314/2022, democratizou o acesso ao cuidado especializado, permitindo atendimento de qualidade independente da localização geográfica.</p>
-                        
-                        <p>Como psiquiatra, integro essa evolução histórica com uma prática clínica atualizada, ética e centrada no paciente, oferecendo tratamento baseado nas melhores evidências científicas disponíveis.</p>
+                    <!-- BADGE URGÊNCIA MANTIDO -->
+                    <div class="urgent-badge">
+                        ⚡ Atendimento imediato → consulta em até 24h úteis ⚡
+                    </div>
+                    
+                    <p class="hero-subtitle">
+                        Consultas online com sigilo, agilidade e base científica. 
+                        Cuidado adaptado às suas necessidades.
+                    </p>
+                    
+                    <!-- BOTÕES DUPLOS MAIORES -->
+                    <div class="btn-dual">
+                        <a href="https://wa.me/554491339060?text=Olá,%20gostaria%20de%20agendar%20uma%20consulta" class="btn-agendar" target="_blank">
+                            <i class="fas fa-calendar-check"></i> Agendar consulta
+                        </a>
+                        <a href="https://wa.me/554491339060?text=Olá,%20Dr.%20Marcelo,%20tenho%20dúvidas" class="btn-whatsapp" target="_blank">
+                            <i class="fab fa-whatsapp"></i> Falar no WhatsApp
+                        </a>
+                    </div>
+                    
+                    <!-- Mini badges de confiança -->
+                    <div class="d-flex flex-wrap gap-3 mt-3">
+                        <span><i class="fas fa-shield-alt text-teal-600"></i> Sigilo total</span>
+                        <span><i class="fas fa-file-prescription text-teal-600"></i> Receita digital válida</span>
+                        <span><i class="fas fa-clock text-teal-600"></i> Atendimento ágil</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Botão Final de WhatsApp e App -->
-    <section class="py-5" style="background-color: white;">
-        <div class="container text-center">
-            <h2 class="display-6 fw-900 mb-4 text-gray-800">Inicie seu Tratamento Hoje</h2>
-            <p class="text-muted fs-5 mb-4">Atendimento humanizado, sigiloso e baseado em evidências científicas</p>
+    <!-- PARA QUEM É INDICADO (NOVA SEÇÃO) -->
+    <section class="light-section">
+        <div class="container">
+            <h2 class="section-title">Para quem é indicado</h2>
+            <p class="section-subtitle">Atendimento especializado para diversas condições</p>
             
+            <div class="indication-grid">
+                <div class="indication-item"><i class="fas fa-brain"></i><h4>Ansiedade</h4></div>
+                <div class="indication-item"><i class="fas fa-cloud-sun"></i><h4>Depressão</h4></div>
+                <div class="indication-item"><i class="fas fa-moon"></i><h4>Insônia</h4></div>
+                <div class="indication-item"><i class="fas fa-bolt"></i><h4>TDAH</h4></div>
+                <div class="indication-item"><i class="fas fa-balance-scale"></i><h4>Transtorno bipolar</h4></div>
+                <div class="indication-item"><i class="fas fa-fire"></i><h4>Burnout</h4></div>
+                <div class="indication-item"><i class="fas fa-flask"></i><h4>Dependência química</h4></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MINHA AUTORIDADE (NOVA SEÇÃO) -->
+    <section class="white-section">
+        <div class="container">
+            <h2 class="section-title">Minha autoridade</h2>
+            <p class="section-subtitle">Por que você pode confiar no meu trabalho</p>
+            
+            <div class="authority-grid">
+                <div class="authority-card">
+                    <i class="fas fa-id-card"></i>
+                    <h5>CRM-PR 47960</h5>
+                    <p>Registro ativo no Conselho Regional de Medicina</p>
+                </div>
+                <div class="authority-card">
+                    <i class="fas fa-gavel"></i>
+                    <h5>Atendimento regulamentado</h5>
+                    <p>Conforme resolução CFM nº 2.314/2022</p>
+                </div>
+                <div class="authority-card">
+                    <i class="fas fa-lock"></i>
+                    <h5>Sigilo absoluto</h5>
+                    <p>100% protegido pela LGPD e Código de Ética</p>
+                </div>
+                <div class="authority-card">
+                    <i class="fas fa-dna"></i>
+                    <h5>Medicina baseada em evidência</h5>
+                    <p>Tratamentos com respaldo científico</p>
+                </div>
+                <div class="authority-card">
+                    <i class="fas fa-flask"></i>
+                    <h5>Atualização contínua</h5>
+                    <p>Educação médica permanente</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVIÇOS (MANTIDO, MAS COM ESPAÇAMENTO MELHORADO) -->
+    <section class="light-section">
+        <div class="container">
+            <h2 class="section-title">Especialidades</h2>
+            <div class="row g-4">
+                <div class="col-md-4"><div class="service-card p-4 bg-white rounded-4 shadow-sm"><i class="fas fa-brain fa-2x text-teal-600 mb-3"></i><h4>Ansiedade</h4><p class="text-muted small">TAG, pânico, fobias</p></div></div>
+                <div class="col-md-4"><div class="service-card p-4 bg-white rounded-4 shadow-sm"><i class="fas fa-cloud-sun fa-2x text-teal-600 mb-3"></i><h4>Depressão</h4><p class="text-muted small">Maior, distimia, sazonal</p></div></div>
+                <div class="col-md-4"><div class="service-card p-4 bg-white rounded-4 shadow-sm"><i class="fas fa-bolt fa-2x text-teal-600 mb-3"></i><h4>TDAH Adulto</h4><p class="text-muted small">Diagnóstico e tratamento</p></div></div>
+                <div class="col-md-4"><div class="service-card p-4 bg-white rounded-4 shadow-sm"><i class="fas fa-user-tag fa-2x text-teal-600 mb-3"></i><h4>Personalidade</h4><p class="text-muted small">Borderline, esquiva</p></div></div>
+                <div class="col-md-4"><div class="service-card p-4 bg-white rounded-4 shadow-sm"><i class="fas fa-balance-scale fa-2x text-teal-600 mb-3"></i><h4>TAB</h4><p class="text-muted small">Tipo I, II, ciclotimia</p></div></div>
+                <div class="col-md-4"><div class="service-card p-4 bg-white rounded-4 shadow-sm"><i class="fas fa-flask fa-2x text-teal-600 mb-3"></i><h4>Dependência química</h4><p class="text-muted small">Álcool, drogas</p></div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ (NOVO) -->
+    <section class="white-section">
+        <div class="container">
+            <h2 class="section-title">Perguntas frequentes</h2>
             <div class="row justify-content-center">
-                <div class="col-md-6 mb-4">
-                    <div class="card h-100 border-0 shadow">
-                        <div class="card-body p-4">
-                            <i class="fab fa-whatsapp fa-3x text-teal-600 mb-3"></i>
-                            <h3 class="h4 fw-800 mb-3">Agende pelo WhatsApp</h3>
-                            <p class="text-muted mb-4">Consulta online de 30 minutos por videochamada</p>
-                            <!-- ALTERADO: "a partir de" → "VALOR DE" -->
-                            <div class="price-tag" style="font-size: 2.5rem;">VALOR DE R$ 99,90</div>
-                            <a href="https://wa.me/554491339060?text=Olá,%20Dr.%20Marcelo,%20gostaria%20de%20agendar%20uma%20consulta%20online%20de%2030%20minutos%20(R$%2099,90)" 
-                               class="whatsapp-button mt-3" target="_blank" style="padding: 15px 40px;">
-                                <i class="fab fa-whatsapp me-2"></i> Agendar Consulta
-                            </a>
+                <div class="col-lg-8">
+                    <div class="faq-item active">
+                        <div class="faq-question" onclick="toggleFaq(this)">
+                            Como funciona a consulta online? <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            Após o agendamento, você recebe um link para videochamada segura no horário marcado. A consulta dura cerca de 30 minutos, com toda a privacidade de um atendimento presencial.
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFaq(this)">
+                            A receita é válida em farmácias? <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            Sim. A receita digital tem validade legal em todo território nacional, conforme portaria 344/98 e resoluções do CFM.
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFaq(this)">
+                            Atende plano de saúde? <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            Não. O atendimento é estritamente particular. Você recebe nota fiscal e pode solicitar reembolso junto ao seu plano, conforme regras da operadora.
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFaq(this)">
+                            Como agendar? <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            Basta clicar em "Agendar consulta" ou "Falar no WhatsApp". Vou responder pessoalmente para acertar o melhor horário para você.
                         </div>
                     </div>
                 </div>
-                
-                <div class="col-md-6">
-                    <div class="card h-100 border-0 shadow">
-                        <div class="card-body p-4">
-                            <i class="fas fa-mobile-alt fa-3x text-teal-600 mb-3"></i>
-                            <h3 class="h4 fw-800 mb-3">App de Anamnese</h3>
-                            <p class="text-muted mb-4">Preencha seu histórico antes da consulta</p>
-                            <div class="mb-4">
-                                <p class="text-muted mb-2"><i class="fas fa-star text-teal-600 me-2"></i>Funciona como app nativo</p>
-                                <p class="text-muted mb-2"><i class="fas fa-star text-teal-600 me-2"></i>Adicione à tela inicial</p>
-                                <p class="text-muted"><i class="fas fa-star text-teal-600 me-2"></i>Envio direto para WhatsApp</p>
-                            </div>
-                            <a href="https://marcelomluisc.github.io/minha-receita-psiquiatrica.apk/" 
-                               class="app-button mt-2" target="_blank" style="padding: 15px 40px;">
-                                <i class="fas fa-external-link-alt me-2"></i> Acessar App
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="mt-5">
-                <p class="text-muted small">
-                    <i class="fas fa-shield-alt text-teal-600 me-1"></i> Todos os atendimentos seguem rigorosamente o Código de Ética Médica e a LGPD
-                </p>
             </div>
         </div>
     </section>
 
-    <!-- Rodapé -->
-    <footer class="text-white py-4" style="background-color: var(--dark-navy);">
+    <!-- CALL TO ACTION FINAL -->
+    <section class="light-section text-center">
+        <div class="container">
+            <h2 class="section-title">Dê o primeiro passo hoje</h2>
+            <p class="fs-5 mb-4">Atendimento humanizado, rápido e baseado em evidências</p>
+            <div class="d-flex justify-content-center gap-3 flex-wrap">
+                <a href="https://wa.me/554491339060?text=Olá,%20quero%20agendar%20minha%20consulta" class="btn-agendar" style="padding: 15px 40px;">
+                    <i class="fas fa-calendar-check"></i> Agendar consulta
+                </a>
+                <a href="https://wa.me/554491339060?text=Olá,%20tenho%20dúvidas" class="btn-whatsapp" style="padding: 15px 40px;">
+                    <i class="fab fa-whatsapp"></i> Falar no WhatsApp
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- RODAPÉ -->
+    <footer class="bg-dark text-white py-4">
         <div class="container">
             <div class="row">
                 <div class="col-md-8">
-                    <h3 class="h5 fw-900 mb-2">Dr. Marcelo Medeiros</h3>
-                    <p class="small text-white-50 mb-0">
-                        Psiquiatra CRM 47960 | Pós-graduado pelo Hospital Albert Einstein<br>
-                        Atendimento online conforme resoluções do CFM e Código de Ética Médica<br>
-                        <span style="color: #ffbb33;"><i class="fas fa-star"></i> Experiência em CAPS e Clínicas Particulares</span>
-                    </p>
+                    <p class="small mb-0">Dr. Marcelo Medeiros | CRM-PR 47960 | Psiquiatria</p>
+                    <p class="small text-white-50">Atendimento online regulamentado • Sigilo profissional • Ética médica</p>
                 </div>
                 <div class="col-md-4 text-md-end">
-                    <a href="mailto:marcelomedeirossaudeefitness@gmail.com" 
-                       class="text-white d-block mb-1 small">
-                        <i class="fas fa-envelope me-1"></i> E-mail profissional
-                    </a>
-                    <a href="https://wa.me/554491339060" 
-                       class="text-white d-block small">
-                        <i class="fab fa-whatsapp me-1"></i> WhatsApp para dúvidas
-                    </a>
-                    <a href="https://marcelomluisc.github.io/minha-receita-psiquiatrica.apk/" 
-                       class="text-white d-block small mt-2">
-                        <i class="fas fa-mobile-alt me-1"></i> App de Anamnese
-                    </a>
+                    <a href="#" class="text-white small d-block">Política de privacidade</a>
+                    <a href="#" class="text-white small">Termos de uso</a>
                 </div>
             </div>
-            <hr class="my-3 opacity-25">
-            <p class="text-center small text-white-50 mb-0">
-                <i class="fas fa-exclamation-triangle me-1"></i> 
-                Para emergências, procure um pronto-socorro ou ligue 188 (CVV) | 
-                <i class="fas fa-shield-alt ms-3 me-1"></i> 
-                Site seguro | Protegido por SSL
-            </p>
         </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // Script para verificar se é PWA (Progressive Web App)
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', function() {
-                navigator.serviceWorker.register('/sw.js').then(function(registration) {
-                    console.log('ServiceWorker registrado com sucesso: ', registration.scope);
-                }, function(err) {
-                    console.log('Falha ao registrar ServiceWorker: ', err);
-                });
-            });
+        function toggleFaq(element) {
+            const item = element.parentElement;
+            item.classList.toggle('active');
         }
-        
-        // Detectar dispositivo para melhor instrução de instalação
-        function detectDevice() {
-            const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-            const isAndroid = /android/i.test(userAgent);
-            const isIOS = /iPad|iPhone|iPod/.test(userAgent) && !window.MSStream;
-            
-            const installText = document.getElementById('install-instructions-text');
-            if (installText) {
-                if (isAndroid) {
-                    installText.innerHTML = '<strong>Android:</strong> Toque nos 3 pontos → "Adicionar à tela inicial"';
-                } else if (isIOS) {
-                    installText.innerHTML = '<strong>iPhone/iPad:</strong> Toque no ícone de compartilhar (📤) → "Adicionar à tela de início"';
-                }
-            }
-        }
-        
-        // Executar quando a página carregar
-        document.addEventListener('DOMContentLoaded', detectDevice);
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
