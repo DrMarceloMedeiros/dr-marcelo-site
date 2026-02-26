@@ -131,7 +131,7 @@
             font-weight: 400;
         }
         
-        /* BADGE DE URGÊNCIA - AJUSTADO */
+        /* Badge de urgência */
         .urgent-badge {
             background: linear-gradient(135deg, var(--orange-light), var(--orange-dark));
             color: white;
@@ -167,7 +167,7 @@
             display: block;
         }
         
-        /* BOTÕES CORRIGIDOS - SEM LARGURA FIXA, APENAS PADDING */
+        /* Botões */
         .btn-dual {
             display: flex;
             gap: 15px;
@@ -270,7 +270,7 @@
             margin-bottom: 0;
         }
         
-        /* Cards de autoridade */
+        /* Cards de autoridade (existente) */
         .authority-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -305,6 +305,173 @@
             font-size: 1rem;
             margin-bottom: 0;
             line-height: 1.4;
+        }
+        
+        /* NOVOS CARDS DE VALORES (Compromisso, Profissionalismo, Experiência) */
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin: 30px 0 50px;
+        }
+        .value-card {
+            background: white;
+            padding: 30px 25px;
+            border-radius: 25px;
+            text-align: center;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            border: 2px solid transparent;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .value-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 30px rgba(13, 148, 136, 0.2);
+            border-color: var(--teal-primary);
+            background: linear-gradient(135deg, #ffffff, #f0fdf9);
+        }
+        .value-card i {
+            font-size: 3rem;
+            color: var(--teal-primary);
+            margin-bottom: 20px;
+            transition: transform 0.3s;
+        }
+        .value-card:hover i {
+            transform: scale(1.1);
+        }
+        .value-card h4 {
+            font-weight: 800;
+            font-size: 1.5rem;
+            color: var(--btn-blue);
+            margin-bottom: 15px;
+        }
+        .value-card p {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 0;
+        }
+        
+        /* NOVOS CARDS DE COMO FUNCIONA */
+        .how-it-works-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+        .how-card {
+            background: white;
+            padding: 30px 20px;
+            border-radius: 25px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            border: 1px solid #e9eef2;
+            transition: all 0.3s;
+            position: relative;
+        }
+        .how-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 30px rgba(13, 148, 136, 0.15);
+        }
+        .how-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--teal-primary), var(--dark-teal));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: white;
+            font-size: 2.5rem;
+            box-shadow: 0 10px 15px rgba(13, 148, 136, 0.2);
+        }
+        .how-card h4 {
+            font-weight: 800;
+            font-size: 1.4rem;
+            color: var(--btn-blue);
+            margin-bottom: 15px;
+        }
+        .how-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        /* NOVA SEÇÃO DE DEPOIMENTOS (igual à imagem) */
+        .testimonials-section {
+            background: linear-gradient(135deg, #f8fafc, #ffffff);
+            padding: 60px 0;
+        }
+        .testimonials-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .testimonials-header h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--btn-blue);
+            margin-bottom: 10px;
+        }
+        .testimonials-header p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+        }
+        .testimonial-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            border: 1px solid #e9eef2;
+            margin-bottom: 20px;
+            transition: all 0.3s;
+        }
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(13, 148, 136, 0.1);
+        }
+        .testimonial-rating {
+            color: #ffc107;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+        .testimonial-text {
+            font-size: 1rem;
+            color: var(--text-primary);
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+        .testimonial-author {
+            font-weight: 700;
+            color: var(--btn-blue);
+            margin-bottom: 5px;
+        }
+        .testimonial-date {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+        .google-badge {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: white;
+            padding: 15px 25px;
+            border-radius: 50px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            width: fit-content;
+            margin: 30px auto 0;
+        }
+        .google-badge i {
+            color: #4285F4;
+            font-size: 2rem;
+        }
+        .google-badge span {
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+        .google-badge small {
+            color: var(--text-secondary);
         }
         
         /* Cards de serviços */
@@ -409,13 +576,21 @@
             margin-bottom: 2rem;
         }
         
-        /* Rodapé */
+        /* Rodapé atualizado */
         footer {
             background-color: var(--dark-navy) !important;
-            padding: 30px 0;
+            padding: 40px 0 20px;
+        }
+        .footer-copyright {
+            font-size: 0.95rem;
+            color: rgba(255,255,255,0.7);
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
         }
         
-        /* ===== RESPONSIVIDADE ===== */
+        /* Responsividade */
         @media (max-width: 992px) {
             .hero-title { font-size: 3rem; }
             .urgent-badge { font-size: 1.2rem; }
@@ -461,12 +636,9 @@
             .header-title { font-size: 1.4rem; }
             .header-sub { font-size: 1rem; }
             .header-einstein { font-size: 0.9rem; }
-        }
-        
-        @media (max-width: 480px) {
-            .hero-title { font-size: 2rem; }
-            .btn-agendar, .btn-whatsapp { font-size: 1.1rem; padding: 12px 16px; }
-            .urgent-badge { font-size: 1rem; padding: 8px 16px; }
+            
+            .testimonials-header h2 { font-size: 2rem; }
+            .how-icon { width: 60px; height: 60px; font-size: 2rem; }
         }
     </style>
 </head>
@@ -508,7 +680,6 @@
                 <div class="col-lg-6 order-lg-1">
                     <h1 class="hero-title">Psiquiatria moderna, ética e personalizada.</h1>
                     
-                    <!-- BADGE URGÊNCIA -->
                     <div class="urgent-badge">
                         ⚡ Atendimento imediato → consulta em até 24h úteis ⚡
                     </div>
@@ -518,13 +689,13 @@
                         Cuidado adaptado às suas necessidades.
                     </p>
                     
-                    <!-- BOTÕES CORRIGIDOS -->
+                    <!-- Botões com texto atualizado -->
                     <div class="btn-dual">
                         <a href="https://wa.me/554491339060?text=Olá,%20gostaria%20de%20agendar%20uma%20consulta" class="btn-agendar" target="_blank">
                             <i class="fas fa-calendar-check"></i> Agendar consulta
                         </a>
                         <a href="https://wa.me/554491339060?text=Olá,%20Dr.%20Marcelo,%20tenho%20dúvidas" class="btn-whatsapp" target="_blank">
-                            <i class="fab fa-whatsapp"></i> Falar no WhatsApp
+                            <i class="fab fa-whatsapp"></i> Falar com Dr. Marcelo Medeiros
                         </a>
                     </div>
                     
@@ -590,6 +761,25 @@
                     <p>Educação médica permanente</p>
                 </div>
             </div>
+
+            <!-- NOVOS CARDS DE VALORES -->
+            <div class="values-grid">
+                <div class="value-card">
+                    <i class="fas fa-handshake"></i>
+                    <h4>Compromisso</h4>
+                    <p>Estou dedicado a acompanhar cada paciente em sua jornada para a saúde mental, oferecendo suporte contínuo e personalizado.</p>
+                </div>
+                <div class="value-card">
+                    <i class="fas fa-briefcase"></i>
+                    <h4>Profissionalismo</h4>
+                    <p>Cada paciente merece um cuidado ético e respeitoso, garantindo que suas necessidades sejam atendidas com a máxima seriedade e competência.</p>
+                </div>
+                <div class="value-card">
+                    <i class="fas fa-chart-line"></i>
+                    <h4>Experiência</h4>
+                    <p>Com anos de prática e estudo, trago uma vasta experiência para oferecer tratamentos eficazes e inovadores que promovem o bem-estar duradouro.</p>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -608,8 +798,39 @@
         </div>
     </section>
 
-    <!-- FAQ -->
+    <!-- NOVA SEÇÃO: COMO FUNCIONA -->
     <section class="white-section">
+        <div class="container">
+            <h2 class="section-title">Como funciona</h2>
+            <p class="section-subtitle">Todo o processo é simples, transparente e pensado para você</p>
+            
+            <div class="how-it-works-grid">
+                <div class="how-card">
+                    <div class="how-icon"><i class="fas fa-calendar-alt"></i></div>
+                    <h4>Agendamento</h4>
+                    <p>Ao entrar em contato com a nossa equipe pelo WhatsApp serão oferecidas as datas e horários disponíveis, sempre tentando se adequar às necessidades dos pacientes.</p>
+                </div>
+                <div class="how-card">
+                    <div class="how-icon"><i class="fas fa-credit-card"></i></div>
+                    <h4>Pagamento</h4>
+                    <p>Serão oferecidas as formas de pagamento como PIX ou parcelamento pelo cartão de crédito em até 10x. Não aceitamos planos de saúde.</p>
+                </div>
+                <div class="how-card">
+                    <div class="how-icon"><i class="fas fa-video"></i></div>
+                    <h4>Consulta</h4>
+                    <p>Será disponibilizado o link do Google Meet pelo WhatsApp no horário marcado. O paciente pode optar por fazer a consulta pelo WhatsApp Vídeo.</p>
+                </div>
+                <div class="how-card">
+                    <div class="how-icon"><i class="fas fa-file-medical"></i></div>
+                    <h4>Pós-consulta</h4>
+                    <p>Após a consulta, o Dr. Marcelo apresentará todas as orientações necessárias, incluindo explicações sobre registros e recomendações importantes relacionadas ao atendimento.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ (PERGUNTAS FREQUENTES) -->
+    <section class="light-section">
         <div class="container">
             <h2 class="section-title">Perguntas frequentes</h2>
             <div class="row justify-content-center">
@@ -643,11 +864,55 @@
                             Como agendar? <i class="fas fa-chevron-down"></i>
                         </div>
                         <div class="faq-answer">
-                            Basta clicar em "Agendar consulta" ou "Falar no WhatsApp". Vou responder pessoalmente para acertar o melhor horário para você.
+                            Basta clicar em "Agendar consulta" ou "Falar com Dr. Marcelo Medeiros". Vou responder pessoalmente para acertar o melhor horário para você.
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- NOVA SEÇÃO: DEPOIMENTOS (FAKE INICIAL) -->
+    <section class="testimonials-section">
+        <div class="container">
+            <div class="testimonials-header">
+                <h2>O que os pacientes dizem?</h2>
+                <p>Cuidar da mente foi um divisor de águas para muitos pacientes. E pode ser o seu próximo passo também.</p>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="testimonial-card">
+                        <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+                        <div class="testimonial-text">"Dr. Marcelo além de um excelente profissional, é um ótimo ser humano, que ouve e atende as necessidades de cada paciente com atenção e cuidado."</div>
+                        <div class="testimonial-author">Paula Ariene A.</div>
+                        <div class="testimonial-date">10 meses atrás</div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="testimonial-card">
+                        <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+                        <div class="testimonial-text">"Excelente profissional, muito atencioso, empático, atento aos detalhes. Me senti acolhida e segura durante toda a consulta."</div>
+                        <div class="testimonial-author">Suzana Lamperti</div>
+                        <div class="testimonial-date">10 meses atrás</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="google-badge">
+                <i class="fab fa-google"></i>
+                <div>
+                    <span>Com base em 67 avaliações</span><br>
+                    <small>⭐⭐⭐⭐⭐ 4.9</small>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TEXTO ANTES DO CTA -->
+    <section class="white-section text-center">
+        <div class="container">
+            <h2 class="section-title" style="font-size: 2rem;">Com um acompanhamento totalmente personalizado, posso te ajudar a cuidar da sua saúde mental em diferentes contextos</h2>
         </div>
     </section>
 
@@ -661,24 +926,28 @@
                     <i class="fas fa-calendar-check"></i> Agendar consulta
                 </a>
                 <a href="https://wa.me/554491339060?text=Olá,%20tenho%20dúvidas" class="btn-whatsapp">
-                    <i class="fab fa-whatsapp"></i> Falar no WhatsApp
+                    <i class="fab fa-whatsapp"></i> Falar com Dr. Marcelo Medeiros
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- RODAPÉ -->
+    <!-- RODAPÉ ATUALIZADO -->
     <footer class="text-white py-4">
         <div class="container">
             <div class="row">
                 <div class="col-md-8">
                     <p class="mb-0">Dr. Marcelo Medeiros | CRM-PR 47960 | Psiquiatria</p>
                     <p class="text-white-50">Pós-graduado pelo Hospital Albert Einstein • Atendimento online regulamentado • Sigilo profissional • Ética médica</p>
+                    <p class="text-white-50 mt-3"><i class="fas fa-info-circle me-2"></i>O Dr. Marcelo Medeiros atende dos 16 anos até 59 anos</p>
                 </div>
                 <div class="col-md-4 text-md-end">
                     <a href="#" class="text-white d-block">Política de privacidade</a>
                     <a href="#" class="text-white">Termos de uso</a>
                 </div>
+            </div>
+            <div class="footer-copyright">
+                <i class="far fa-copyright me-1"></i> Todos direitos reservados por Dr. Marcelo Medeiros – CRM/PR 47960
             </div>
         </div>
     </footer>
