@@ -22,6 +22,7 @@
             --card-bg: #ffffff;
             --text-primary: #1e293b;
             --text-secondary: #475569;
+            --star-color: #ffc107;
         }
         
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -270,7 +271,7 @@
             margin-bottom: 0;
         }
         
-        /* Cards de autoridade (existente) */
+        /* Cards de autoridade */
         .authority-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -307,7 +308,7 @@
             line-height: 1.4;
         }
         
-        /* NOVOS CARDS DE VALORES (Compromisso, Profissionalismo, Experiência) */
+        /* Cards de valores */
         .values-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -353,7 +354,7 @@
             margin-bottom: 0;
         }
         
-        /* NOVOS CARDS DE COMO FUNCIONA */
+        /* Cards de como funciona */
         .how-it-works-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -368,7 +369,6 @@
             box-shadow: 0 10px 25px rgba(0,0,0,0.05);
             border: 1px solid #e9eef2;
             transition: all 0.3s;
-            position: relative;
         }
         .how-card:hover {
             transform: translateY(-8px);
@@ -399,7 +399,7 @@
             line-height: 1.5;
         }
         
-        /* NOVA SEÇÃO DE DEPOIMENTOS (igual à imagem) */
+        /* ===== SEÇÃO DE DEPOIMENTOS REFORMULADA ===== */
         .testimonials-section {
             background: linear-gradient(135deg, #f8fafc, #ffffff);
             padding: 60px 0;
@@ -417,61 +417,112 @@
         .testimonials-header p {
             font-size: 1.2rem;
             color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto;
         }
+        
+        /* Grid de 4 cards lado a lado */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin: 30px 0 40px;
+        }
+        
         .testimonial-card {
             background: white;
             border-radius: 20px;
-            padding: 30px;
+            padding: 25px 20px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.05);
             border: 1px solid #e9eef2;
-            margin-bottom: 20px;
             transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
         }
         .testimonial-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 15px 30px rgba(13, 148, 136, 0.1);
         }
-        .testimonial-rating {
-            color: #ffc107;
-            font-size: 1.2rem;
-            margin-bottom: 10px;
+        
+        /* Foto do paciente - redonda */
+        .testimonial-avatar {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.1);
         }
-        .testimonial-text {
+        
+        /* Cores diferentes para cada avatar */
+        .avatar-1 { background: linear-gradient(135deg, #3498db, #2980b9); }
+        .avatar-2 { background: linear-gradient(135deg, #e67e22, #d35400); }
+        .avatar-3 { background: linear-gradient(135deg, #27ae60, #229954); }
+        .avatar-4 { background: linear-gradient(135deg, #9b59b6, #8e44ad); }
+        
+        .testimonial-rating {
+            color: var(--star-color);
             font-size: 1rem;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        
+        .testimonial-text {
+            font-size: 0.95rem;
             color: var(--text-primary);
             margin-bottom: 15px;
             font-style: italic;
+            line-height: 1.5;
+            flex-grow: 1;
         }
+        
         .testimonial-author {
             font-weight: 700;
             color: var(--btn-blue);
-            margin-bottom: 5px;
+            margin-bottom: 2px;
+            text-align: center;
         }
+        
         .testimonial-date {
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             color: var(--text-secondary);
+            text-align: center;
         }
+        
+        /* Selo Google */
         .google-badge {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 15px;
             background: white;
-            padding: 15px 25px;
-            border-radius: 50px;
+            padding: 15px 30px;
+            border-radius: 60px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
             width: fit-content;
-            margin: 30px auto 0;
+            margin: 20px auto 0;
+            border: 1px solid #e9eef2;
         }
         .google-badge i {
             color: #4285F4;
-            font-size: 2rem;
+            font-size: 2.2rem;
         }
-        .google-badge span {
+        .google-badge .rating {
             font-weight: 700;
             color: var(--text-primary);
+            font-size: 1.2rem;
         }
-        .google-badge small {
+        .google-badge .stars {
+            color: var(--star-color);
+            font-size: 1rem;
+        }
+        .google-badge .total {
             color: var(--text-secondary);
+            font-size: 0.9rem;
         }
         
         /* Cards de serviços */
@@ -576,7 +627,7 @@
             margin-bottom: 2rem;
         }
         
-        /* Rodapé atualizado */
+        /* Rodapé */
         footer {
             background-color: var(--dark-navy) !important;
             padding: 40px 0 20px;
@@ -592,12 +643,18 @@
         
         /* Responsividade */
         @media (max-width: 992px) {
+            .testimonials-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
             .hero-title { font-size: 3rem; }
             .urgent-badge { font-size: 1.2rem; }
             .btn-agendar, .btn-whatsapp { font-size: 1.2rem; padding: 12px 24px; }
         }
         
         @media (max-width: 768px) {
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
             .hero-title { font-size: 2.5rem; }
             .hero-subtitle { font-size: 1.3rem; }
             
@@ -636,9 +693,6 @@
             .header-title { font-size: 1.4rem; }
             .header-sub { font-size: 1rem; }
             .header-einstein { font-size: 0.9rem; }
-            
-            .testimonials-header h2 { font-size: 2rem; }
-            .how-icon { width: 60px; height: 60px; font-size: 2rem; }
         }
     </style>
 </head>
@@ -762,7 +816,7 @@
                 </div>
             </div>
 
-            <!-- NOVOS CARDS DE VALORES -->
+            <!-- Cards de valores -->
             <div class="values-grid">
                 <div class="value-card">
                     <i class="fas fa-handshake"></i>
@@ -798,7 +852,7 @@
         </div>
     </section>
 
-    <!-- NOVA SEÇÃO: COMO FUNCIONA -->
+    <!-- SEÇÃO COMO FUNCIONA -->
     <section class="white-section">
         <div class="container">
             <h2 class="section-title">Como funciona</h2>
@@ -829,7 +883,7 @@
         </div>
     </section>
 
-    <!-- FAQ (PERGUNTAS FREQUENTES) -->
+    <!-- FAQ -->
     <section class="light-section">
         <div class="container">
             <h2 class="section-title">Perguntas frequentes</h2>
@@ -872,7 +926,7 @@
         </div>
     </section>
 
-    <!-- NOVA SEÇÃO: DEPOIMENTOS (FAKE INICIAL) -->
+    <!-- SEÇÃO DE DEPOIMENTOS - 4 CARDS LADO A LADO COM FOTOS -->
     <section class="testimonials-section">
         <div class="container">
             <div class="testimonials-header">
@@ -880,30 +934,51 @@
                 <p>Cuidar da mente foi um divisor de águas para muitos pacientes. E pode ser o seu próximo passo também.</p>
             </div>
             
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="testimonial-card">
-                        <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
-                        <div class="testimonial-text">"Dr. Marcelo além de um excelente profissional, é um ótimo ser humano, que ouve e atende as necessidades de cada paciente com atenção e cuidado."</div>
-                        <div class="testimonial-author">Paula Ariene A.</div>
-                        <div class="testimonial-date">10 meses atrás</div>
-                    </div>
+            <!-- Grid de 4 cards -->
+            <div class="testimonials-grid">
+                <!-- Card 1 - Paula -->
+                <div class="testimonial-card">
+                    <div class="testimonial-avatar avatar-1">PA</div>
+                    <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+                    <div class="testimonial-text">"Dr. Marcelo além de um excelente profissional, é um ótimo ser humano, que ouve e atende as necessidades de cada paciente com atenção e cuidado."</div>
+                    <div class="testimonial-author">Paula Ariene A.</div>
+                    <div class="testimonial-date">10 meses atrás</div>
                 </div>
-                <div class="col-md-6">
-                    <div class="testimonial-card">
-                        <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
-                        <div class="testimonial-text">"Excelente profissional, muito atencioso, empático, atento aos detalhes. Me senti acolhida e segura durante toda a consulta."</div>
-                        <div class="testimonial-author">Suzana Lamperti</div>
-                        <div class="testimonial-date">10 meses atrás</div>
-                    </div>
+                
+                <!-- Card 2 - Fabricio -->
+                <div class="testimonial-card">
+                    <div class="testimonial-avatar avatar-2">FJ</div>
+                    <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+                    <div class="testimonial-text">"Atendimento excepcional! O Dr. Marcelo é muito atencioso e explica tudo detalhadamente. Me senti acolhido desde o primeiro contato."</div>
+                    <div class="testimonial-author">Fabricio Jesus</div>
+                    <div class="testimonial-date">10 meses atrás</div>
+                </div>
+                
+                <!-- Card 3 - Suzana -->
+                <div class="testimonial-card">
+                    <div class="testimonial-avatar avatar-3">SL</div>
+                    <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+                    <div class="testimonial-text">"Excelente profissional, muito atencioso, empático, atento aos detalhes. Me senti acolhida e segura durante toda a consulta."</div>
+                    <div class="testimonial-author">Suzana Lamperti</div>
+                    <div class="testimonial-date">10 meses atrás</div>
+                </div>
+                
+                <!-- Card 4 - Carlos -->
+                <div class="testimonial-card">
+                    <div class="testimonial-avatar avatar-4">CS</div>
+                    <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+                    <div class="testimonial-text">"Profissional competente e humano. A consulta online foi muito produtiva e esclarecedora. Recomendo fortemente!"</div>
+                    <div class="testimonial-author">Carlos Santos</div>
+                    <div class="testimonial-date">8 meses atrás</div>
                 </div>
             </div>
             
+            <!-- Selo Google -->
             <div class="google-badge">
                 <i class="fab fa-google"></i>
                 <div>
-                    <span>Com base em 67 avaliações</span><br>
-                    <small>⭐⭐⭐⭐⭐ 4.9</small>
+                    <span class="rating">Com base em 67 avaliações</span><br>
+                    <span class="stars">⭐⭐⭐⭐⭐</span> <span class="total">4.9</span>
                 </div>
             </div>
         </div>
@@ -932,7 +1007,7 @@
         </div>
     </section>
 
-    <!-- RODAPÉ ATUALIZADO -->
+    <!-- RODAPÉ -->
     <footer class="text-white py-4">
         <div class="container">
             <div class="row">
