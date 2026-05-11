@@ -150,102 +150,137 @@
             white-space: nowrap;
         }
         
-        /* ===== CARDS DE PLANOS (AO LADO DA FOTO) ===== */
+        /* ===== CARDS DE PLANOS COM LETRAS MAIORES E DESTAQUE ===== */
         .plans-container {
             margin-bottom: 30px;
         }
         
         .plans-title {
-            font-size: 1.3rem;
-            font-weight: 700;
+            font-size: 1.5rem;
+            font-weight: 800;
             color: var(--btn-blue);
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             text-align: center;
         }
         
         .plan-card {
             background: white;
-            border-radius: 16px;
-            padding: 18px 15px;
-            margin-bottom: 15px;
+            border-radius: 20px;
+            padding: 22px 20px;
+            margin-bottom: 18px;
             transition: all 0.3s;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            border-left: 5px solid;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+            border-left: 6px solid;
             cursor: pointer;
             position: relative;
         }
         
         .plan-card:hover {
-            transform: translateX(5px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+            transform: translateX(8px);
+            box-shadow: 0 12px 28px rgba(0,0,0,0.15);
         }
         
         /* Cores das bordas */
         .plan-card.basic { border-left-color: var(--green-plan); }
         .plan-card.premium { border-left-color: var(--blue-plan); }
-        .plan-card.fidelity { border-left-color: var(--orange-plan); }
+        
+        /* PLANO FIDELIZAÇÃO COM DESTAQUE ESPECIAL */
+        .plan-card.fidelity { 
+            border-left-color: var(--orange-plan);
+            background: linear-gradient(135deg, #ffffff, #fffbeb);
+            border: 2px solid var(--orange-plan);
+            box-shadow: 0 8px 25px rgba(245, 158, 11, 0.2);
+        }
+        
+        .plan-card.fidelity:hover {
+            transform: translateX(8px) scale(1.01);
+            box-shadow: 0 15px 35px rgba(245, 158, 11, 0.35);
+        }
+        
+        /* Selo de destaque no plano fidelização */
+        .fidelity-badge {
+            position: absolute;
+            top: -12px;
+            right: 20px;
+            background: linear-gradient(135deg, var(--orange-plan), #dc2626);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
         
         .plan-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 12px;
+            margin-bottom: 15px;
             flex-wrap: wrap;
         }
         
         .plan-name {
             font-weight: 800;
-            font-size: 1.2rem;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .plan-name i {
+            font-size: 1.8rem;
         }
         
         .plan-card.basic .plan-name { color: var(--green-plan); }
         .plan-card.premium .plan-name { color: var(--blue-plan); }
-        .plan-card.fidelity .plan-name { color: var(--orange-plan); }
+        .plan-card.fidelity .plan-name { color: var(--orange-plan); font-size: 1.5rem; }
         
         .plan-price {
             font-weight: 800;
-            font-size: 1.3rem;
+            font-size: 1.6rem;
         }
         
         .plan-card.basic .plan-price { color: var(--green-plan); }
         .plan-card.premium .plan-price { color: var(--blue-plan); }
-        .plan-card.fidelity .plan-price { color: var(--orange-plan); }
+        .plan-card.fidelity .plan-price { color: var(--orange-plan); font-size: 1.8rem; }
         
         .plan-price small {
-            font-size: 0.7rem;
+            font-size: 0.8rem;
             font-weight: normal;
         }
         
         .plan-features {
-            font-size: 0.85rem;
+            font-size: 1rem;
             color: var(--text-secondary);
-            margin-bottom: 10px;
-            line-height: 1.4;
+            margin-bottom: 12px;
+            line-height: 1.6;
         }
         
         .plan-features i {
-            margin-right: 5px;
-            font-size: 0.75rem;
+            margin-right: 10px;
+            font-size: 1.1rem;
+            width: 22px;
         }
         
         .plan-card.basic .plan-features i { color: var(--green-plan); }
         .plan-card.premium .plan-features i { color: var(--blue-plan); }
-        .plan-card.fidelity .plan-features i { color: var(--orange-plan); }
+        .plan-card.fidelity .plan-features i { color: var(--orange-plan); font-size: 1.2rem; }
         
         /* Hover info (regras que aparecem ao passar o mouse) */
         .plan-hover-info {
             position: relative;
             display: inline-block;
-            margin-top: 8px;
+            margin-top: 10px;
             cursor: help;
         }
         
         .plan-info-icon {
-            font-size: 0.75rem;
-            color: #94a3b8;
+            font-size: 0.85rem;
+            color: #64748b;
             background: #f1f5f9;
-            padding: 2px 8px;
-            border-radius: 20px;
+            padding: 4px 12px;
+            border-radius: 30px;
         }
         
         .plan-info-text {
@@ -255,15 +290,15 @@
             left: 0;
             background: #1e293b;
             color: white;
-            padding: 10px 12px;
-            border-radius: 12px;
-            font-size: 0.7rem;
-            width: 220px;
+            padding: 12px 15px;
+            border-radius: 16px;
+            font-size: 0.8rem;
+            width: 260px;
             z-index: 100;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
             text-align: left;
-            line-height: 1.4;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            line-height: 1.5;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.25);
         }
         
         .plan-hover-info:hover .plan-info-text {
@@ -387,7 +422,12 @@
             .header-title { font-size: 1.4rem; }
             .header-sub { font-size: 1rem; }
             .header-einstein { font-size: 0.9rem; }
-            .plans-title { font-size: 1.1rem; }
+            .plans-title { font-size: 1.2rem; }
+            .plan-name { font-size: 1.2rem; }
+            .plan-price { font-size: 1.3rem; }
+            .plan-card.fidelity .plan-name { font-size: 1.3rem; }
+            .plan-card.fidelity .plan-price { font-size: 1.5rem; }
+            .plan-features { font-size: 0.9rem; }
         }
         
         /* Cards de indicação */
@@ -595,7 +635,6 @@
             box-shadow: 0 15px 30px rgba(13, 148, 136, 0.1);
         }
         
-        /* Fotos reais dos pacientes - círculo perfeito */
         .testimonial-avatar {
             width: 80px;
             height: 80px;
@@ -641,7 +680,6 @@
             text-align: center;
         }
         
-        /* Selo Google */
         .google-badge {
             display: flex;
             align-items: center;
@@ -859,16 +897,16 @@
                         Cuidado adaptado às suas necessidades.
                     </p>
                     
-                    <!-- TRÊS PLANOS EM CAIXAS (ORDEM CRESCENTE DE PREÇO) -->
+                    <!-- TRÊS PLANOS EM CAIXAS COM LETRAS MAIORES E ÍCONES DESTACADOS -->
                     <div class="plans-container">
                         <div class="plans-title">
                             <i class="fas fa-tags me-2"></i>Escolha o plano ideal para você
                         </div>
                         
-                        <!-- PLANO 1: BÁSICO - R$ 99 (LARANJA) -->
+                        <!-- PLANO 1: BÁSICO - R$ 99 -->
                         <div class="plan-card basic">
                             <div class="plan-header">
-                                <span class="plan-name">📋 Consulta Avulsa</span>
+                                <span class="plan-name"><i class="fas fa-file-signature"></i> Consulta Avulsa</span>
                                 <span class="plan-price">R$ 99<small>/consulta</small></span>
                             </div>
                             <div class="plan-features">
@@ -888,10 +926,10 @@
                             </div>
                         </div>
                         
-                        <!-- PLANO 2: PRIORITÁRIO - R$ 199 (AZUL) -->
+                        <!-- PLANO 2: PRIORITÁRIO - R$ 199 -->
                         <div class="plan-card premium">
                             <div class="plan-header">
-                                <span class="plan-name">⭐ Consulta Prioritária</span>
+                                <span class="plan-name"><i class="fas fa-star"></i> Consulta Prioritária</span>
                                 <span class="plan-price">R$ 199<small>/consulta</small></span>
                             </div>
                             <div class="plan-features">
@@ -913,10 +951,13 @@
                             </div>
                         </div>
                         
-                        <!-- PLANO 3: FIDELIZAÇÃO - R$ 450/mês (VERDE) -->
+                        <!-- PLANO 3: FIDELIZAÇÃO - R$ 450/mês (DESTAQUE ESPECIAL) -->
                         <div class="plan-card fidelity">
+                            <div class="fidelity-badge">
+                                <i class="fas fa-crown"></i> MAIS ECONÔMICO
+                            </div>
                             <div class="plan-header">
-                                <span class="plan-name">🏆 Plano Fidelização</span>
+                                <span class="plan-name"><i class="fas fa-trophy"></i> Plano Fidelização</span>
                                 <span class="plan-price">R$ 450<small>/mês</small></span>
                             </div>
                             <div class="plan-features">
@@ -924,7 +965,8 @@
                                 <i class="fab fa-whatsapp"></i> WhatsApp direto com Dr. Marcelo<br>
                                 <i class="fas fa-clock"></i> Resposta em até 24h<br>
                                 <i class="fas fa-sync-alt"></i> Renovação automática de receitas<br>
-                                <i class="fas fa-chart-line"></i> Ajuste de medicação incluso
+                                <i class="fas fa-chart-line"></i> Ajuste de medicação incluso<br>
+                                <i class="fas fa-gem"></i> Prioridade absoluta
                             </div>
                             <div class="plan-hover-info">
                                 <span class="plan-info-icon"><i class="fas fa-info-circle"></i> Ver regras</span>
@@ -933,7 +975,8 @@
                                     • Cobrança mensal automática<br>
                                     • Consultas não utilizadas não acumulam<br>
                                     • Cancele a qualquer momento<br>
-                                    • Fidelidade recomendada: 3 meses
+                                    • Fidelidade recomendada: 3 meses<br>
+                                    • Economia de até 40% nas consultas
                                 </div>
                             </div>
                         </div>
@@ -1129,7 +1172,7 @@
         </div>
     </section>
 
-    <!-- SEÇÃO DE DEPOIMENTOS COM FOTOS REAIS E DATAS ATUALIZADAS -->
+    <!-- SEÇÃO DE DEPOIMENTOS -->
     <section class="testimonials-section">
         <div class="container">
             <div class="testimonials-header">
@@ -1137,9 +1180,7 @@
                 <p>Cuidar da mente foi um divisor de águas para muitos pacientes. E pode ser o seu próximo passo também.</p>
             </div>
             
-            <!-- Grid de 4 cards com FOTOS REAIS -->
             <div class="testimonials-grid">
-                <!-- Card 1 -->
                 <div class="testimonial-card">
                     <div class="testimonial-avatar">
                         <img src="https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="Paula Ariene">
@@ -1150,7 +1191,6 @@
                     <div class="testimonial-date">2 meses atrás</div>
                 </div>
                 
-                <!-- Card 2 -->
                 <div class="testimonial-card">
                     <div class="testimonial-avatar">
                         <img src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="Fabricio Jesus">
@@ -1161,7 +1201,6 @@
                     <div class="testimonial-date">3 meses atrás</div>
                 </div>
                 
-                <!-- Card 3 -->
                 <div class="testimonial-card">
                     <div class="testimonial-avatar">
                         <img src="https://images.pexels.com/photos/1036622/pexels-photo-1036622.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="Suzana Lamperti">
@@ -1172,7 +1211,6 @@
                     <div class="testimonial-date">2 meses atrás</div>
                 </div>
                 
-                <!-- Card 4 -->
                 <div class="testimonial-card">
                     <div class="testimonial-avatar">
                         <img src="https://images.pexels.com/photos/2380794/pexels-photo-2380794.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="Carlos Santos">
@@ -1184,7 +1222,6 @@
                 </div>
             </div>
             
-            <!-- Selo Google -->
             <div class="google-badge">
                 <i class="fab fa-google"></i>
                 <div>
