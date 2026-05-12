@@ -3,1284 +3,309 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dr. Marcelo Medeiros - Psiquiatria Moderna</title>
+    <title>Dr. Marcelo Medeiros - Psiquiatria Moderna e Ética</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
     <style>
         :root {
+            --teal-600: #0d9488;
+            --teal-700: #0f766e;
+            --dark-navy: #0f172a;
             --whatsapp-green: #25d366;
-            --teal-primary: #0d9488;
-            --dark-teal: #0f766e;
-            --navy-blue: #0a4b6c;
-            --dark-navy: #06344b;
-            --orange-light: #f39c12;
-            --orange-dark: #e67e22;
-            --btn-blue: #1e3c72;
-            --btn-blue-hover: #2a4a7a;
-            --light-bg: #f8fafc;
-            --card-bg: #ffffff;
-            --text-primary: #1e293b;
-            --text-secondary: #475569;
-            --star-color: #ffc107;
-            --green-plan: #10b981;
-            --blue-plan: #3b82f6;
-            --orange-plan: #f59e0b;
+            --slate-100: #f1f5f9;
+            --slate-600: #475569;
+            --slate-800: #1e293b;
         }
-        
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
-            font-family: 'Inter', sans-serif; 
-            line-height: 1.6; 
-            color: var(--text-primary);
-            background-color: #ffffff;
-            overflow-x: hidden;
-        }
-        
-        /* Fundo decorativo sutil */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url('https://i.ibb.co/Stc2YkC/logo-marcelo-medeiros.png');
-            background-repeat: no-repeat;
-            background-position: center;
-            background-size: 600px;
-            opacity: 0.03;
-            z-index: -1;
-            pointer-events: none;
-        }
+
+        body { font-family: 'Inter', sans-serif; color: var(--slate-800); line-height: 1.6; overflow-x: hidden; }
         
         /* WhatsApp Flutuante */
-        .whatsapp-float {
-            position: fixed;
-            width: 70px;
-            height: 70px;
-            bottom: 30px;
-            right: 30px;
-            background-color: var(--whatsapp-green);
-            color: #FFF;
-            border-radius: 50px;
-            text-align: center;
-            font-size: 35px;
-            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            transition: all 0.3s;
-        }
-        .whatsapp-float:hover { 
-            background-color: #128C7E;
-            transform: scale(1.1);
-        }
+        .whatsapp-float { position: fixed; width: 60px; height: 60px; bottom: 30px; right: 30px; background-color: var(--whatsapp-green); color: #FFF; border-radius: 50px; text-align: center; font-size: 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); z-index: 1000; display: flex; align-items: center; justify-content: center; text-decoration: none; transition: 0.3s; }
+        .whatsapp-float:hover { transform: scale(1.1); color: white; }
+
+        header { background: white; border-bottom: 2px solid var(--slate-100); position: sticky; top: 0; z-index: 999; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        .header-title { font-weight: 800; color: var(--dark-navy); letter-spacing: -0.5px; }
+        .header-sub { color: var(--teal-600); font-weight: 700; }
+        .header-einstein { font-size: 0.85rem; color: var(--slate-600); display: block; }
+
+        .hero { padding: 80px 0; background: linear-gradient(135deg, #fff 0%, #f8fafc 100%); }
+        .hero-title { font-size: 3.5rem; font-weight: 900; line-height: 1.1; color: var(--dark-navy); margin-bottom: 25px; }
+        .hero-subtitle { font-size: 1.25rem; color: var(--slate-600); margin-bottom: 35px; max-width: 600px; }
+
+        .urgent-badge { background: #fee2e2; color: #dc2626; padding: 10px 20px; border-radius: 50px; font-weight: 700; display: inline-block; margin-bottom: 25px; border: 1px solid #fecaca; }
+
+        .plans-container { margin-bottom: 40px; }
+        .plans-title { font-weight: 700; color: var(--slate-600); margin-bottom: 20px; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px; }
         
-        /* Cabeçalho */
-        header {
-            background: white;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-            position: sticky;
-            top: 0;
-            z-index: 999;
-            border-bottom: 3px solid var(--teal-primary);
-        }
+        .plan-card { background: white; border: 1px solid #e2e8f0; border-radius: 16px; padding: 20px; margin-bottom: 15px; transition: 0.3s; position: relative; cursor: pointer; }
+        .plan-card:hover { border-color: var(--teal-600); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+        .plan-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+        .plan-name { font-weight: 800; font-size: 1.1rem; color: var(--dark-navy); }
+        .plan-price { font-weight: 900; font-size: 1.4rem; color: var(--teal-600); }
+        .plan-features { font-size: 0.9rem; color: var(--slate-600); display: grid; grid-template-columns: 1fr 1fr; gap: 5px 15px; }
+        .plan-features i { color: var(--teal-600); margin-right: 5px; }
+
+        .plan-card.fidelity { border: 2px solid var(--teal-600); background: #f0fdfa; }
+        .fidelity-badge { position: absolute; top: -12px; right: 20px; background: var(--teal-600); color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 800; }
+
+        /* Info de Regras no Hover */
+        .plan-hover-info { margin-top: 10px; font-size: 0.8rem; color: var(--slate-600); }
+        .plan-info-text { display: none; margin-top: 10px; padding: 10px; background: #f8fafc; border-radius: 8px; }
+        .plan-card:hover .plan-info-text { display: block; }
+
+        .btn-dual { display: flex; gap: 15px; margin-top: 30px; }
+        .btn-agendar { background: var(--dark-navy); color: white; padding: 16px 32px; border-radius: 12px; font-weight: 800; text-decoration: none; flex: 1; text-align: center; transition: 0.3s; display: flex; align-items: center; justify-content: center; gap: 10px; }
+        .btn-agendar:hover { background: #000; color: white; transform: translateY(-2px); }
+        .btn-whatsapp { background: white; color: var(--dark-navy); border: 2px solid var(--dark-navy); padding: 16px 32px; border-radius: 12px; font-weight: 800; text-decoration: none; flex: 1; text-align: center; transition: 0.3s; display: flex; align-items: center; justify-content: center; gap: 10px; }
+        .btn-whatsapp:hover { background: #f8fafc; color: var(--dark-navy); }
+
+        .photo-container { position: relative; width: 100%; max-width: 500px; margin: 0 auto; }
+        .doctor-photo { width: 100%; border-radius: 30px; box-shadow: 20px 20px 60px rgba(0,0,0,0.1); }
         
-        .header-title {
-            font-size: 1.6rem;
-            font-weight: 800;
-            color: var(--btn-blue);
-            margin-bottom: 2px;
-        }
-        
-        .header-sub {
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-            margin-bottom: 2px;
-        }
-        
-        .header-einstein {
-            font-size: 1rem;
-            color: var(--teal-primary);
-            font-weight: 600;
-            background: #e6f7f5;
-            padding: 4px 12px;
-            border-radius: 30px;
-            display: inline-block;
-            margin-top: 5px;
-        }
-        
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, #f1f5f9 0%, #ffffff 100%);
-            padding: 70px 0 50px;
-            position: relative;
-        }
-        
-        .hero-title {
-            font-size: 3.5rem;
-            font-weight: 800;
-            line-height: 1.2;
-            color: var(--btn-blue);
-            margin-bottom: 1.2rem;
-        }
-        
-        .hero-subtitle {
-            font-size: 1.5rem;
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
-            font-weight: 400;
-        }
-        
-        /* Badge de urgência */
-        .urgent-badge {
-            background: linear-gradient(135deg, var(--orange-light), var(--orange-dark));
-            color: white;
-            padding: 12px 25px;
-            border-radius: 60px;
-            font-weight: 700;
-            font-size: 1.3rem;
-            display: inline-block;
-            margin: 15px 0 25px;
-            box-shadow: 0 8px 20px rgba(243, 156, 18, 0.3);
-            border: 3px solid white;
-            white-space: nowrap;
-        }
-        
-        /* ===== CARDS DE PLANOS COM LETRAS MAIORES E DESTAQUE ===== */
-        .plans-container {
-            margin-bottom: 30px;
-        }
-        
-        .plans-title {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: var(--btn-blue);
-            margin-bottom: 25px;
-            text-align: center;
-        }
-        
-        .plan-card {
-            background: white;
-            border-radius: 20px;
-            padding: 22px 20px;
-            margin-bottom: 18px;
-            transition: all 0.3s;
-            box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-            border-left: 6px solid;
-            cursor: pointer;
-            position: relative;
-        }
-        
-        .plan-card:hover {
-            transform: translateX(8px);
-            box-shadow: 0 12px 28px rgba(0,0,0,0.15);
-        }
-        
-        /* Cores das bordas */
-        .plan-card.basic { border-left-color: var(--green-plan); }
-        .plan-card.premium { border-left-color: var(--blue-plan); }
-        
-        /* PLANO FIDELIZAÇÃO COM DESTAQUE ESPECIAL */
-        .plan-card.fidelity { 
-            border-left-color: var(--orange-plan);
-            background: linear-gradient(135deg, #ffffff, #fffbeb);
-            border: 2px solid var(--orange-plan);
-            box-shadow: 0 8px 25px rgba(245, 158, 11, 0.2);
-        }
-        
-        .plan-card.fidelity:hover {
-            transform: translateX(8px) scale(1.01);
-            box-shadow: 0 15px 35px rgba(245, 158, 11, 0.35);
-        }
-        
-        /* Selo de destaque no plano fidelização */
-        .fidelity-badge {
-            position: absolute;
-            top: -12px;
-            right: 20px;
-            background: linear-gradient(135deg, var(--orange-plan), #dc2626);
-            color: white;
-            padding: 5px 15px;
-            border-radius: 30px;
-            font-size: 0.8rem;
-            font-weight: 800;
-            letter-spacing: 0.5px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        
-        .plan-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-            flex-wrap: wrap;
-        }
-        
-        .plan-name {
-            font-weight: 800;
-            font-size: 1.4rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .plan-name i {
-            font-size: 1.8rem;
-        }
-        
-        .plan-card.basic .plan-name { color: var(--green-plan); }
-        .plan-card.premium .plan-name { color: var(--blue-plan); }
-        .plan-card.fidelity .plan-name { color: var(--orange-plan); font-size: 1.5rem; }
-        
-        .plan-price {
-            font-weight: 800;
-            font-size: 1.6rem;
-        }
-        
-        .plan-card.basic .plan-price { color: var(--green-plan); }
-        .plan-card.premium .plan-price { color: var(--blue-plan); }
-        .plan-card.fidelity .plan-price { color: var(--orange-plan); font-size: 1.8rem; }
-        
-        .plan-price small {
-            font-size: 0.8rem;
-            font-weight: normal;
-        }
-        
-        .plan-features {
-            font-size: 1rem;
-            color: var(--text-secondary);
-            margin-bottom: 12px;
-            line-height: 1.6;
-        }
-        
-        .plan-features i {
-            margin-right: 10px;
-            font-size: 1.1rem;
-            width: 22px;
-        }
-        
-        .plan-card.basic .plan-features i { color: var(--green-plan); }
-        .plan-card.premium .plan-features i { color: var(--blue-plan); }
-        .plan-card.fidelity .plan-features i { color: var(--orange-plan); font-size: 1.2rem; }
-        
-        /* Hover info (regras que aparecem ao passar o mouse) */
-        .plan-hover-info {
-            position: relative;
-            display: inline-block;
-            margin-top: 10px;
-            cursor: help;
-        }
-        
-        .plan-info-icon {
-            font-size: 0.85rem;
-            color: #64748b;
-            background: #f1f5f9;
-            padding: 4px 12px;
-            border-radius: 30px;
-        }
-        
-        .plan-info-text {
-            display: none;
-            position: absolute;
-            bottom: 100%;
-            left: 0;
-            background: #1e293b;
-            color: white;
-            padding: 12px 15px;
-            border-radius: 16px;
-            font-size: 0.8rem;
-            width: 260px;
-            z-index: 100;
-            margin-bottom: 10px;
-            text-align: left;
-            line-height: 1.5;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.25);
-        }
-        
-        .plan-hover-info:hover .plan-info-text {
-            display: block;
-        }
-        
-        .plan-info-text strong {
-            color: #fbbf24;
-        }
-        
-        /* Container da foto */
-        .photo-container {
-            width: 100%;
-            max-width: 600px;
-            margin: 0 auto;
-            border-radius: 25px;
-            overflow: hidden;
-            box-shadow: 0 25px 35px rgba(0,0,0,0.15);
-            border: 6px solid white;
-            transition: transform 0.3s;
-        }
-        .photo-container:hover {
-            transform: scale(1.02);
-        }
-        
-        .doctor-photo {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-        
-        /* Botões */
-        .btn-dual {
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-            margin: 30px 0;
-            justify-content: flex-start;
-        }
-        
-        .btn-agendar {
-            background: linear-gradient(135deg, var(--btn-blue), #2a4a7a);
-            color: white;
-            padding: 14px 28px;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 1.3rem;
-            border: none;
-            transition: all 0.3s;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            box-shadow: 0 5px 15px rgba(30, 60, 114, 0.3);
-            width: auto;
-            white-space: nowrap;
-        }
-        
-        .btn-whatsapp {
-            background: linear-gradient(135deg, var(--whatsapp-green), #128C7E);
-            color: white;
-            padding: 14px 28px;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 1.3rem;
-            border: none;
-            transition: all 0.3s;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
-            width: auto;
-            white-space: nowrap;
-        }
-        
-        .btn-agendar:hover, .btn-whatsapp:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-            color: white;
-        }
-        
-        /* Mini badges de confiança */
-        .trust-badge {
-            font-size: 1.1rem;
-            background: white;
-            padding: 8px 16px;
-            border-radius: 40px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-            border: 1px solid #e9eef2;
-            white-space: nowrap;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-        }
-        .trust-badge i {
-            font-size: 1.2rem;
-            color: var(--teal-primary);
-        }
-        
-        /* Responsividade para os cards de planos */
-        @media (max-width: 992px) {
-            .plans-container {
-                margin-top: 30px;
-            }
-            .plan-card:hover {
-                transform: translateY(-3px);
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .hero-title { font-size: 2.5rem; }
-            .hero-subtitle { font-size: 1.3rem; }
-            .urgent-badge { font-size: 1.1rem; padding: 10px 20px; white-space: normal; width: 100%; text-align: center; }
-            .btn-dual { flex-direction: column; gap: 12px; width: 100%; }
-            .btn-agendar, .btn-whatsapp { width: 100%; justify-content: center; padding: 14px 20px; font-size: 1.2rem; white-space: normal; text-align: center; }
-            .trust-badge { white-space: normal; text-align: center; flex: 1; justify-content: center; }
-            .photo-container { max-width: 100%; }
-            .header-title { font-size: 1.4rem; }
-            .header-sub { font-size: 1rem; }
-            .header-einstein { font-size: 0.9rem; }
-            .plans-title { font-size: 1.2rem; }
-            .plan-name { font-size: 1.2rem; }
-            .plan-price { font-size: 1.3rem; }
-            .plan-card.fidelity .plan-name { font-size: 1.3rem; }
-            .plan-card.fidelity .plan-price { font-size: 1.5rem; }
-            .plan-features { font-size: 0.9rem; }
-        }
-        
-        /* Cards de indicação */
-        .indication-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 20px;
-            margin: 40px 0;
-        }
-        .indication-item {
-            background: var(--card-bg);
-            padding: 25px 15px;
-            border-radius: 20px;
-            text-align: center;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
-            border: 1px solid #e9eef2;
-            transition: all 0.3s;
-        }
-        .indication-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(13, 148, 136, 0.15);
-            border-color: var(--teal-primary);
-        }
-        .indication-item i {
-            font-size: 2.5rem;
-            color: var(--teal-primary);
-            margin-bottom: 15px;
-        }
-        .indication-item h4 {
-            font-size: 1.2rem;
-            font-weight: 700;
-            margin-bottom: 0;
-        }
-        
-        /* Cards de autoridade */
-        .authority-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 25px;
-            margin: 40px 0;
-        }
-        .authority-card {
-            background: white;
-            padding: 30px 20px;
-            border-radius: 25px;
-            text-align: center;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
-            border: 1px solid #e9eef2;
-            transition: all 0.3s;
-        }
-        .authority-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(13, 148, 136, 0.1);
-        }
-        .authority-card i {
-            font-size: 3rem;
-            color: var(--teal-primary);
-            margin-bottom: 20px;
-        }
-        .authority-card h5 {
-            font-weight: 800;
-            font-size: 1.3rem;
-            margin-bottom: 10px;
-        }
-        .authority-card p {
-            color: var(--text-secondary);
-            font-size: 1rem;
-            margin-bottom: 0;
-            line-height: 1.4;
-        }
-        
-        /* Cards de valores */
-        .values-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
-            margin: 30px 0 50px;
-        }
-        .value-card {
-            background: white;
-            padding: 30px 25px;
-            border-radius: 25px;
-            text-align: center;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
-            border: 2px solid transparent;
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        .value-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 30px rgba(13, 148, 136, 0.2);
-            border-color: var(--teal-primary);
-            background: linear-gradient(135deg, #ffffff, #f0fdf9);
-        }
-        .value-card i {
-            font-size: 3rem;
-            color: var(--teal-primary);
-            margin-bottom: 20px;
-            transition: transform 0.3s;
-        }
-        .value-card:hover i {
-            transform: scale(1.1);
-        }
-        .value-card h4 {
-            font-weight: 800;
-            font-size: 1.5rem;
-            color: var(--btn-blue);
-            margin-bottom: 15px;
-        }
-        .value-card p {
-            color: var(--text-secondary);
-            font-size: 1rem;
-            line-height: 1.6;
-            margin-bottom: 0;
-        }
-        
-        /* Cards de como funciona */
-        .how-it-works-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 25px;
-            margin: 40px 0;
-        }
-        .how-card {
-            background: white;
-            padding: 30px 20px;
-            border-radius: 25px;
-            text-align: center;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-            border: 1px solid #e9eef2;
-            transition: all 0.3s;
-        }
-        .how-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 30px rgba(13, 148, 136, 0.15);
-        }
-        .how-icon {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, var(--teal-primary), var(--dark-teal));
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 20px;
-            color: white;
-            font-size: 2.5rem;
-            box-shadow: 0 10px 15px rgba(13, 148, 136, 0.2);
-        }
-        .how-card h4 {
-            font-weight: 800;
-            font-size: 1.4rem;
-            color: var(--btn-blue);
-            margin-bottom: 15px;
-        }
-        .how-card p {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            line-height: 1.5;
-        }
-        
-        /* ===== SEÇÃO DE DEPOIMENTOS COM FOTOS REAIS ===== */
-        .testimonials-section {
-            background: linear-gradient(135deg, #f8fafc, #ffffff);
-            padding: 60px 0;
-        }
-        .testimonials-header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-        .testimonials-header h2 {
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: var(--btn-blue);
-            margin-bottom: 10px;
-        }
-        .testimonials-header p {
-            font-size: 1.2rem;
-            color: var(--text-secondary);
-            max-width: 700px;
-            margin: 0 auto;
-        }
-        
-        /* Grid de 4 cards lado a lado */
-        .testimonials-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-            margin: 30px 0 40px;
-        }
-        
-        .testimonial-card {
-            background: white;
-            border-radius: 20px;
-            padding: 25px 20px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-            border: 1px solid #e9eef2;
-            transition: all 0.3s;
-            display: flex;
-            flex-direction: column;
-        }
-        .testimonial-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(13, 148, 136, 0.1);
-        }
-        
-        .testimonial-avatar {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            margin: 0 auto 15px;
-            overflow: hidden;
-            border: 3px solid white;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        
-        .testimonial-avatar img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .testimonial-rating {
-            color: var(--star-color);
-            font-size: 1rem;
-            margin-bottom: 10px;
-            text-align: center;
-        }
-        
-        .testimonial-text {
-            font-size: 0.95rem;
-            color: var(--text-primary);
-            margin-bottom: 15px;
-            font-style: italic;
-            line-height: 1.5;
-            flex-grow: 1;
-        }
-        
-        .testimonial-author {
-            font-weight: 700;
-            color: var(--btn-blue);
-            margin-bottom: 2px;
-            text-align: center;
-        }
-        
-        .testimonial-date {
-            font-size: 0.8rem;
-            color: var(--text-secondary);
-            text-align: center;
-        }
-        
-        .google-badge {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            background: white;
-            padding: 15px 30px;
-            border-radius: 60px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            width: fit-content;
-            margin: 20px auto 0;
-            border: 1px solid #e9eef2;
-        }
-        .google-badge i {
-            color: #4285F4;
-            font-size: 2.2rem;
-        }
-        .google-badge .rating {
-            font-weight: 700;
-            color: var(--text-primary);
-            font-size: 1.2rem;
-        }
-        .google-badge .stars {
-            color: var(--star-color);
-            font-size: 1rem;
-        }
-        .google-badge .total {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-        
-        /* Cards de serviços */
-        .service-card {
-            background: white;
-            border-radius: 25px;
-            padding: 30px 20px;
-            text-align: center;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
-            border: 1px solid #e9eef2;
-            transition: all 0.3s;
-            height: 100%;
-        }
-        .service-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(13, 148, 136, 0.15);
-            border-color: var(--teal-primary);
-        }
-        .service-card i {
-            font-size: 2.8rem;
-            color: var(--teal-primary);
-            margin-bottom: 20px;
-        }
-        .service-card h4 {
-            font-size: 1.3rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-        }
-        .service-card p {
-            font-size: 1rem;
-            color: var(--text-secondary);
-        }
-        
-        /* FAQ */
-        .faq-item {
-            background: white;
-            border-radius: 20px;
-            margin-bottom: 15px;
-            border: 1px solid #e9eef2;
-            overflow: hidden;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
-        }
-        .faq-question {
-            padding: 20px 25px;
-            background: white;
-            font-weight: 700;
-            font-size: 1.2rem;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .faq-question i {
-            font-size: 1.2rem;
-            transition: transform 0.3s;
-            color: var(--teal-primary);
-        }
-        .faq-answer {
-            padding: 0 25px 20px 25px;
-            color: var(--text-secondary);
-            font-size: 1.1rem;
-            display: none;
-            line-height: 1.6;
-        }
-        .faq-item.active .faq-answer {
-            display: block;
-        }
-        .faq-item.active .faq-question i {
-            transform: rotate(180deg);
-        }
-        
-        /* Seções */
-        .section-title {
-            font-size: 2.4rem;
-            font-weight: 800;
-            color: var(--btn-blue);
-            margin-bottom: 1.5rem;
-            text-align: center;
-        }
-        .section-subtitle {
-            text-align: center;
-            color: var(--text-secondary);
-            font-size: 1.3rem;
-            margin-bottom: 3rem;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        .light-section {
-            background-color: var(--light-bg);
-            padding: 70px 0;
-        }
-        .white-section {
-            background: white;
-            padding: 70px 0;
-        }
-        
-        /* Call to action final */
-        .cta-text {
-            font-size: 1.3rem;
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
-        }
-        
-        /* Rodapé */
-        footer {
-            background-color: var(--dark-navy) !important;
-            padding: 40px 0 20px;
-        }
-        .footer-copyright {
-            font-size: 0.95rem;
-            color: rgba(255,255,255,0.7);
-            text-align: center;
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-        }
-        
+        .trust-badge { font-size: 0.9rem; font-weight: 600; color: var(--slate-600); background: var(--slate-100); padding: 8px 15px; border-radius: 8px; display: flex; align-items: center; gap: 8px; }
+
+        .light-section { padding: 80px 0; background: var(--slate-100); }
+        .white-section { padding: 80px 0; background: white; }
+        .section-title { font-size: 2.5rem; font-weight: 900; text-align: center; margin-bottom: 15px; color: var(--dark-navy); }
+        .section-subtitle { text-align: center; color: var(--slate-600); margin-bottom: 50px; font-size: 1.1rem; }
+
+        .indication-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+        .indication-item { background: white; padding: 30px; border-radius: 20px; text-align: center; transition: 0.3s; }
+        .indication-item:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+        .indication-item i { font-size: 2rem; color: var(--teal-600); margin-bottom: 15px; }
+        .indication-item h4 { font-weight: 700; font-size: 1.1rem; margin: 0; }
+
+        .authority-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-bottom: 60px; }
+        .authority-card { text-align: center; padding: 20px; }
+        .authority-card i { font-size: 2.5rem; color: var(--teal-600); margin-bottom: 15px; }
+        .authority-card h5 { font-weight: 800; color: var(--dark-navy); }
+
+        .values-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .value-card { background: var(--slate-100); padding: 40px; border-radius: 24px; border: 1px solid #e2e8f0; }
+        .value-card i { font-size: 2rem; color: var(--teal-600); margin-bottom: 20px; }
+        .value-card h4 { font-weight: 800; margin-bottom: 15px; }
+
+        footer { background-color: var(--dark-navy) !important; padding: 60px 0 30px; color: white; }
+        .footer-copyright { font-size: 0.9rem; color: rgba(255,255,255,0.6); text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); }
+
         /* Responsividade */
         @media (max-width: 992px) {
-            .testimonials-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
             .hero-title { font-size: 3rem; }
-            .urgent-badge { font-size: 1.2rem; }
-            .btn-agendar, .btn-whatsapp { font-size: 1.2rem; padding: 12px 24px; }
+            .hero { padding: 40px 0; }
         }
         
         @media (max-width: 768px) {
-            .testimonials-grid {
-                grid-template-columns: 1fr;
-            }
-            .hero-title { font-size: 2.5rem; }
-            .hero-subtitle { font-size: 1.3rem; }
-            .btn-dual { flex-direction: column; gap: 12px; width: 100%; }
-            .btn-agendar, .btn-whatsapp { width: 100%; justify-content: center; padding: 14px 20px; font-size: 1.2rem; white-space: normal; text-align: center; }
-            .urgent-badge { font-size: 1.1rem; padding: 10px 20px; white-space: normal; width: 100%; text-align: center; }
-            .trust-badge { white-space: normal; text-align: center; flex: 1; justify-content: center; }
-            .photo-container { max-width: 100%; }
+            .hero-title { font-size: 2.2rem; text-align: center; }
+            .hero-subtitle { text-align: center; margin-left: auto; margin-right: auto; }
+            .urgent-badge { display: block; text-align: center; }
+            .btn-dual { flex-direction: column; }
+            .plan-features { grid-template-columns: 1fr; }
             .section-title { font-size: 2rem; }
-            .header-title { font-size: 1.4rem; }
-            .header-sub { font-size: 1rem; }
-            .header-einstein { font-size: 0.9rem; }
         }
     </style>
 </head>
 <body>
+
     <!-- WhatsApp Flutuante -->
     <a href="https://wa.me/554491339060?text=Olá,%20Dr.%20Marcelo,%20gostaria%20de%20agendar%20uma%20consulta" class="whatsapp-float" target="_blank">
         <i class="fab fa-whatsapp"></i>
     </a>
 
-    <!-- Cabeçalho -->
     <header>
         <div class="container py-3">
             <div class="d-flex justify-content-between align-items-center flex-wrap">
                 <div>
-                    <h1 class="header-title mb-0">Dr. Marcelo Medeiros</h1>
-                    <p class="header-sub mb-1">CRM-PR 47960 | Psiquiatria</p>
+                    <h1 class="header-title h4 mb-0">Dr. Marcelo Medeiros</h1>
+                    <p class="header-sub mb-1">CRM-PR 47960 | Médico</p>
                     <span class="header-einstein">
-                        <i class="fas fa-graduation-cap me-1"></i> Pós-graduação em Psiquiatria pelo Hospital Albert Einstein
+                        <i class="fas fa-graduation-cap me-1"></i> Pós-graduação pelo Hospital Albert Einstein
                     </span>
                 </div>
-                <div class="d-flex gap-2 mt-2 mt-sm-0">
-                    <span class="badge bg-light text-dark p-3" style="font-size: 1rem;">
-                        <i class="fas fa-check-circle text-teal-600 me-1"></i> Atendimento 24h
+                <div class="d-none d-sm-block">
+                    <span class="badge bg-light text-dark p-3 border">
+                        <i class="fas fa-check-circle text-success me-1"></i> Atendimento 24h Disponível
                     </span>
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- HERO SECTION COM PLANOS AO LADO ESQUERDO DA FOTO -->
     <section class="hero">
         <div class="container">
             <div class="row align-items-center">
-                <!-- COLUNA ESQUERDA: PLANOS (ORDEM CRESCENTE DE PREÇO) -->
                 <div class="col-lg-6 order-lg-1">
-                    <h1 class="hero-title">Psiquiatria moderna, ética e personalizada.</h1>
-                    
                     <div class="urgent-badge">
-                        ⚡ Atendimento imediato → consulta em até 24h úteis ⚡
+                        ⚡ Atendimento imediato → consulta em até 24h úteis
                     </div>
-                    
+                    <h1 class="hero-title">Psiquiatria moderna, ética e personalizada.</h1>
                     <p class="hero-subtitle">
                         Consultas online com sigilo, agilidade e base científica. 
                         Cuidado adaptado às suas necessidades.
                     </p>
                     
-                    <!-- TRÊS PLANOS EM CAIXAS COM LETRAS MAIORES E ÍCONES DESTACADOS -->
                     <div class="plans-container">
                         <div class="plans-title">
-                            <i class="fas fa-tags me-2"></i>Escolha o plano ideal para você
+                            <i class="fas fa-tags me-2"></i>Escolha o plano ideal
                         </div>
                         
-                        <!-- PLANO 1: BÁSICO - R$ 99 -->
-                        <div class="plan-card basic">
+                        <!-- PLANO 1 -->
+                        <div class="plan-card">
                             <div class="plan-header">
                                 <span class="plan-name"><i class="fas fa-file-signature"></i> Consulta Avulsa</span>
-                                <span class="plan-price">R$ 99<small>/consulta</small></span>
+                                <span class="plan-price">R$ 99<small>/avulsa</small></span>
                             </div>
                             <div class="plan-features">
-                                <i class="fas fa-check-circle"></i> Agendamento em até 24h<br>
-                                <i class="fas fa-video"></i> 30 min de consulta<br>
-                                <i class="fas fa-file-prescription"></i> Prescrição digital<br>
-                                <i class="fas fa-shield-alt"></i> Sigilo total
+                                <div><i class="fas fa-check-circle"></i> Agendamento em 24h</div>
+                                <div><i class="fas fa-video"></i> 30 min de consulta</div>
+                                <div><i class="fas fa-file-prescription"></i> Prescrição digital</div>
+                                <div><i class="fas fa-shield-alt"></i> Sigilo total</div>
                             </div>
                             <div class="plan-hover-info">
-                                <span class="plan-info-icon"><i class="fas fa-info-circle"></i> Ver regras</span>
+                                <span class="fw-bold text-teal-600"><i class="fas fa-info-circle"></i> Ver regras</span>
                                 <div class="plan-info-text">
-                                    <strong>Regras:</strong><br>
-                                    • Pagamento antecipado via Stripe/PIX<br>
+                                    • Pagamento antecipado via PIX/Cartão<br>
                                     • Reembolso integral se cancelado 12h antes<br>
-                                    • Consulta realizada por Google Meet ou WhatsApp
+                                    • Realizada por Google Meet ou WhatsApp
                                 </div>
                             </div>
                         </div>
                         
-                        <!-- PLANO 2: PRIORITÁRIO - R$ 199 -->
+                        <!-- PLANO 2 (MAIS VENDIDO) -->
                         <div class="plan-card premium">
+                            <div class="fidelity-badge">MAIS PROCURADO</div>
                             <div class="plan-header">
                                 <span class="plan-name"><i class="fas fa-star"></i> Consulta Prioritária</span>
-                                <span class="plan-price">R$ 199<small>/consulta</small></span>
+                                <span class="plan-price">R$ 199<small>/prioridade</small></span>
                             </div>
                             <div class="plan-features">
-                                <i class="fas fa-check-circle"></i> Agendamento em até 12h<br>
-                                <i class="fas fa-video"></i> 30 min de consulta<br>
-                                <i class="fas fa-file-prescription"></i> Prescrição + Laudo resumido<br>
-                                <i class="fas fa-bell"></i> Lembrete por WhatsApp 1h antes<br>
-                                <i class="fas fa-rocket"></i> Prioridade no atendimento
+                                <div><i class="fas fa-check-circle"></i> Em até 12h úteis</div>
+                                <div><i class="fas fa-video"></i> 30 min de consulta</div>
+                                <div><i class="fas fa-file-prescription"></i> Prescrição + Laudo</div>
+                                <div><i class="fas fa-rocket"></i> Prioridade total</div>
                             </div>
                             <div class="plan-hover-info">
-                                <span class="plan-info-icon"><i class="fas fa-info-circle"></i> Ver regras</span>
+                                <span class="fw-bold text-teal-600"><i class="fas fa-info-circle"></i> Ver regras</span>
                                 <div class="plan-info-text">
-                                    <strong>Regras:</strong><br>
-                                    • Pagamento via Stripe/PIX<br>
-                                    • Canais prioritários de atendimento<br>
-                                    • Horário agendado em até 12h úteis<br>
-                                    • Suporte via WhatsApp incluso
+                                    • Suporte via WhatsApp incluso<br>
+                                    • Horário flexível e encaixe prioritário<br>
+                                    • Laudo resumido incluso na consulta
                                 </div>
                             </div>
                         </div>
                         
-                        <!-- PLANO 3: FIDELIZAÇÃO - R$ 450/mês (DESTAQUE ESPECIAL) -->
+                        <!-- PLANO 3 (FIDELIDADE) -->
                         <div class="plan-card fidelity">
-                            <div class="fidelity-badge">
-                                <i class="fas fa-crown"></i> MAIS ECONÔMICO
-                            </div>
+                            <div class="fidelity-badge"><i class="fas fa-crown"></i> MELHOR CUSTO-BENEFÍCIO</div>
                             <div class="plan-header">
                                 <span class="plan-name"><i class="fas fa-trophy"></i> Plano Fidelização</span>
                                 <span class="plan-price">R$ 450<small>/mês</small></span>
                             </div>
                             <div class="plan-features">
-                                <i class="fas fa-check-circle"></i> 2 consultas mensais (30 min)<br>
-                                <i class="fab fa-whatsapp"></i> WhatsApp direto com Dr. Marcelo<br>
-                                <i class="fas fa-clock"></i> Resposta em até 24h<br>
-                                <i class="fas fa-sync-alt"></i> Renovação automática de receitas<br>
-                                <i class="fas fa-chart-line"></i> Ajuste de medicação incluso<br>
-                                <i class="fas fa-gem"></i> Prioridade absoluta
+                                <div><i class="fas fa-check-circle"></i> 2 consultas mensais</div>
+                                <div><i class="fab fa-whatsapp"></i> WhatsApp direto</div>
+                                <div><i class="fas fa-sync-alt"></i> Renovação de receitas</div>
+                                <div><i class="fas fa-gem"></i> Prioridade absoluta</div>
                             </div>
                             <div class="plan-hover-info">
-                                <span class="plan-info-icon"><i class="fas fa-info-circle"></i> Ver regras</span>
+                                <span class="fw-bold text-teal-600"><i class="fas fa-info-circle"></i> Ver regras</span>
                                 <div class="plan-info-text">
-                                    <strong>Regras:</strong><br>
                                     • Cobrança mensal automática<br>
-                                    • Consultas não utilizadas não acumulam<br>
-                                    • Cancele a qualquer momento<br>
-                                    • Fidelidade recomendada: 3 meses<br>
-                                    • Economia de até 40% nas consultas
+                                    • Ajustes de medicação inclusos<br>
+                                    • Cancele a qualquer momento
                                 </div>
                             </div>
                         </div>
                     </div>
-                    
-                    <!-- Botões -->
+
                     <div class="btn-dual">
-                        <a href="https://wa.me/554491339060?text=Olá,%20gostaria%20de%20agendar%20uma%20consulta" class="btn-agendar" target="_blank">
-                            <i class="fas fa-calendar-check"></i> Agendar consulta
+                        <a href="https://wa.me/554491339060" class="btn-agendar">
+                            <i class="fas fa-calendar-check"></i> Agendar Agora
                         </a>
-                        <a href="https://wa.me/554491339060?text=Olá,%20Dr.%20Marcelo,%20tenho%20dúvidas" class="btn-whatsapp" target="_blank">
-                            <i class="fab fa-whatsapp"></i> Falar com Dr. Marcelo Medeiros
+                        <a href="https://wa.me/554491339060" class="btn-whatsapp">
+                            <i class="fab fa-whatsapp"></i> Falar com o Doutor
                         </a>
-                    </div>
-                    
-                    <!-- Mini badges -->
-                    <div class="d-flex flex-wrap gap-3 mt-4">
-                        <span class="trust-badge"><i class="fas fa-shield-alt"></i> Sigilo total</span>
-                        <span class="trust-badge"><i class="fas fa-file-prescription"></i> Receita digital válida</span>
-                        <span class="trust-badge"><i class="fas fa-clock"></i> Atendimento ágil</span>
                     </div>
                 </div>
                 
-                <!-- COLUNA DIREITA: FOTO (MANTIDA NO MESMO TAMANHO) -->
-                <div class="col-lg-6 order-lg-2 mb-5 mb-lg-0">
-                    <div class="photo-container">
+                <div class="col-lg-6 order-lg-2 mt-5 mt-lg-0">
+                    <div class="photo-container text-center">
                         <img src="https://i.ibb.co/CsTtFZ52/FOTO-AAAAA.png" alt="Dr. Marcelo Medeiros" class="doctor-photo">
+                        <div class="d-flex justify-content-center gap-3 mt-4">
+                            <span class="trust-badge"><i class="fas fa-shield-alt text-success"></i> Sigilo</span>
+                            <span class="trust-badge"><i class="fas fa-file-prescription text-primary"></i> Receitas</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- PARA QUEM É INDICADO -->
     <section class="light-section">
         <div class="container">
             <h2 class="section-title">Para quem é indicado</h2>
-            <p class="section-subtitle">Atendimento especializado para diversas condições</p>
-            
+            <p class="section-subtitle">Atendimento especializado para diversas condições mentais</p>
             <div class="indication-grid">
                 <div class="indication-item"><i class="fas fa-brain"></i><h4>Ansiedade</h4></div>
                 <div class="indication-item"><i class="fas fa-cloud-sun"></i><h4>Depressão</h4></div>
                 <div class="indication-item"><i class="fas fa-moon"></i><h4>Insônia</h4></div>
                 <div class="indication-item"><i class="fas fa-bolt"></i><h4>TDAH</h4></div>
-                <div class="indication-item"><i class="fas fa-balance-scale"></i><h4>Transtorno bipolar</h4></div>
                 <div class="indication-item"><i class="fas fa-fire"></i><h4>Burnout</h4></div>
-                <div class="indication-item"><i class="fas fa-flask"></i><h4>Dependência química</h4></div>
+                <div class="indication-item"><i class="fas fa-balance-scale"></i><h4>Bipolaridade</h4></div>
             </div>
         </div>
     </section>
 
-    <!-- MINHA AUTORIDADE -->
     <section class="white-section">
         <div class="container">
-            <h2 class="section-title">Minha autoridade</h2>
-            <p class="section-subtitle">Por que você pode confiar no meu trabalho</p>
-            
+            <h2 class="section-title">Autoridade e Confiança</h2>
             <div class="authority-grid">
                 <div class="authority-card">
                     <i class="fas fa-id-card"></i>
                     <h5>CRM-PR 47960</h5>
-                    <p>Registro ativo no Conselho Regional de Medicina</p>
+                    <p>Registro ativo e regularizado no Conselho de Medicina.</p>
                 </div>
                 <div class="authority-card">
                     <i class="fas fa-gavel"></i>
-                    <h5>Atendimento regulamentado</h5>
-                    <p>Conforme resolução CFM nº 2.314/2022</p>
+                    <h5>Telemedicina Legal</h5>
+                    <p>Atendimento conforme resolução CFM nº 2.314/2022.</p>
                 </div>
                 <div class="authority-card">
                     <i class="fas fa-lock"></i>
-                    <h5>Sigilo absoluto</h5>
-                    <p>100% protegido pela LGPD e Código de Ética</p>
-                </div>
-                <div class="authority-card">
-                    <i class="fas fa-dna"></i>
-                    <h5>Medicina baseada em evidência</h5>
-                    <p>Tratamentos com respaldo científico</p>
-                </div>
-                <div class="authority-card">
-                    <i class="fas fa-flask"></i>
-                    <h5>Atualização contínua</h5>
-                    <p>Educação médica permanente</p>
+                    <h5>LGPD & Sigilo</h5>
+                    <p>Dados protegidos e confidencialidade absoluta.</p>
                 </div>
             </div>
 
-            <!-- Cards de valores -->
             <div class="values-grid">
                 <div class="value-card">
                     <i class="fas fa-handshake"></i>
                     <h4>Compromisso</h4>
-                    <p>Estou dedicado a acompanhar cada paciente em sua jornada para a saúde mental, oferecendo suporte contínuo e personalizado.</p>
+                    <p>Dedicado a acompanhar sua jornada de saúde com suporte contínuo.</p>
                 </div>
                 <div class="value-card">
                     <i class="fas fa-briefcase"></i>
                     <h4>Profissionalismo</h4>
-                    <p>Cada paciente merece um cuidado ético e respeitoso, garantindo que suas necessidades sejam atendidas com a máxima seriedade e competência.</p>
-                </div>
-                <div class="value-card">
-                    <i class="fas fa-chart-line"></i>
-                    <h4>Experiência</h4>
-                    <p>Com anos de prática e estudo, trago uma vasta experiência para oferecer tratamentos eficazes e inovadores que promovem o bem-estar duradouro.</p>
+                    <p>Cuidado ético, respeitoso e pautado na ciência moderna.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- SERVIÇOS -->
-    <section class="light-section">
-        <div class="container">
-            <h2 class="section-title">Especialidades</h2>
-            <div class="row g-4">
-                <div class="col-md-4"><div class="service-card"><i class="fas fa-brain"></i><h4>Ansiedade</h4><p>TAG, pânico, fobias</p></div></div>
-                <div class="col-md-4"><div class="service-card"><i class="fas fa-cloud-sun"></i><h4>Depressão</h4><p>Maior, distimia, sazonal</p></div></div>
-                <div class="col-md-4"><div class="service-card"><i class="fas fa-bolt"></i><h4>TDAH Adulto</h4><p>Diagnóstico e tratamento</p></div></div>
-                <div class="col-md-4"><div class="service-card"><i class="fas fa-user-tag"></i><h4>Personalidade</h4><p>Borderline, esquiva</p></div></div>
-                <div class="col-md-4"><div class="service-card"><i class="fas fa-balance-scale"></i><h4>TAB</h4><p>Tipo I, II, ciclotimia</p></div></div>
-                <div class="col-md-4"><div class="service-card"><i class="fas fa-flask"></i><h4>Dependência química</h4><p>Álcool, drogas</p></div></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SEÇÃO COMO FUNCIONA -->
-    <section class="white-section">
-        <div class="container">
-            <h2 class="section-title">Como funciona</h2>
-            <p class="section-subtitle">Todo o processo é simples, transparente e pensado para você</p>
+    <footer>
+        <div class="container text-center">
+            <h3 class="fw-bold mb-3">Dr. Marcelo Medeiros</h3>
+            <p class="mb-1">CRM-PR 47960 | Médico</p>
+            <p class="small text-white-50">Especialista em Saúde Mental e Psiquiatria.</p>
             
-            <div class="how-it-works-grid">
-                <div class="how-card">
-                    <div class="how-icon"><i class="fas fa-calendar-alt"></i></div>
-                    <h4>Agendamento</h4>
-                    <p>Ao entrar em contato com a nossa equipe pelo WhatsApp serão oferecidas as datas e horários disponíveis, sempre tentando se adequar às necessidades dos pacientes.</p>
-                </div>
-                <div class="how-card">
-                    <div class="how-icon"><i class="fas fa-credit-card"></i></div>
-                    <h4>Pagamento</h4>
-                    <p>Serão oferecidas as formas de pagamento como PIX ou parcelamento pelo cartão de crédito em até 10x. Não aceitamos planos de saúde.</p>
-                </div>
-                <div class="how-card">
-                    <div class="how-icon"><i class="fas fa-video"></i></div>
-                    <h4>Consulta</h4>
-                    <p>Será disponibilizado o link do Google Meet pelo WhatsApp no horário marcado. O paciente pode optar por fazer a consulta pelo WhatsApp Vídeo.</p>
-                </div>
-                <div class="how-card">
-                    <div class="how-icon"><i class="fas fa-file-medical"></i></div>
-                    <h4>Pós-consulta</h4>
-                    <p>Após a consulta, o Dr. Marcelo apresentará todas as orientações necessárias, incluindo explicações sobre registros e recomendações importantes relacionadas ao atendimento.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQ -->
-    <section class="light-section">
-        <div class="container">
-            <h2 class="section-title">Perguntas frequentes</h2>
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <div class="faq-item active">
-                        <div class="faq-question" onclick="toggleFaq(this)">
-                            Como funciona a consulta online? <i class="fas fa-chevron-down"></i>
-                        </div>
-                        <div class="faq-answer">
-                            Após o agendamento, você recebe um link para videochamada segura no horário marcado. A consulta dura cerca de 30 minutos, com toda a privacidade de um atendimento presencial.
-                        </div>
-                    </div>
-                    <div class="faq-item">
-                        <div class="faq-question" onclick="toggleFaq(this)">
-                            A receita é válida em farmácias? <i class="fas fa-chevron-down"></i>
-                        </div>
-                        <div class="faq-answer">
-                            Sim. A receita digital tem validade legal em todo território nacional, conforme portaria 344/98 e resoluções do CFM.
-                        </div>
-                    </div>
-                    <div class="faq-item">
-                        <div class="faq-question" onclick="toggleFaq(this)">
-                            Atende plano de saúde? <i class="fas fa-chevron-down"></i>
-                        </div>
-                        <div class="faq-answer">
-                            Não. O atendimento é estritamente particular. Você recebe nota fiscal e pode solicitar reembolso junto ao seu plano, conforme regras da operadora.
-                        </div>
-                    </div>
-                    <div class="faq-item">
-                        <div class="faq-question" onclick="toggleFaq(this)">
-                            Como agendar? <i class="fas fa-chevron-down"></i>
-                        </div>
-                        <div class="faq-answer">
-                            Basta clicar em "Agendar consulta" ou "Falar com Dr. Marcelo Medeiros". Vou responder pessoalmente para acertar o melhor horário para você.
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SEÇÃO DE DEPOIMENTOS -->
-    <section class="testimonials-section">
-        <div class="container">
-            <div class="testimonials-header">
-                <h2>O que os pacientes dizem?</h2>
-                <p>Cuidar da mente foi um divisor de águas para muitos pacientes. E pode ser o seu próximo passo também.</p>
-            </div>
-            
-            <div class="testimonials-grid">
-                <div class="testimonial-card">
-                    <div class="testimonial-avatar">
-                        <img src="https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="Paula Ariene">
-                    </div>
-                    <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
-                    <div class="testimonial-text">"Dr. Marcelo além de um excelente profissional, é um ótimo ser humano, que ouve e atende as necessidades de cada paciente com atenção e cuidado."</div>
-                    <div class="testimonial-author">Paula Ariene A.</div>
-                    <div class="testimonial-date">2 meses atrás</div>
-                </div>
-                
-                <div class="testimonial-card">
-                    <div class="testimonial-avatar">
-                        <img src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="Fabricio Jesus">
-                    </div>
-                    <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
-                    <div class="testimonial-text">"Atendimento excepcional! O Dr. Marcelo é muito atencioso e explica tudo detalhadamente. Me senti acolhido desde o primeiro contato."</div>
-                    <div class="testimonial-author">Fabricio Jesus</div>
-                    <div class="testimonial-date">3 meses atrás</div>
-                </div>
-                
-                <div class="testimonial-card">
-                    <div class="testimonial-avatar">
-                        <img src="https://images.pexels.com/photos/1036622/pexels-photo-1036622.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="Suzana Lamperti">
-                    </div>
-                    <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
-                    <div class="testimonial-text">"Excelente profissional, muito atencioso, empático, atento aos detalhes. Me senti acolhida e segura durante toda a consulta."</div>
-                    <div class="testimonial-author">Suzana Lamperti</div>
-                    <div class="testimonial-date">2 meses atrás</div>
-                </div>
-                
-                <div class="testimonial-card">
-                    <div class="testimonial-avatar">
-                        <img src="https://images.pexels.com/photos/2380794/pexels-photo-2380794.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="Carlos Santos">
-                    </div>
-                    <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
-                    <div class="testimonial-text">"Profissional competente e humano. A consulta online foi muito produtiva e esclarecedora. Recomendo fortemente!"</div>
-                    <div class="testimonial-author">Carlos Santos</div>
-                    <div class="testimonial-date">3 meses atrás</div>
-                </div>
-            </div>
-            
-            <div class="google-badge">
-                <i class="fab fa-google"></i>
-                <div>
-                    <span class="rating">Com base em 67 avaliações</span><br>
-                    <span class="stars">⭐⭐⭐⭐⭐</span> <span class="total">4.9</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- TEXTO ANTES DO CTA -->
-    <section class="white-section text-center">
-        <div class="container">
-            <h2 class="section-title" style="font-size: 2rem;">Com um acompanhamento totalmente personalizado, posso te ajudar a cuidar da sua saúde mental em diferentes contextos</h2>
-        </div>
-    </section>
-
-    <!-- CALL TO ACTION FINAL -->
-    <section class="light-section text-center">
-        <div class="container">
-            <h2 class="section-title">Dê o primeiro passo hoje</h2>
-            <p class="cta-text">Atendimento humanizado, rápido e baseado em evidências</p>
-            <div class="d-flex justify-content-center gap-3 flex-wrap">
-                <a href="https://wa.me/554491339060?text=Olá,%20quero%20agendar%20minha%20consulta" class="btn-agendar">
-                    <i class="fas fa-calendar-check"></i> Agendar consulta
-                </a>
-                <a href="https://wa.me/554491339060?text=Olá,%20tenho%20dúvidas" class="btn-whatsapp">
-                    <i class="fab fa-whatsapp"></i> Falar com Dr. Marcelo Medeiros
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- RODAPÉ -->
-    <footer class="text-white py-4">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8">
-                    <p class="mb-0">Dr. Marcelo Medeiros | CRM-PR 47960 | Psiquiatria</p>
-                    <p class="text-white-50">Pós-graduado pelo Hospital Albert Einstein • Atendimento online regulamentado • Sigilo profissional • Ética médica</p>
-                    <p class="text-white-50 mt-3"><i class="fas fa-info-circle me-2"></i>O Dr. Marcelo Medeiros atende dos 16 anos até 59 anos</p>
-                </div>
-                <div class="col-md-4 text-md-end">
-                    <a href="#" class="text-white d-block">Política de privacidade</a>
-                    <a href="#" class="text-white">Termos de uso</a>
-                </div>
-            </div>
             <div class="footer-copyright">
-                <i class="far fa-copyright me-1"></i> Todos direitos reservados por Dr. Marcelo Medeiros – CRM/PR 47960
+                <p>&copy; 2024 Dr. Marcelo Medeiros. De acordo com o Código de Ética Médica e Resolução CFM 2.336/23.</p>
+                <p class="x-small">Este site não substitui uma consulta médica presencial em casos de urgência grave.</p>
             </div>
         </div>
     </footer>
 
-    <script>
-        function toggleFaq(element) {
-            const item = element.parentElement;
-            item.classList.toggle('active');
-        }
-    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
